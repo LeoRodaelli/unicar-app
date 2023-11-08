@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -47,6 +48,51 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'Login',
+          path: '/login',
+          builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
+          name: 'Registro',
+          path: '/registro',
+          builder: (context, params) => RegistroWidget(),
+        ),
+        FFRoute(
+          name: 'OferecerCarona',
+          path: '/oferecerCarona',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'OferecerCarona')
+              : OferecerCaronaWidget(),
+        ),
+        FFRoute(
+          name: 'Perfil',
+          path: '/perfil',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Perfil')
+              : PerfilWidget(),
+        ),
+        FFRoute(
+          name: 'EdicaoPerfil',
+          path: '/edicaoPerfil',
+          builder: (context, params) => EdicaoPerfilWidget(),
+        ),
+        FFRoute(
+          name: 'Rota',
+          path: '/rota',
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'Rota') : RotaWidget(),
+        ),
+        FFRoute(
+          name: 'CaronasDisponiveis',
+          path: '/caronasDisponiveis',
+          builder: (context, params) => CaronasDisponiveisWidget(),
+        ),
+        FFRoute(
+          name: 'InformacoesCaronaPassageiro',
+          path: '/informacoesCaronaPassageiro',
+          builder: (context, params) => InformacoesCaronaPassageiroWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -118,6 +164,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -131,11 +178,8 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(
-      param,
-      type,
-      isList,
-    );
+    return deserializeParam<T>(param, type, isList,
+        collectionNamePath: collectionNamePath);
   }
 }
 
