@@ -33,7 +33,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  // ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
+        //_themeMode = mode;
         FlutterFlowTheme.saveThemeMode(mode);
       });
 
@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         scrollbarTheme: ScrollbarThemeData(),
       ),
-      themeMode: _themeMode,
+      //themeMode: _themeMode,
       routerConfig: _router,
     );
   }
