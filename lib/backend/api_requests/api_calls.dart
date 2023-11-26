@@ -40,6 +40,33 @@ class CadastroDeUsuarioCall {
       );
 }
 
+class EditarPerfilCall {
+  static Future<ApiCallResponse> call() async {
+    final ffApiRequestBody = '''
+{
+  "image": "string",
+  "name": "string",
+  "email": "string",
+  "ra": "string",
+  "university": "string",
+  "age": "int"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Editar perfil',
+      apiUrl: 'http://hostlocal:8080/profile',
+      callType: ApiCallType.PUT,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
