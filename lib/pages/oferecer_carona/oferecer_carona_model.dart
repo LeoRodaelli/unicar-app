@@ -18,22 +18,24 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for PlacePicker widget.
-  var placePickerValue = FFPlace();
-  // State field(s) for registroAcademico_RA widget.
-  FocusNode? registroAcademicoRAFocusNode;
-  TextEditingController? registroAcademicoRAController;
+  // State field(s) for PlacePickerPart widget.
+  var placePickerPartValue = FFPlace();
+  // State field(s) for PlacePickerDest widget.
+  var placePickerDestValue = FFPlace();
+  // State field(s) for passageiroMax widget.
+  FocusNode? passageiroMaxFocusNode;
+  TextEditingController? passageiroMaxController;
+  String? Function(BuildContext, String?)? passageiroMaxControllerValidator;
+  // State field(s) for valorPorPassageiro widget.
+  FocusNode? valorPorPassageiroFocusNode;
+  TextEditingController? valorPorPassageiroController;
   String? Function(BuildContext, String?)?
-      registroAcademicoRAControllerValidator;
-  // State field(s) for numeroDeContato widget.
-  FocusNode? numeroDeContatoFocusNode;
-  TextEditingController? numeroDeContatoController;
-  String? Function(BuildContext, String?)? numeroDeContatoControllerValidator;
-  // State field(s) for emailUniversitario widget.
-  FocusNode? emailUniversitarioFocusNode;
-  TextEditingController? emailUniversitarioController;
+      valorPorPassageiroControllerValidator;
+  // State field(s) for LimitDeTempAddRoda widget.
+  FocusNode? limitDeTempAddRodaFocusNode;
+  TextEditingController? limitDeTempAddRodaController;
   String? Function(BuildContext, String?)?
-      emailUniversitarioControllerValidator;
+      limitDeTempAddRodaControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController4;
@@ -45,14 +47,14 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
 
   void dispose() {
     unfocusNode.dispose();
-    registroAcademicoRAFocusNode?.dispose();
-    registroAcademicoRAController?.dispose();
+    passageiroMaxFocusNode?.dispose();
+    passageiroMaxController?.dispose();
 
-    numeroDeContatoFocusNode?.dispose();
-    numeroDeContatoController?.dispose();
+    valorPorPassageiroFocusNode?.dispose();
+    valorPorPassageiroController?.dispose();
 
-    emailUniversitarioFocusNode?.dispose();
-    emailUniversitarioController?.dispose();
+    limitDeTempAddRodaFocusNode?.dispose();
+    limitDeTempAddRodaController?.dispose();
 
     textFieldFocusNode?.dispose();
     textController4?.dispose();

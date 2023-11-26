@@ -1,5 +1,3 @@
-import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -18,13 +16,10 @@ class RotaModel extends FlutterFlowModel<RotaWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for partida widget.
-  var partidaValue = FFPlace();
-  // State field(s) for detino widget.
-  var detinoValue = FFPlace();
-  // State field(s) for GoogleMap widget.
-  LatLng? googleMapsCenter;
-  final googleMapsController = Completer<GoogleMapController>();
+  // State field(s) for localPartida widget.
+  var localPartidaValue = FFPlace();
+  // State field(s) for localDestino widget.
+  var localDestinoValue = FFPlace();
 
   /// Initialization and disposal methods.
 

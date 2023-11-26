@@ -21,22 +21,22 @@ class EdicaoPerfilModel extends FlutterFlowModel<EdicaoPerfilWidget> {
   FocusNode? yourNameFocusNode;
   TextEditingController? yourNameController;
   String? Function(BuildContext, String?)? yourNameControllerValidator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode1;
-  TextEditingController? cityController1;
-  String? Function(BuildContext, String?)? cityController1Validator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode2;
-  TextEditingController? cityController2;
-  String? Function(BuildContext, String?)? cityController2Validator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode3;
-  TextEditingController? cityController3;
-  String? Function(BuildContext, String?)? cityController3Validator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode4;
-  TextEditingController? cityController4;
-  String? Function(BuildContext, String?)? cityController4Validator;
+  // State field(s) for email widget.
+  FocusNode? emailFocusNode;
+  TextEditingController? emailController;
+  String? Function(BuildContext, String?)? emailControllerValidator;
+  // State field(s) for numero widget.
+  FocusNode? numeroFocusNode;
+  TextEditingController? numeroController;
+  String? Function(BuildContext, String?)? numeroControllerValidator;
+  // State field(s) for universidade widget.
+  FocusNode? universidadeFocusNode;
+  TextEditingController? universidadeController;
+  String? Function(BuildContext, String?)? universidadeControllerValidator;
+  // State field(s) for idade widget.
+  FocusNode? idadeFocusNode;
+  TextEditingController? idadeController;
+  String? Function(BuildContext, String?)? idadeControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -46,17 +46,17 @@ class EdicaoPerfilModel extends FlutterFlowModel<EdicaoPerfilWidget> {
     yourNameFocusNode?.dispose();
     yourNameController?.dispose();
 
-    cityFocusNode1?.dispose();
-    cityController1?.dispose();
+    emailFocusNode?.dispose();
+    emailController?.dispose();
 
-    cityFocusNode2?.dispose();
-    cityController2?.dispose();
+    numeroFocusNode?.dispose();
+    numeroController?.dispose();
 
-    cityFocusNode3?.dispose();
-    cityController3?.dispose();
+    universidadeFocusNode?.dispose();
+    universidadeController?.dispose();
 
-    cityFocusNode4?.dispose();
-    cityController4?.dispose();
+    idadeFocusNode?.dispose();
+    idadeController?.dispose();
   }
 
   /// Action blocks are added here.

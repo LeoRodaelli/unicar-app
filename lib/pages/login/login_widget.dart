@@ -30,6 +30,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -299,7 +301,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed('Registro');
+                                      context.pushNamed('Cadastro');
                                     },
                                     text: 'Cadastre-se',
                                     options: FFButtonOptions(

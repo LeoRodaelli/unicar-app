@@ -6,25 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'registro_model.dart';
-export 'registro_model.dart';
+import 'cadastro_model.dart';
+export 'cadastro_model.dart';
 
-class RegistroWidget extends StatefulWidget {
-  const RegistroWidget({Key? key}) : super(key: key);
+class CadastroWidget extends StatefulWidget {
+  const CadastroWidget({Key? key}) : super(key: key);
 
   @override
-  _RegistroWidgetState createState() => _RegistroWidgetState();
+  _CadastroWidgetState createState() => _CadastroWidgetState();
 }
 
-class _RegistroWidgetState extends State<RegistroWidget> {
-  late RegistroModel _model;
+class _CadastroWidgetState extends State<CadastroWidget> {
+  late CadastroModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RegistroModel());
+    _model = createModel(context, () => CadastroModel());
 
     _model.nomeController ??= TextEditingController();
     _model.nomeFocusNode ??= FocusNode();
@@ -43,6 +43,8 @@ class _RegistroWidgetState extends State<RegistroWidget> {
 
     _model.passwordConfirmController ??= TextEditingController();
     _model.passwordConfirmFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -156,6 +158,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
+                                        hintText: 'Ex: nome',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFD6D6D6),
@@ -231,6 +234,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
+                                        hintText: 'Ex: 20142304',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFD6D6D6),
@@ -307,6 +311,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
+                                        hintText: 'Ex: 19998347012',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFD6D6D6),
@@ -383,6 +388,8 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
+                                        hintText:
+                                            'Ex: saudoso.k1@puccampinas.edu.br',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFD6D6D6),
@@ -457,6 +464,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
+                                        hintText: 'senha ',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFD6D6D6),
@@ -549,6 +557,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       decoration: InputDecoration(
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
+                                        hintText: 'senha',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFD6D6D6),

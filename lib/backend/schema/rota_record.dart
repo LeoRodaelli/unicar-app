@@ -16,19 +16,67 @@ class RotaRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "local" field.
-  LatLng? _local;
-  LatLng? get local => _local;
-  bool hasLocal() => _local != null;
+  // "user_location" field.
+  LatLng? _userLocation;
+  LatLng? get userLocation => _userLocation;
+  bool hasUserLocation() => _userLocation != null;
 
-  // "destino" field.
-  LatLng? _destino;
-  LatLng? get destino => _destino;
-  bool hasDestino() => _destino != null;
+  // "user_uid" field.
+  String? _userUid;
+  String get userUid => _userUid ?? '';
+  bool hasUserUid() => _userUid != null;
+
+  // "driver_location" field.
+  LatLng? _driverLocation;
+  LatLng? get driverLocation => _driverLocation;
+  bool hasDriverLocation() => _driverLocation != null;
+
+  // "driver_uid" field.
+  String? _driverUid;
+  String get driverUid => _driverUid ?? '';
+  bool hasDriverUid() => _driverUid != null;
+
+  // "destination_location" field.
+  LatLng? _destinationLocation;
+  LatLng? get destinationLocation => _destinationLocation;
+  bool hasDestinationLocation() => _destinationLocation != null;
+
+  // "destination_address" field.
+  String? _destinationAddress;
+  String get destinationAddress => _destinationAddress ?? '';
+  bool hasDestinationAddress() => _destinationAddress != null;
+
+  // "user_address" field.
+  String? _userAddress;
+  String get userAddress => _userAddress ?? '';
+  bool hasUserAddress() => _userAddress != null;
+
+  // "user_name" field.
+  String? _userName;
+  String get userName => _userName ?? '';
+  bool hasUserName() => _userName != null;
+
+  // "driver_name" field.
+  String? _driverName;
+  String get driverName => _driverName ?? '';
+  bool hasDriverName() => _driverName != null;
+
+  // "is_driver_assined" field.
+  bool? _isDriverAssined;
+  bool get isDriverAssined => _isDriverAssined ?? false;
+  bool hasIsDriverAssined() => _isDriverAssined != null;
 
   void _initializeFields() {
-    _local = snapshotData['local'] as LatLng?;
-    _destino = snapshotData['destino'] as LatLng?;
+    _userLocation = snapshotData['user_location'] as LatLng?;
+    _userUid = snapshotData['user_uid'] as String?;
+    _driverLocation = snapshotData['driver_location'] as LatLng?;
+    _driverUid = snapshotData['driver_uid'] as String?;
+    _destinationLocation = snapshotData['destination_location'] as LatLng?;
+    _destinationAddress = snapshotData['destination_address'] as String?;
+    _userAddress = snapshotData['user_address'] as String?;
+    _userName = snapshotData['user_name'] as String?;
+    _driverName = snapshotData['driver_name'] as String?;
+    _isDriverAssined = snapshotData['is_driver_assined'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -65,13 +113,29 @@ class RotaRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createRotaRecordData({
-  LatLng? local,
-  LatLng? destino,
+  LatLng? userLocation,
+  String? userUid,
+  LatLng? driverLocation,
+  String? driverUid,
+  LatLng? destinationLocation,
+  String? destinationAddress,
+  String? userAddress,
+  String? userName,
+  String? driverName,
+  bool? isDriverAssined,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'local': local,
-      'destino': destino,
+      'user_location': userLocation,
+      'user_uid': userUid,
+      'driver_location': driverLocation,
+      'driver_uid': driverUid,
+      'destination_location': destinationLocation,
+      'destination_address': destinationAddress,
+      'user_address': userAddress,
+      'user_name': userName,
+      'driver_name': driverName,
+      'is_driver_assined': isDriverAssined,
     }.withoutNulls,
   );
 
@@ -83,11 +147,31 @@ class RotaRecordDocumentEquality implements Equality<RotaRecord> {
 
   @override
   bool equals(RotaRecord? e1, RotaRecord? e2) {
-    return e1?.local == e2?.local && e1?.destino == e2?.destino;
+    return e1?.userLocation == e2?.userLocation &&
+        e1?.userUid == e2?.userUid &&
+        e1?.driverLocation == e2?.driverLocation &&
+        e1?.driverUid == e2?.driverUid &&
+        e1?.destinationLocation == e2?.destinationLocation &&
+        e1?.destinationAddress == e2?.destinationAddress &&
+        e1?.userAddress == e2?.userAddress &&
+        e1?.userName == e2?.userName &&
+        e1?.driverName == e2?.driverName &&
+        e1?.isDriverAssined == e2?.isDriverAssined;
   }
 
   @override
-  int hash(RotaRecord? e) => const ListEquality().hash([e?.local, e?.destino]);
+  int hash(RotaRecord? e) => const ListEquality().hash([
+        e?.userLocation,
+        e?.userUid,
+        e?.driverLocation,
+        e?.driverUid,
+        e?.destinationLocation,
+        e?.destinationAddress,
+        e?.userAddress,
+        e?.userName,
+        e?.driverName,
+        e?.isDriverAssined
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is RotaRecord;

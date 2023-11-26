@@ -85,7 +85,27 @@ class _PerfilWidgetState extends State<PerfilWidget>
         ),
       ],
     ),
-    'dividerOnPageLoadAnimation': AnimationInfo(
+    'dividerOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0.0, 20.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'dividerOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 1.ms),
@@ -118,6 +138,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -218,7 +240,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
                 indent: 24.0,
                 endIndent: 24.0,
                 color: FlutterFlowTheme.of(context).alternate,
-              ).animateOnPageLoad(animationsMap['dividerOnPageLoadAnimation']!),
+              ).animateOnPageLoad(
+                  animationsMap['dividerOnPageLoadAnimation1']!),
               Align(
                 alignment: AlignmentDirectional(-1.00, 0.00),
                 child: Padding(
@@ -327,11 +350,71 @@ class _PerfilWidgetState extends State<PerfilWidget>
                   ),
                 ),
               ),
+              Divider(
+                height: 44.0,
+                thickness: 1.0,
+                indent: 24.0,
+                endIndent: 24.0,
+                color: FlutterFlowTheme.of(context).alternate,
+              ).animateOnPageLoad(
+                  animationsMap['dividerOnPageLoadAnimation2']!),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/car_3097180.png',
+                            width: 86.0,
+                            height: 80.0,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 5.0),
+                            child: Text(
+                              'Chevrolet Onlix',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Roboto',
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Braco - Placa XYL7W79',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Roboto',
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 10.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed('EdicaoPerfil');
                   },
                   text: 'Editar dados pessoais',
                   options: FFButtonOptions(
@@ -356,10 +439,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed('CadastroCarro');
                   },
                   text: 'Cadastrar Carro',
                   options: FFButtonOptions(

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -55,9 +56,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'Registro',
-          path: '/registro',
-          builder: (context, params) => RegistroWidget(),
+          name: 'Cadastro',
+          path: '/cadastro',
+          builder: (context, params) => CadastroWidget(),
         ),
         FFRoute(
           name: 'OferecerCarona',
@@ -93,6 +94,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'InformacoesCaronaPassageiro',
           path: '/informacoesCaronaPassageiro',
           builder: (context, params) => InformacoesCaronaPassageiroWidget(),
+        ),
+        FFRoute(
+          name: 'maps',
+          path: '/maps',
+          builder: (context, params) => MapsWidget(
+            partida: params.getParam<LatLng>('partida', ParamType.LatLng, true),
+            destino: params.getParam('destino', ParamType.LatLng),
+          ),
+        ),
+        FFRoute(
+          name: 'CadastroCarro',
+          path: '/CadastroCarro',
+          builder: (context, params) => CadastroCarroWidget(),
+        ),
+        FFRoute(
+          name: 'InformacoesCaronaMotorista',
+          path: '/informacoesCaronaMotorista',
+          builder: (context, params) => InformacoesCaronaMotoristaWidget(),
+        ),
+        FFRoute(
+          name: 'ride',
+          path: '/ride',
+          builder: (context, params) => RideWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

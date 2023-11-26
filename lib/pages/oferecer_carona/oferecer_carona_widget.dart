@@ -32,17 +32,19 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
     super.initState();
     _model = createModel(context, () => OferecerCaronaModel());
 
-    _model.registroAcademicoRAController ??= TextEditingController();
-    _model.registroAcademicoRAFocusNode ??= FocusNode();
+    _model.passageiroMaxController ??= TextEditingController();
+    _model.passageiroMaxFocusNode ??= FocusNode();
 
-    _model.numeroDeContatoController ??= TextEditingController();
-    _model.numeroDeContatoFocusNode ??= FocusNode();
+    _model.valorPorPassageiroController ??= TextEditingController();
+    _model.valorPorPassageiroFocusNode ??= FocusNode();
 
-    _model.emailUniversitarioController ??= TextEditingController();
-    _model.emailUniversitarioFocusNode ??= FocusNode();
+    _model.limitDeTempAddRodaController ??= TextEditingController();
+    _model.limitDeTempAddRodaFocusNode ??= FocusNode();
 
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -133,7 +135,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Escolha o local de partida',
+                                    'Escolha o local de partida e Destino',
                                     style: GoogleFonts.getFont(
                                       'Roboto',
                                       color: Color(0xFF353B48),
@@ -146,16 +148,54 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         0.0, 3.0, 0.0, 3.0),
                                     child: FlutterFlowPlacePicker(
                                       iOSGoogleMapsApiKey:
-                                          'AIzaSyAET2ouvdSzvJ2_Ad0eKH8ZLWqH6ulUZb4',
+                                          'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                       androidGoogleMapsApiKey:
-                                          'AIzaSyAET2ouvdSzvJ2_Ad0eKH8ZLWqH6ulUZb4',
+                                          'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
                                       webGoogleMapsApiKey:
-                                          'AIzaSyAET2ouvdSzvJ2_Ad0eKH8ZLWqH6ulUZb4',
+                                          'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
                                       onSelect: (place) async {
-                                        setState(() =>
-                                            _model.placePickerValue = place);
+                                        setState(() => _model
+                                            .placePickerPartValue = place);
                                       },
                                       defaultText: 'Endereço de Partida',
+                                      icon: Icon(
+                                        Icons.place,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 16.0,
+                                      ),
+                                      buttonOptions: FFButtonOptions(
+                                        width: 200.0,
+                                        height: 40.0,
+                                        color: Color(0xFFF1C40F),
+                                        textStyle: GoogleFonts.getFont(
+                                          'Roboto',
+                                        ),
+                                        elevation: 2.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 3.0, 0.0, 3.0),
+                                    child: FlutterFlowPlacePicker(
+                                      iOSGoogleMapsApiKey:
+                                          'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                                      androidGoogleMapsApiKey:
+                                          'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
+                                      webGoogleMapsApiKey:
+                                          'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
+                                      onSelect: (place) async {
+                                        setState(() => _model
+                                            .placePickerDestValue = place);
+                                      },
+                                      defaultText: 'Endereço de Destino',
                                       icon: Icon(
                                         Icons.place,
                                         color: FlutterFlowTheme.of(context)
@@ -194,10 +234,10 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                     child: Container(
                                       width: 370.0,
                                       child: TextFormField(
-                                        controller: _model
-                                            .registroAcademicoRAController,
+                                        controller:
+                                            _model.passageiroMaxController,
                                         focusNode:
-                                            _model.registroAcademicoRAFocusNode,
+                                            _model.passageiroMaxFocusNode,
                                         autofocus: true,
                                         autofillHints: [AutofillHints.email],
                                         obscureText: false,
@@ -205,6 +245,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium,
+                                          hintText: 'Ex: 2',
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFD6D6D6),
@@ -256,7 +297,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         validator: _model
-                                            .registroAcademicoRAControllerValidator
+                                            .passageiroMaxControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -277,9 +318,9 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                       width: 370.0,
                                       child: TextFormField(
                                         controller:
-                                            _model.numeroDeContatoController,
+                                            _model.valorPorPassageiroController,
                                         focusNode:
-                                            _model.numeroDeContatoFocusNode,
+                                            _model.valorPorPassageiroFocusNode,
                                         autofocus: true,
                                         autofillHints: [AutofillHints.email],
                                         obscureText: false,
@@ -287,6 +328,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium,
+                                          hintText: 'Ex: 10',
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFD6D6D6),
@@ -338,7 +380,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         validator: _model
-                                            .numeroDeContatoControllerValidator
+                                            .valorPorPassageiroControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -359,9 +401,9 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                       width: 370.0,
                                       child: TextFormField(
                                         controller:
-                                            _model.emailUniversitarioController,
+                                            _model.limitDeTempAddRodaController,
                                         focusNode:
-                                            _model.emailUniversitarioFocusNode,
+                                            _model.limitDeTempAddRodaFocusNode,
                                         autofocus: true,
                                         autofillHints: [AutofillHints.email],
                                         obscureText: false,
@@ -369,6 +411,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium,
+                                          hintText: 'Ex: 23',
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFD6D6D6),
@@ -420,7 +463,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         validator: _model
-                                            .emailUniversitarioControllerValidator
+                                            .limitDeTempAddRodaControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -505,8 +548,6 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                 },
                                               ).then(
                                                   (value) => setState(() {}));
-
-                                              context.safePop();
                                             },
                                           ),
                                         ),

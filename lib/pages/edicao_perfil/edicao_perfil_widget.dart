@@ -31,17 +31,19 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
     _model.yourNameController ??= TextEditingController();
     _model.yourNameFocusNode ??= FocusNode();
 
-    _model.cityController1 ??= TextEditingController();
-    _model.cityFocusNode1 ??= FocusNode();
+    _model.emailController ??= TextEditingController();
+    _model.emailFocusNode ??= FocusNode();
 
-    _model.cityController2 ??= TextEditingController();
-    _model.cityFocusNode2 ??= FocusNode();
+    _model.numeroController ??= TextEditingController();
+    _model.numeroFocusNode ??= FocusNode();
 
-    _model.cityController3 ??= TextEditingController();
-    _model.cityFocusNode3 ??= FocusNode();
+    _model.universidadeController ??= TextEditingController();
+    _model.universidadeFocusNode ??= FocusNode();
 
-    _model.cityController4 ??= TextEditingController();
-    _model.cityFocusNode4 ??= FocusNode();
+    _model.idadeController ??= TextEditingController();
+    _model.idadeFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -266,33 +268,33 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       color: FlutterFlowTheme.of(context).alternate,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primary,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   filled: true,
                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                   contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 validator:
@@ -316,8 +318,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
               child: TextFormField(
-                controller: _model.cityController1,
-                focusNode: _model.cityFocusNode1,
+                controller: _model.emailController,
+                focusNode: _model.emailFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -329,36 +331,36 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       color: FlutterFlowTheme.of(context).alternate,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primary,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   filled: true,
                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                   contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 0.0, 24.0),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
-                validator: _model.cityController1Validator.asValidator(context),
+                validator: _model.emailControllerValidator.asValidator(context),
               ),
             ),
             Align(
@@ -378,8 +380,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
               child: TextFormField(
-                controller: _model.cityController2,
-                focusNode: _model.cityFocusNode2,
+                controller: _model.numeroController,
+                focusNode: _model.numeroFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -391,28 +393,28 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       color: FlutterFlowTheme.of(context).alternate,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primary,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   filled: true,
                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -420,7 +422,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
-                validator: _model.cityController2Validator.asValidator(context),
+                validator:
+                    _model.numeroControllerValidator.asValidator(context),
               ),
             ),
             Align(
@@ -440,8 +443,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
               child: TextFormField(
-                controller: _model.cityController3,
-                focusNode: _model.cityFocusNode3,
+                controller: _model.universidadeController,
+                focusNode: _model.universidadeFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -453,28 +456,28 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       color: FlutterFlowTheme.of(context).alternate,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primary,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   filled: true,
                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -482,7 +485,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
-                validator: _model.cityController3Validator.asValidator(context),
+                validator:
+                    _model.universidadeControllerValidator.asValidator(context),
               ),
             ),
             Align(
@@ -502,8 +506,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
               child: TextFormField(
-                controller: _model.cityController4,
-                focusNode: _model.cityFocusNode4,
+                controller: _model.idadeController,
+                focusNode: _model.idadeFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -515,28 +519,28 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       color: FlutterFlowTheme.of(context).alternate,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primary,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).error,
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   filled: true,
                   fillColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -544,7 +548,7 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
                       EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
-                validator: _model.cityController4Validator.asValidator(context),
+                validator: _model.idadeControllerValidator.asValidator(context),
               ),
             ),
             Align(
@@ -552,8 +556,8 @@ class _EdicaoPerfilWidgetState extends State<EdicaoPerfilWidget> {
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed('Perfil');
                   },
                   text: 'Salvar',
                   options: FFButtonOptions(

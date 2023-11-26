@@ -1,20 +1,25 @@
-import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
-import '/components/ride_widget_widget.dart';
+import '/flutter_flow/flutter_flow_google_map.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'caronas_disponiveis_widget.dart' show CaronasDisponiveisWidget;
+import '/flutter_flow/place.dart';
+import 'dart:io';
+import 'ride_widget.dart' show RideWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CaronasDisponiveisModel
-    extends FlutterFlowModel<CaronasDisponiveisWidget> {
+class RideModel extends FlutterFlowModel<RideWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for PlacePicker widget.
+  var placePickerValue = FFPlace();
+  // State field(s) for GoogleMap widget.
+  LatLng? googleMapsCenter;
+  final googleMapsController = Completer<GoogleMapController>();
 
   /// Initialization and disposal methods.
 

@@ -34,6 +34,8 @@ class _DataWidgetState extends State<DataWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DataModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
