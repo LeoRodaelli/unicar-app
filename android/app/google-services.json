@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37738869042",
+    "project_id": "unicar-maps-2ea13",
+    "storage_bucket": "unicar-maps-2ea13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37738869042:android:c260fcaac1e897b891e72b",
+        "android_client_info": {
+          "package_name": "com.app.unicar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
