@@ -69,6 +69,8 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)

@@ -53,6 +53,7 @@ class _RideWidgetState extends State<RideWidget> {
       );
     }
 
+    context.watch<FFAppState>();
     if (currentUserLocationValue == null) {
       return Container(
         color: FlutterFlowTheme.of(context).primaryBackground,

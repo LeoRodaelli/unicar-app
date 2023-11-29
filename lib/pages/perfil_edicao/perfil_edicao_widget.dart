@@ -80,6 +80,8 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<PerfilRecord>>(
       stream: queryPerfilRecord(
         singleRecord: true,

@@ -53,6 +53,8 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -270,16 +272,25 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      _model.apiResultj80 =
+                                      _model.loginAPIResponse =
                                           await UnicarGroup.loginCall.call(
                                         email:
                                             _model.emailAddressController.text,
                                         password:
                                             _model.passwordController.text,
                                       );
-                                      if ((_model.apiResultj80?.succeeded ??
+                                      if ((_model.loginAPIResponse?.succeeded ??
                                           true)) {
                                         context.pushNamed('OferecerCarona');
+
+                                        setState(() {
+                                          FFAppState().token = getJsonField(
+                                            (_model.loginAPIResponse
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.token''',
+                                          ).toString();
+                                        });
                                       } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(

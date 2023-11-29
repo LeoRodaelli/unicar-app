@@ -140,6 +140,8 @@ class _PassegerWidgetState extends State<PassegerWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: 347.0,
       height: 132.0,

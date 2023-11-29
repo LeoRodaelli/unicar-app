@@ -162,6 +162,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<PerfilRecord>>(
       stream: queryPerfilRecord(
         queryBuilder: (perfilRecord) => perfilRecord.where(
