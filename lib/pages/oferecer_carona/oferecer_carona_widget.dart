@@ -1,4 +1,6 @@
-import '/componentes/data/data_widget.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,9 +8,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/place.dart';
 import 'dart:io';
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +35,13 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OferecerCaronaModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await queryOfferRideRecordOnce(
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+    });
 
     _model.passageiroMaxController ??= TextEditingController();
     _model.passageiroMaxFocusNode ??= FocusNode();
@@ -165,7 +176,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         size: 16.0,
                                       ),
                                       buttonOptions: FFButtonOptions(
-                                        width: 200.0,
+                                        width: double.infinity,
                                         height: 40.0,
                                         color: Color(0xFFF1C40F),
                                         textStyle: GoogleFonts.getFont(
@@ -203,7 +214,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         size: 16.0,
                                       ),
                                       buttonOptions: FFButtonOptions(
-                                        width: 200.0,
+                                        width: double.infinity,
                                         height: 40.0,
                                         color: Color(0xFFF1C40F),
                                         textStyle: GoogleFonts.getFont(
@@ -231,75 +242,114 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
-                                    child: Container(
-                                      width: 370.0,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.passageiroMaxController,
-                                        focusNode:
-                                            _model.passageiroMaxFocusNode,
-                                        autofocus: true,
-                                        autofillHints: [AutofillHints.email],
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium,
-                                          hintText: 'Ex: 2',
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0xFFD6D6D6),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
+                                    child: StreamBuilder<List<OfferRideRecord>>(
+                                      stream: queryOfferRideRecord(
+                                        singleRecord: true,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              width: 2.0,
+                                                ),
+                                              ),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
+                                          );
+                                        }
+                                        List<OfferRideRecord>
+                                            passageiroMaxOfferRideRecordList =
+                                            snapshot.data!;
+                                        // Return an empty Container when the item does not exist.
+                                        if (snapshot.data!.isEmpty) {
+                                          return Container();
+                                        }
+                                        final passageiroMaxOfferRideRecord =
+                                            passageiroMaxOfferRideRecordList
+                                                    .isNotEmpty
+                                                ? passageiroMaxOfferRideRecordList
+                                                    .first
+                                                : null;
+                                        return Container(
+                                          width: 370.0,
+                                          child: TextFormField(
+                                            controller:
+                                                _model.passageiroMaxController,
+                                            focusNode:
+                                                _model.passageiroMaxFocusNode,
+                                            autofocus: true,
+                                            autofillHints: [
+                                              AutofillHints.email
+                                            ],
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelStyle:
                                                   FlutterFlowTheme.of(context)
+                                                      .labelMedium,
+                                              hintText: 'Ex: 2',
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0xFFD6D6D6),
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .error,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .error,
-                                              width: 2.0,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              filled: true,
+                                              fillColor: Color(0xFFFEFEFE),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Colors.black,
+                                                ),
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            validator: _model
+                                                .passageiroMaxControllerValidator
+                                                .asValidator(context),
                                           ),
-                                          filled: true,
-                                          fillColor: Color(0xFFFEFEFE),
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Colors.black,
-                                            ),
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        validator: _model
-                                            .passageiroMaxControllerValidator
-                                            .asValidator(context),
-                                      ),
+                                        );
+                                      },
                                     ),
                                   ),
                                   Text(
@@ -492,64 +542,25 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
-                                        Builder(
-                                          builder: (context) =>
-                                              FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .accent1,
-                                            icon: Icon(
-                                              Icons.date_range_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () async {
-                                              await showAlignedDialog(
-                                                context: context,
-                                                isGlobal: true,
-                                                avoidOverflow: false,
-                                                targetAnchor:
-                                                    AlignmentDirectional(
-                                                            0.0, 0.0)
-                                                        .resolve(
-                                                            Directionality.of(
-                                                                context)),
-                                                followerAnchor:
-                                                    AlignmentDirectional(
-                                                            0.0, 0.0)
-                                                        .resolve(
-                                                            Directionality.of(
-                                                                context)),
-                                                builder: (dialogContext) {
-                                                  return Material(
-                                                    color: Colors.transparent,
-                                                    child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
-                                                              .unfocus(),
-                                                      child: DataWidget(),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then(
-                                                  (value) => setState(() {}));
-                                            },
+                                        FlutterFlowIconButton(
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .accent1,
+                                          icon: Icon(
+                                            Icons.date_range_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
                                           ),
+                                          onPressed: () {
+                                            print('IconButton pressed ...');
+                                          },
                                         ),
                                         Padding(
                                           padding:
@@ -647,7 +658,72 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        context.pushNamed('Login');
+                                        var offerRideRecordReference =
+                                            OfferRideRecord.collection.doc();
+                                        await offerRideRecordReference.set({
+                                          ...mapToFirestore(
+                                            {
+                                              'offerRide': [
+                                                getOfferRideFirestoreData(
+                                                  updateOfferRideStruct(
+                                                    OfferRideStruct(),
+                                                    clearUnsetFields: false,
+                                                    create: true,
+                                                  ),
+                                                  true,
+                                                )
+                                              ],
+                                            },
+                                          ),
+                                        });
+                                        _model.apiResult0go = OfferRideRecord
+                                            .getDocumentFromData({
+                                          ...mapToFirestore(
+                                            {
+                                              'offerRide': [
+                                                getOfferRideFirestoreData(
+                                                  updateOfferRideStruct(
+                                                    OfferRideStruct(),
+                                                    clearUnsetFields: false,
+                                                    create: true,
+                                                  ),
+                                                  true,
+                                                )
+                                              ],
+                                            },
+                                          ),
+                                        }, offerRideRecordReference);
+                                        if (_model
+                                            .apiResult0go!
+                                            .offerRide[getJsonField(
+                                          _model.apiResult0go!.offerRide.first
+                                              .toMap(),
+                                          r'''$''',
+                                        )]
+                                            .toMap()) {
+                                          context.pushNamed(
+                                              'InformacoesCaronaMotorista');
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                    'Algum campo não foi preencido corretamente'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+
+                                        setState(() {});
                                       },
                                       text: 'Avançar',
                                       options: FFButtonOptions(

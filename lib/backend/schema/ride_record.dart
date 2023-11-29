@@ -8,8 +8,8 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class RotaRecord extends FirestoreRecord {
-  RotaRecord._(
+class RideRecord extends FirestoreRecord {
+  RideRecord._(
     DocumentReference reference,
     Map<String, dynamic> data,
   ) : super(reference, data) {
@@ -61,10 +61,10 @@ class RotaRecord extends FirestoreRecord {
   String get driverName => _driverName ?? '';
   bool hasDriverName() => _driverName != null;
 
-  // "is_driver_assined" field.
-  bool? _isDriverAssined;
-  bool get isDriverAssined => _isDriverAssined ?? false;
-  bool hasIsDriverAssined() => _isDriverAssined != null;
+  // "is_driver_assigner" field.
+  double? _isDriverAssigner;
+  double get isDriverAssigner => _isDriverAssigner ?? 0.0;
+  bool hasIsDriverAssigner() => _isDriverAssigner != null;
 
   void _initializeFields() {
     _userLocation = snapshotData['user_location'] as LatLng?;
@@ -76,43 +76,43 @@ class RotaRecord extends FirestoreRecord {
     _userAddress = snapshotData['user_address'] as String?;
     _userName = snapshotData['user_name'] as String?;
     _driverName = snapshotData['driver_name'] as String?;
-    _isDriverAssined = snapshotData['is_driver_assined'] as bool?;
+    _isDriverAssigner = castToType<double>(snapshotData['is_driver_assigner']);
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('Rota');
+      FirebaseFirestore.instance.collection('ride');
 
-  static Stream<RotaRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => RotaRecord.fromSnapshot(s));
+  static Stream<RideRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => RideRecord.fromSnapshot(s));
 
-  static Future<RotaRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then((s) => RotaRecord.fromSnapshot(s));
+  static Future<RideRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => RideRecord.fromSnapshot(s));
 
-  static RotaRecord fromSnapshot(DocumentSnapshot snapshot) => RotaRecord._(
+  static RideRecord fromSnapshot(DocumentSnapshot snapshot) => RideRecord._(
         snapshot.reference,
         mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static RotaRecord getDocumentFromData(
+  static RideRecord getDocumentFromData(
     Map<String, dynamic> data,
     DocumentReference reference,
   ) =>
-      RotaRecord._(reference, mapFromFirestore(data));
+      RideRecord._(reference, mapFromFirestore(data));
 
   @override
   String toString() =>
-      'RotaRecord(reference: ${reference.path}, data: $snapshotData)';
+      'RideRecord(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
   bool operator ==(other) =>
-      other is RotaRecord &&
+      other is RideRecord &&
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createRotaRecordData({
+Map<String, dynamic> createRideRecordData({
   LatLng? userLocation,
   String? userUid,
   LatLng? driverLocation,
@@ -122,7 +122,7 @@ Map<String, dynamic> createRotaRecordData({
   String? userAddress,
   String? userName,
   String? driverName,
-  bool? isDriverAssined,
+  double? isDriverAssigner,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -135,18 +135,18 @@ Map<String, dynamic> createRotaRecordData({
       'user_address': userAddress,
       'user_name': userName,
       'driver_name': driverName,
-      'is_driver_assined': isDriverAssined,
+      'is_driver_assigner': isDriverAssigner,
     }.withoutNulls,
   );
 
   return firestoreData;
 }
 
-class RotaRecordDocumentEquality implements Equality<RotaRecord> {
-  const RotaRecordDocumentEquality();
+class RideRecordDocumentEquality implements Equality<RideRecord> {
+  const RideRecordDocumentEquality();
 
   @override
-  bool equals(RotaRecord? e1, RotaRecord? e2) {
+  bool equals(RideRecord? e1, RideRecord? e2) {
     return e1?.userLocation == e2?.userLocation &&
         e1?.userUid == e2?.userUid &&
         e1?.driverLocation == e2?.driverLocation &&
@@ -156,11 +156,11 @@ class RotaRecordDocumentEquality implements Equality<RotaRecord> {
         e1?.userAddress == e2?.userAddress &&
         e1?.userName == e2?.userName &&
         e1?.driverName == e2?.driverName &&
-        e1?.isDriverAssined == e2?.isDriverAssined;
+        e1?.isDriverAssigner == e2?.isDriverAssigner;
   }
 
   @override
-  int hash(RotaRecord? e) => const ListEquality().hash([
+  int hash(RideRecord? e) => const ListEquality().hash([
         e?.userLocation,
         e?.userUid,
         e?.driverLocation,
@@ -170,9 +170,9 @@ class RotaRecordDocumentEquality implements Equality<RotaRecord> {
         e?.userAddress,
         e?.userName,
         e?.driverName,
-        e?.isDriverAssined
+        e?.isDriverAssigner
       ]);
 
   @override
-  bool isValidKey(Object? o) => o is RotaRecord;
+  bool isValidKey(Object? o) => o is RideRecord;
 }

@@ -1,4 +1,6 @@
-import '/componentes/data/data_widget.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,9 +9,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/place.dart';
 import 'dart:io';
 import 'oferecer_carona_widget.dart' show OferecerCaronaWidget;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +44,8 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  OfferRideRecord? apiResult0go;
 
   /// Initialization and disposal methods.
 

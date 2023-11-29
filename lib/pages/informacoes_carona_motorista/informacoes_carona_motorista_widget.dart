@@ -175,8 +175,8 @@ class _InformacoesCaronaMotoristaWidgetState
                 child: Align(
                   alignment: AlignmentDirectional(0.00, 1.00),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      context.safePop();
                     },
                     text: 'Cancelar',
                     options: FFButtonOptions(
@@ -204,8 +204,8 @@ class _InformacoesCaronaMotoristaWidgetState
                 child: Align(
                   alignment: AlignmentDirectional(0.00, -1.00),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      context.pushNamed('maps');
                     },
                     text: 'Confirmar',
                     options: FFButtonOptions(

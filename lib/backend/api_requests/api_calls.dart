@@ -8,22 +8,40 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class CadastroDeUsuarioCall {
-  static Future<ApiCallResponse> call() async {
+/// Start unicar Group Code
+
+class UnicarGroup {
+  static String baseUrl = 'http://127.0.0.1:4567';
+  static Map<String, String> headers = {};
+  static CadastrarCarroCall cadastrarCarroCall = CadastrarCarroCall();
+  static LoginCall loginCall = LoginCall();
+  static CadastroDeUsuarioCall cadastroDeUsuarioCall = CadastroDeUsuarioCall();
+  static BuscarCadastroDeUsuarioCall buscarCadastroDeUsuarioCall =
+      BuscarCadastroDeUsuarioCall();
+  static CadastroDaCaronaCall cadastroDaCaronaCall = CadastroDaCaronaCall();
+}
+
+class CadastrarCarroCall {
+  Future<ApiCallResponse> call({
+    String? model = '',
+    String? color = '',
+    String? plate = '',
+    String? driverLicense = '',
+  }) async {
     final ffApiRequestBody = '''
 {
-    "name": "string",
-    "ra": "string",
-    "phone": "string",
-    "email": "string",
-    "password": "string"
-
+  "model": "${model}",
+  "color": "${color}",
+  "plate": "${plate}",
+  "driverLicense": "${driverLicense}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Cadastro de usuario',
-      apiUrl: 'http://localhost:8080/register',
+      callName: 'Cadastrar carro',
+      apiUrl: '${UnicarGroup.baseUrl}/car',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        'Content-Type': 'application/json',
+      },
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
@@ -33,29 +51,143 @@ class CadastroDeUsuarioCall {
       cache: false,
     );
   }
-
-  static dynamic name(dynamic response) => getJsonField(
-        response,
-        r'''$..name''',
-      );
 }
 
-class EditarPerfilCall {
-  static Future<ApiCallResponse> call() async {
+class LoginCall {
+  Future<ApiCallResponse> call({
+    String? email = '',
+    String? password = '',
+  }) async {
     final ffApiRequestBody = '''
 {
-  "image": "string",
-  "name": "string",
-  "email": "string",
-  "ra": "string",
-  "university": "string",
-  "age": "int"
+    “email”: "${email}",
+    “password”: "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Editar perfil',
-      apiUrl: 'http://hostlocal:8080/profile',
-      callType: ApiCallType.PUT,
+      callName: 'login',
+      apiUrl: '${UnicarGroup.baseUrl}/login',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class CadastroDeUsuarioCall {
+  Future<ApiCallResponse> call({
+    String? name = '',
+    String? ra = '',
+    String? phone = '',
+    String? email = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "name": "${name}",
+  "ra": "${ra}",
+  "phone": "${phone}",
+  "email": "${email}",
+  "password": "${password}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Cadastro de usuario',
+      apiUrl: '${UnicarGroup.baseUrl}/register',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class BuscarCadastroDeUsuarioCall {
+  Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Buscar cadastro de usuario',
+      apiUrl: '${UnicarGroup.baseUrl}/profile',
+      callType: ApiCallType.GET,
       headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class CadastroDaCaronaCall {
+  Future<ApiCallResponse> call({
+    double? originLatitude,
+    double? originLongitude,
+    double? destinyLatitude,
+    double? destinyLongitude,
+    String? startTime = '',
+    int? availableSeats,
+    double? price,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "originLatitude": ${originLatitude},
+  "originLongitude": ${originLongitude},
+  "destinyLatitude": ${destinyLatitude},
+  "destinyLongitude": ${destinyLongitude},
+  "startTime": "${startTime}",
+  "availableSeats": ${availableSeats},
+  "price": ${price}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Cadastro da carona',
+      apiUrl: '${UnicarGroup.baseUrl}/ride',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+/// End unicar Group Code
+
+class LoginTestCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "email": "${email}",
+  "password": "${password}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'login test',
+      apiUrl: 'http://127.0.0.1:4567/login',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,

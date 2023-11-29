@@ -16,25 +16,16 @@ class PassegerRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "name" field.
-  String? _name;
-  String get name => _name ?? '';
-  bool hasName() => _name != null;
-
-  // "phone" field.
-  String? _phone;
-  String get phone => _phone ?? '';
-  bool hasPhone() => _phone != null;
-
-  // "stoper" field.
-  String? _stoper;
-  String get stoper => _stoper ?? '';
-  bool hasStoper() => _stoper != null;
+  // "passenger" field.
+  List<PassegerStruct>? _passenger;
+  List<PassegerStruct> get passenger => _passenger ?? const [];
+  bool hasPassenger() => _passenger != null;
 
   void _initializeFields() {
-    _name = snapshotData['name'] as String?;
-    _phone = snapshotData['phone'] as String?;
-    _stoper = snapshotData['stoper'] as String?;
+    _passenger = getStructList(
+      snapshotData['passenger'],
+      PassegerStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -71,17 +62,9 @@ class PassegerRecord extends FirestoreRecord {
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createPassegerRecordData({
-  String? name,
-  String? phone,
-  String? stoper,
-}) {
+Map<String, dynamic> createPassegerRecordData() {
   final firestoreData = mapToFirestore(
-    <String, dynamic>{
-      'name': name,
-      'phone': phone,
-      'stoper': stoper,
-    }.withoutNulls,
+    <String, dynamic>{}.withoutNulls,
   );
 
   return firestoreData;
@@ -92,14 +75,12 @@ class PassegerRecordDocumentEquality implements Equality<PassegerRecord> {
 
   @override
   bool equals(PassegerRecord? e1, PassegerRecord? e2) {
-    return e1?.name == e2?.name &&
-        e1?.phone == e2?.phone &&
-        e1?.stoper == e2?.stoper;
+    const listEquality = ListEquality();
+    return listEquality.equals(e1?.passenger, e2?.passenger);
   }
 
   @override
-  int hash(PassegerRecord? e) =>
-      const ListEquality().hash([e?.name, e?.phone, e?.stoper]);
+  int hash(PassegerRecord? e) => const ListEquality().hash([e?.passenger]);
 
   @override
   bool isValidKey(Object? o) => o is PassegerRecord;

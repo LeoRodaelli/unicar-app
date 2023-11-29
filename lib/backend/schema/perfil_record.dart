@@ -16,43 +16,13 @@ class PerfilRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "nome" field.
-  String? _nome;
-  String get nome => _nome ?? '';
-  bool hasNome() => _nome != null;
-
-  // "email" field.
-  String? _email;
-  String get email => _email ?? '';
-  bool hasEmail() => _email != null;
-
-  // "contato_numero" field.
-  int? _contatoNumero;
-  int get contatoNumero => _contatoNumero ?? 0;
-  bool hasContatoNumero() => _contatoNumero != null;
-
-  // "universidade" field.
-  String? _universidade;
-  String get universidade => _universidade ?? '';
-  bool hasUniversidade() => _universidade != null;
-
-  // "idade" field.
-  int? _idade;
-  int get idade => _idade ?? 0;
-  bool hasIdade() => _idade != null;
-
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
+  // "perfil" field.
+  PerfilStruct? _perfil;
+  PerfilStruct get perfil => _perfil ?? PerfilStruct();
+  bool hasPerfil() => _perfil != null;
 
   void _initializeFields() {
-    _nome = snapshotData['nome'] as String?;
-    _email = snapshotData['email'] as String?;
-    _contatoNumero = castToType<int>(snapshotData['contato_numero']);
-    _universidade = snapshotData['universidade'] as String?;
-    _idade = castToType<int>(snapshotData['idade']);
-    _uid = snapshotData['uid'] as String?;
+    _perfil = PerfilStruct.maybeFromMap(snapshotData['perfil']);
   }
 
   static CollectionReference get collection =>
@@ -89,23 +59,16 @@ class PerfilRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createPerfilRecordData({
-  String? nome,
-  String? email,
-  int? contatoNumero,
-  String? universidade,
-  int? idade,
-  String? uid,
+  PerfilStruct? perfil,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'nome': nome,
-      'email': email,
-      'contato_numero': contatoNumero,
-      'universidade': universidade,
-      'idade': idade,
-      'uid': uid,
+      'perfil': PerfilStruct().toMap(),
     }.withoutNulls,
   );
+
+  // Handle nested data for "perfil" field.
+  addPerfilStructData(firestoreData, perfil, 'perfil');
 
   return firestoreData;
 }
@@ -115,17 +78,11 @@ class PerfilRecordDocumentEquality implements Equality<PerfilRecord> {
 
   @override
   bool equals(PerfilRecord? e1, PerfilRecord? e2) {
-    return e1?.nome == e2?.nome &&
-        e1?.email == e2?.email &&
-        e1?.contatoNumero == e2?.contatoNumero &&
-        e1?.universidade == e2?.universidade &&
-        e1?.idade == e2?.idade &&
-        e1?.uid == e2?.uid;
+    return e1?.perfil == e2?.perfil;
   }
 
   @override
-  int hash(PerfilRecord? e) => const ListEquality().hash(
-      [e?.nome, e?.email, e?.contatoNumero, e?.universidade, e?.idade, e?.uid]);
+  int hash(PerfilRecord? e) => const ListEquality().hash([e?.perfil]);
 
   @override
   bool isValidKey(Object? o) => o is PerfilRecord;
