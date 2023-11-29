@@ -135,7 +135,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     child: TextFormField(
                                       controller: _model.emailAddressController,
                                       focusNode: _model.emailAddressFocusNode,
-                                      onFieldSubmitted: (_) async {},
                                       autofocus: true,
                                       autofillHints: [AutofillHints.email],
                                       obscureText: false,

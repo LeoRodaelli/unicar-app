@@ -1,9 +1,9 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -164,14 +164,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
 
     context.watch<FFAppState>();
 
-    return StreamBuilder<List<PerfilRecord>>(
-      stream: queryPerfilRecord(
-        queryBuilder: (perfilRecord) => perfilRecord.where(
-          'perfil.emailUniversitarioPerfil',
-          isEqualTo: currentUserEmail,
-        ),
-        singleRecord: true,
-      ),
+    return FutureBuilder<ApiCallResponse>(
+      future: UnicarGroup.buscarCadastroDeUsuarioCall.call(),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -190,14 +184,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
             ),
           );
         }
-        List<PerfilRecord> perfilPerfilRecordList = snapshot.data!;
-        // Return an empty Container when the item does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
-        final perfilPerfilRecord = perfilPerfilRecordList.isNotEmpty
-            ? perfilPerfilRecordList.first
-            : null;
+        final perfilBuscarCadastroDeUsuarioResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -225,7 +212,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(60.0),
                             child: Image.network(
-                              perfilPerfilRecord!.perfil.imagePerfil,
+                              PerfilStruct.fromMap(
+                                      perfilBuscarCadastroDeUsuarioResponse
+                                          .jsonBody)
+                                  .imagePerfil,
                               width: 100.0,
                               height: 100.0,
                               fit: BoxFit.cover,
@@ -241,8 +231,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
                             child: Text(
-                              perfilPerfilRecord!
-                                  .perfil.emailUniversitarioPerfil,
+                              PerfilStruct.fromMap(
+                                      perfilBuscarCadastroDeUsuarioResponse
+                                          .jsonBody)
+                                  .namePerfil,
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context).headlineSmall,
                             ).animateOnPageLoad(
@@ -252,7 +244,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
-                              currentUserEmail,
+                              'leolima@puccampinas.edu.br',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
@@ -296,7 +288,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        perfilPerfilRecord!.perfil.raPerfil,
+                        PerfilStruct.fromMap(
+                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
+                            .raPerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -325,7 +319,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        perfilPerfilRecord!.perfil.phonePerfil,
+                        PerfilStruct.fromMap(
+                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
+                            .phonePerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -354,7 +350,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        perfilPerfilRecord!.perfil.universidadePerfil,
+                        PerfilStruct.fromMap(
+                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
+                            .universidadePerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -383,7 +381,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        perfilPerfilRecord!.perfil.agePerfil,
+                        PerfilStruct.fromMap(
+                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
+                            .agePerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -425,7 +425,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 0.0, 5.0),
                                 child: Text(
-                                  perfilPerfilRecord!.perfil.carPerfil,
+                                  PerfilStruct.fromMap(
+                                          perfilBuscarCadastroDeUsuarioResponse
+                                              .jsonBody)
+                                      .carPerfil,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -443,7 +446,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        perfilPerfilRecord!.perfil.colorPerfil,
+                                        PerfilStruct.fromMap(
+                                                perfilBuscarCadastroDeUsuarioResponse
+                                                    .jsonBody)
+                                            .carPerfil,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -452,7 +458,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                       ),
                                     ),
                                     Text(
-                                      perfilPerfilRecord!.perfil.plateCarPerfil,
+                                      PerfilStruct.fromMap(
+                                              perfilBuscarCadastroDeUsuarioResponse
+                                                  .jsonBody)
+                                          .carPerfil,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),

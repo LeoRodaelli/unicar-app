@@ -1,11 +1,8 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -528,9 +525,8 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 10.0, 10.0),
                             child: FFButtonWidget(
-                              onPressed: () async {
-                                await currentUserReference!
-                                    .update(createUsersRecordData());
+                              onPressed: () {
+                                print('Button pressed ...');
                               },
                               text: 'Salvar',
                               options: FFButtonOptions(
