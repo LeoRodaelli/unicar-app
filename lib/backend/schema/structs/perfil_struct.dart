@@ -20,6 +20,8 @@ class PerfilStruct extends FFFirebaseStruct {
     String? namePerfil,
     String? universidadePerfil,
     String? imagePerfil,
+    String? drivinglicence,
+    String? passwordPerfil,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _emailUniversitarioPerfil = emailUniversitarioPerfil,
         _phonePerfil = phonePerfil,
@@ -31,6 +33,8 @@ class PerfilStruct extends FFFirebaseStruct {
         _namePerfil = namePerfil,
         _universidadePerfil = universidadePerfil,
         _imagePerfil = imagePerfil,
+        _drivinglicence = drivinglicence,
+        _passwordPerfil = passwordPerfil,
         super(firestoreUtilData);
 
   // "emailUniversitarioPerfil" field.
@@ -93,6 +97,18 @@ class PerfilStruct extends FFFirebaseStruct {
   set imagePerfil(String? val) => _imagePerfil = val;
   bool hasImagePerfil() => _imagePerfil != null;
 
+  // "drivinglicence" field.
+  String? _drivinglicence;
+  String get drivinglicence => _drivinglicence ?? '';
+  set drivinglicence(String? val) => _drivinglicence = val;
+  bool hasDrivinglicence() => _drivinglicence != null;
+
+  // "passwordPerfil" field.
+  String? _passwordPerfil;
+  String get passwordPerfil => _passwordPerfil ?? '';
+  set passwordPerfil(String? val) => _passwordPerfil = val;
+  bool hasPasswordPerfil() => _passwordPerfil != null;
+
   static PerfilStruct fromMap(Map<String, dynamic> data) => PerfilStruct(
         emailUniversitarioPerfil: data['emailUniversitarioPerfil'] as String?,
         phonePerfil: data['phonePerfil'] as String?,
@@ -104,6 +120,8 @@ class PerfilStruct extends FFFirebaseStruct {
         namePerfil: data['namePerfil'] as String?,
         universidadePerfil: data['universidadePerfil'] as String?,
         imagePerfil: data['imagePerfil'] as String?,
+        drivinglicence: data['drivinglicence'] as String?,
+        passwordPerfil: data['passwordPerfil'] as String?,
       );
 
   static PerfilStruct? maybeFromMap(dynamic data) =>
@@ -120,6 +138,8 @@ class PerfilStruct extends FFFirebaseStruct {
         'namePerfil': _namePerfil,
         'universidadePerfil': _universidadePerfil,
         'imagePerfil': _imagePerfil,
+        'drivinglicence': _drivinglicence,
+        'passwordPerfil': _passwordPerfil,
       }.withoutNulls;
 
   @override
@@ -162,6 +182,14 @@ class PerfilStruct extends FFFirebaseStruct {
         ),
         'imagePerfil': serializeParam(
           _imagePerfil,
+          ParamType.String,
+        ),
+        'drivinglicence': serializeParam(
+          _drivinglicence,
+          ParamType.String,
+        ),
+        'passwordPerfil': serializeParam(
+          _passwordPerfil,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -218,6 +246,16 @@ class PerfilStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        drivinglicence: deserializeParam(
+          data['drivinglicence'],
+          ParamType.String,
+          false,
+        ),
+        passwordPerfil: deserializeParam(
+          data['passwordPerfil'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -235,7 +273,9 @@ class PerfilStruct extends FFFirebaseStruct {
         raPerfil == other.raPerfil &&
         namePerfil == other.namePerfil &&
         universidadePerfil == other.universidadePerfil &&
-        imagePerfil == other.imagePerfil;
+        imagePerfil == other.imagePerfil &&
+        drivinglicence == other.drivinglicence &&
+        passwordPerfil == other.passwordPerfil;
   }
 
   @override
@@ -249,7 +289,9 @@ class PerfilStruct extends FFFirebaseStruct {
         raPerfil,
         namePerfil,
         universidadePerfil,
-        imagePerfil
+        imagePerfil,
+        drivinglicence,
+        passwordPerfil
       ]);
 }
 
@@ -264,6 +306,8 @@ PerfilStruct createPerfilStruct({
   String? namePerfil,
   String? universidadePerfil,
   String? imagePerfil,
+  String? drivinglicence,
+  String? passwordPerfil,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -280,6 +324,8 @@ PerfilStruct createPerfilStruct({
       namePerfil: namePerfil,
       universidadePerfil: universidadePerfil,
       imagePerfil: imagePerfil,
+      drivinglicence: drivinglicence,
+      passwordPerfil: passwordPerfil,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

@@ -178,7 +178,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               BorderRadius.circular(12.0),
                                         ),
                                         filled: true,
-                                        fillColor: Color(0xFFFEFEFE),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .alternate,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
@@ -240,7 +241,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               BorderRadius.circular(12.0),
                                         ),
                                         filled: true,
-                                        fillColor: Color(0xFFFEFEFE),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .alternate,
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model.passwordVisibility =

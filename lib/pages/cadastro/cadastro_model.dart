@@ -1,6 +1,8 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'cadastro_widget.dart' show CadastroWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,8 @@ class CadastroModel extends FlutterFlowModel<CadastroWidget> {
   TextEditingController? passwordConfirmController;
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)? passwordConfirmControllerValidator;
+  // Stores action output result for [Backend Call - API (Cadastro de usuario)] action in Button widget.
+  ApiCallResponse? apiResulti00;
 
   /// Initialization and disposal methods.
 
