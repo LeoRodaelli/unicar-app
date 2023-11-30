@@ -94,35 +94,61 @@ class _InformacoesCaronaMotoristaWidgetState
                   ),
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional(-1.00, 0.00),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
-                  child: Text(
-                    'Vagas preenchidas: 2/3',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: Color(0xFF818181),
-                          fontWeight: FontWeight.w800,
-                        ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(-1.00, 0.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                      child: Text(
+                        'Vagas preenchidas: ',
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFF818181),
+                              fontWeight: FontWeight.w800,
+                            ),
+                      ),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    child: Text(
+                      '',
+                      style: FlutterFlowTheme.of(context).bodyMedium,
+                    ),
+                  ),
+                ],
               ),
-              Align(
-                alignment: AlignmentDirectional(-1.00, 0.00),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
-                  child: Text(
-                    'Viagem programada para saída até 21:15',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: Color(0xFF818181),
-                          fontWeight: FontWeight.w800,
-                        ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(-1.00, 0.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 2.0, 2.0, 2.0),
+                      child: Text(
+                        'Viagem programada para saída até',
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFF818181),
+                              fontWeight: FontWeight.w800,
+                            ),
+                      ),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                    child: Text(
+                      '',
+                      style: FlutterFlowTheme.of(context).bodyMedium,
+                    ),
+                  ),
+                ],
               ),
               StreamBuilder<List<PassegerRecord>>(
                 stream: queryPassegerRecord(),
@@ -209,7 +235,7 @@ class _InformacoesCaronaMotoristaWidgetState
                     onPressed: () async {
                       context.pushNamed('maps');
                     },
-                    text: 'Confirmar',
+                    text: 'Iniciar',
                     options: FFButtonOptions(
                       width: 350.0,
                       height: 44.0,

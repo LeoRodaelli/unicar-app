@@ -16,16 +16,13 @@ class OfferRideRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "offerRide" field.
-  List<OfferRideStruct>? _offerRide;
-  List<OfferRideStruct> get offerRide => _offerRide ?? const [];
-  bool hasOfferRide() => _offerRide != null;
+  // "offerRedes" field.
+  OfferRideStruct? _offerRedes;
+  OfferRideStruct get offerRedes => _offerRedes ?? OfferRideStruct();
+  bool hasOfferRedes() => _offerRedes != null;
 
   void _initializeFields() {
-    _offerRide = getStructList(
-      snapshotData['offerRide'],
-      OfferRideStruct.fromMap,
-    );
+    _offerRedes = OfferRideStruct.maybeFromMap(snapshotData['offerRedes']);
   }
 
   static CollectionReference get collection =>
@@ -62,10 +59,17 @@ class OfferRideRecord extends FirestoreRecord {
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createOfferRideRecordData() {
+Map<String, dynamic> createOfferRideRecordData({
+  OfferRideStruct? offerRedes,
+}) {
   final firestoreData = mapToFirestore(
-    <String, dynamic>{}.withoutNulls,
+    <String, dynamic>{
+      'offerRedes': OfferRideStruct().toMap(),
+    }.withoutNulls,
   );
+
+  // Handle nested data for "offerRedes" field.
+  addOfferRideStructData(firestoreData, offerRedes, 'offerRedes');
 
   return firestoreData;
 }
@@ -75,12 +79,11 @@ class OfferRideRecordDocumentEquality implements Equality<OfferRideRecord> {
 
   @override
   bool equals(OfferRideRecord? e1, OfferRideRecord? e2) {
-    const listEquality = ListEquality();
-    return listEquality.equals(e1?.offerRide, e2?.offerRide);
+    return e1?.offerRedes == e2?.offerRedes;
   }
 
   @override
-  int hash(OfferRideRecord? e) => const ListEquality().hash([e?.offerRide]);
+  int hash(OfferRideRecord? e) => const ListEquality().hash([e?.offerRedes]);
 
   @override
   bool isValidKey(Object? o) => o is OfferRideRecord;

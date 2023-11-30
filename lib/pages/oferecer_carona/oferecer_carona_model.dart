@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -43,8 +42,6 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  OfferRideRecord? apiResult0go;
 
   /// Initialization and disposal methods.
 

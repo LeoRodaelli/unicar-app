@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -658,73 +657,8 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
-                                      onPressed: () async {
-                                        var offerRideRecordReference =
-                                            OfferRideRecord.collection.doc();
-                                        await offerRideRecordReference.set({
-                                          ...mapToFirestore(
-                                            {
-                                              'offerRide': [
-                                                getOfferRideFirestoreData(
-                                                  updateOfferRideStruct(
-                                                    OfferRideStruct(),
-                                                    clearUnsetFields: false,
-                                                    create: true,
-                                                  ),
-                                                  true,
-                                                )
-                                              ],
-                                            },
-                                          ),
-                                        });
-                                        _model.apiResult0go = OfferRideRecord
-                                            .getDocumentFromData({
-                                          ...mapToFirestore(
-                                            {
-                                              'offerRide': [
-                                                getOfferRideFirestoreData(
-                                                  updateOfferRideStruct(
-                                                    OfferRideStruct(),
-                                                    clearUnsetFields: false,
-                                                    create: true,
-                                                  ),
-                                                  true,
-                                                )
-                                              ],
-                                            },
-                                          ),
-                                        }, offerRideRecordReference);
-                                        if (_model
-                                            .apiResult0go!
-                                            .offerRide[getJsonField(
-                                          _model.apiResult0go!.offerRide.first
-                                              .toMap(),
-                                          r'''$''',
-                                        )]
-                                            .toMap()) {
-                                          context.pushNamed(
-                                              'InformacoesCaronaMotorista');
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                    'Algum campo não foi preencido corretamente'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        }
-
-                                        setState(() {});
+                                      onPressed: () {
+                                        print('Button pressed ...');
                                       },
                                       text: 'Avançar',
                                       options: FFButtonOptions(

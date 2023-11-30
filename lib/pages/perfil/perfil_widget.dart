@@ -244,7 +244,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
-                              'leolima@puccampinas.edu.br',
+                              PerfilStruct.fromMap(
+                                      perfilBuscarCadastroDeUsuarioResponse
+                                          .jsonBody)
+                                  .emailUniversitarioPerfil,
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
@@ -449,7 +452,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                         PerfilStruct.fromMap(
                                                 perfilBuscarCadastroDeUsuarioResponse
                                                     .jsonBody)
-                                            .carPerfil,
+                                            .colorPerfil,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -461,7 +464,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                       PerfilStruct.fromMap(
                                               perfilBuscarCadastroDeUsuarioResponse
                                                   .jsonBody)
-                                          .carPerfil,
+                                          .plateCarPerfil,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
