@@ -79,6 +79,11 @@ class LoginCall {
       cache: false,
     );
   }
+
+  dynamic token(dynamic response) => getJsonField(
+        response,
+        r'''$.token''',
+      );
 }
 
 class CadastroDeUsuarioCall {
