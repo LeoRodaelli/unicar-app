@@ -279,35 +279,44 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             _model.passwordController.text,
                                       );
                                       if ((_model.loginAPIResponse?.succeeded ??
-                                          true)) {
-                                        context.pushNamed('OferecerCarona');
-
+                                              true) ==
+                                          true) {
                                         setState(() {
-                                          FFAppState().token = getJsonField(
-                                            (_model.loginAPIResponse
-                                                    ?.jsonBody ??
-                                                ''),
-                                            r'''$.token''',
-                                          ).toString();
+                                          FFAppState().token =
+                                              UnicarGroup.loginCall
+                                                  .token(
+                                                    (_model.loginAPIResponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )
+                                                  .toString();
                                         });
+
+                                        context.pushNamed('OferecerCarona');
                                       } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Login API falhou',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
+                                        setState(() {
+                                          _model.emailAddressController
+                                              ?.clear();
+                                          _model.passwordController?.clear();
+                                        });
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('Error'),
+                                              content: Text(
+                                                  'Email ou senha invalidos'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child:
+                                                      Text('Tente novamente.'),
+                                                ),
+                                              ],
+                                            );
+                                          },
                                         );
                                       }
 
