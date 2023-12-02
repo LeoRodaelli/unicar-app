@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -702,35 +701,60 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           0.0, 0.0, 0.0, 16.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          _model.apiResulti00 =
-                                              await UnicarGroup
-                                                  .cadastroDeUsuarioCall
-                                                  .call(
-                                            name: (cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            null &&
-                                                        cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            ''
-                                                    ? PerfilStruct.fromMap(
-                                                        cadastroCadastroDeUsuarioResponse
-                                                            .jsonBody)
-                                                    : null)
-                                                ?.namePerfil,
-                                            ra: _model
-                                                .registroAcademicoRAController
-                                                .text,
-                                            phone: _model
-                                                .numeroDeContatoController.text,
-                                            email: _model
-                                                .emailUniversitarioController
-                                                .text,
-                                            password:
-                                                _model.passwordController.text,
-                                          );
+                                          var _shouldSetState = false;
+                                          if (_model.passwordController.text ==
+                                              _model.passwordConfirmController
+                                                  .text) {
+                                            _model.apiResulti00 =
+                                                await UnicarGroup
+                                                    .cadastroDeUsuarioCall
+                                                    .call(
+                                              email: _model
+                                                  .emailUniversitarioController
+                                                  .text,
+                                              password: _model
+                                                  .passwordController.text,
+                                              name: _model.nomeController.text,
+                                              ra: _model
+                                                  .registroAcademicoRAController
+                                                  .text,
+                                              phone: _model
+                                                  .numeroDeContatoController
+                                                  .text,
+                                            );
+                                            _shouldSetState = true;
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Senhas são diferentes'),
+                                                  content: Text(
+                                                      'Digite senha iguais nos dois campos'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
+                                          }
+
                                           if ((_model.apiResulti00?.succeeded ??
                                               true)) {
                                             context.pushNamed('Login');
+
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
                                           } else {
                                             await showDialog(
                                               context: context,
@@ -748,9 +772,12 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                 );
                                               },
                                             );
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
                                           }
 
-                                          setState(() {});
+                                          if (_shouldSetState) setState(() {});
                                         },
                                         text: 'Cadastrar',
                                         options: FFButtonOptions(
