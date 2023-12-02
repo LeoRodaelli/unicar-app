@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -273,6 +274,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      var _shouldSetState = false;
                                       _model.loginAPIResponse =
                                           await UnicarGroup.loginCall.call(
                                         email:
@@ -280,21 +282,25 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         password:
                                             _model.passwordController.text,
                                       );
+                                      _shouldSetState = true;
                                       if ((_model.loginAPIResponse?.succeeded ??
                                               true) ==
                                           true) {
-                                        setState(() {
-                                          FFAppState().token =
-                                              UnicarGroup.loginCall
-                                                  .token(
-                                                    (_model.loginAPIResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )
-                                                  .toString();
-                                        });
+                                        GoRouter.of(context).prepareAuthEvent();
+                                        await authManager.signIn(
+                                          authenticationToken: getJsonField(
+                                            (_model.loginAPIResponse
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.token''',
+                                          ).toString(),
+                                        );
 
-                                        context.pushNamed('OferecerCarona');
+                                        context.pushNamedAuth(
+                                            'OferecerCarona', context.mounted);
+
+                                        if (_shouldSetState) setState(() {});
+                                        return;
                                       } else {
                                         setState(() {
                                           _model.emailAddressController
@@ -320,9 +326,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             );
                                           },
                                         );
+                                        if (_shouldSetState) setState(() {});
+                                        return;
                                       }
 
-                                      setState(() {});
+                                      if (_shouldSetState) setState(() {});
                                     },
                                     text: 'Entrar',
                                     options: FFButtonOptions(
