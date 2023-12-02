@@ -11,7 +11,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start unicar Group Code
 
 class UnicarGroup {
-  static String baseUrl = 'http://127.0.0.1:4567';
+  static String baseUrl = 'https://127.0.0.1:4567';
   static Map<String, String> headers = {};
   static CadastrarCarroCall cadastrarCarroCall = CadastrarCarroCall();
   static LoginCall loginCall = LoginCall();

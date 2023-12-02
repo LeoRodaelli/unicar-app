@@ -717,54 +717,37 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                             .jsonBody)
                                                     : null)
                                                 ?.namePerfil,
-                                            ra: (cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            null &&
-                                                        cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            ''
-                                                    ? PerfilStruct.fromMap(
-                                                        cadastroCadastroDeUsuarioResponse
-                                                            .jsonBody)
-                                                    : null)
-                                                ?.raPerfil,
-                                            phone: (cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            null &&
-                                                        cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            ''
-                                                    ? PerfilStruct.fromMap(
-                                                        cadastroCadastroDeUsuarioResponse
-                                                            .jsonBody)
-                                                    : null)
-                                                ?.phonePerfil,
-                                            email: (cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            null &&
-                                                        cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            ''
-                                                    ? PerfilStruct.fromMap(
-                                                        cadastroCadastroDeUsuarioResponse
-                                                            .jsonBody)
-                                                    : null)
-                                                ?.emailUniversitarioPerfil,
-                                            password: (cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            null &&
-                                                        cadastroCadastroDeUsuarioResponse
-                                                                .jsonBody !=
-                                                            ''
-                                                    ? PerfilStruct.fromMap(
-                                                        cadastroCadastroDeUsuarioResponse
-                                                            .jsonBody)
-                                                    : null)
-                                                ?.passwordPerfil,
+                                            ra: _model
+                                                .registroAcademicoRAController
+                                                .text,
+                                            phone: _model
+                                                .numeroDeContatoController.text,
+                                            email: _model
+                                                .emailUniversitarioController
+                                                .text,
+                                            password:
+                                                _model.passwordController.text,
                                           );
                                           if ((_model.apiResulti00?.succeeded ??
                                               true)) {
                                             context.pushNamed('Login');
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('deu ruim'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
                                           }
 
                                           setState(() {});
