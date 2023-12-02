@@ -252,13 +252,17 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                           ),
                                         ),
                                       ),
-                                      Text(
-                                        'Número máximo de passageiros',
-                                        style: GoogleFonts.getFont(
-                                          'Roboto',
-                                          color: Color(0xFF353B48),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 20.0,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Número máximo de passageiros',
+                                          style: GoogleFonts.getFont(
+                                            'Roboto',
+                                            color: Color(0xFF353B48),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 20.0,
+                                          ),
                                         ),
                                       ),
                                       Padding(
@@ -599,7 +603,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: dateTimeFormat(
-                                                        'Hm',
+                                                        'yMMMd',
                                                         getCurrentTimestamp),
                                                     labelStyle:
                                                         FlutterFlowTheme.of(
