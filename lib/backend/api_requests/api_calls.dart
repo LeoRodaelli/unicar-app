@@ -60,8 +60,8 @@ class LoginCall {
   }) async {
     final ffApiRequestBody = '''
 {
-    “email”: "${email}",
-    “password”: "${password}"
+    "email": "${email}",
+    "password": "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',
