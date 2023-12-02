@@ -138,10 +138,10 @@ class BuscarCadastroDeUsuarioCall {
 
 class CadastroDaCaronaCall {
   Future<ApiCallResponse> call({
-    double? originLatitude,
-    double? originLongitude,
-    double? destinyLatitude,
-    double? destinyLongitude,
+    String? originLatitude = '',
+    String? originLongitude = '',
+    String? destinyLatitude = '',
+    String? destinyLongitude = '',
     String? startTime = '',
     int? availableSeats,
     double? price,

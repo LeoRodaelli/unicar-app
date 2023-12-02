@@ -15,12 +15,16 @@ class OfferRideStruct extends FFFirebaseStruct {
     String? numberPassenger,
     String? valorPay,
     DateTime? timeLimit,
+    LatLng? localMaps,
+    LatLng? destinyMaps,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _startLocal = startLocal,
         _exitLocal = exitLocal,
         _numberPassenger = numberPassenger,
         _valorPay = valorPay,
         _timeLimit = timeLimit,
+        _localMaps = localMaps,
+        _destinyMaps = destinyMaps,
         super(firestoreUtilData);
 
   // "startLocal" field.
@@ -53,12 +57,26 @@ class OfferRideStruct extends FFFirebaseStruct {
   set timeLimit(DateTime? val) => _timeLimit = val;
   bool hasTimeLimit() => _timeLimit != null;
 
+  // "localMaps" field.
+  LatLng? _localMaps;
+  LatLng? get localMaps => _localMaps;
+  set localMaps(LatLng? val) => _localMaps = val;
+  bool hasLocalMaps() => _localMaps != null;
+
+  // "destinyMaps" field.
+  LatLng? _destinyMaps;
+  LatLng? get destinyMaps => _destinyMaps;
+  set destinyMaps(LatLng? val) => _destinyMaps = val;
+  bool hasDestinyMaps() => _destinyMaps != null;
+
   static OfferRideStruct fromMap(Map<String, dynamic> data) => OfferRideStruct(
         startLocal: data['startLocal'] as LatLng?,
         exitLocal: data['exitLocal'] as LatLng?,
         numberPassenger: data['numberPassenger'] as String?,
         valorPay: data['valorPay'] as String?,
         timeLimit: data['timeLimit'] as DateTime?,
+        localMaps: data['localMaps'] as LatLng?,
+        destinyMaps: data['destinyMaps'] as LatLng?,
       );
 
   static OfferRideStruct? maybeFromMap(dynamic data) =>
@@ -70,6 +88,8 @@ class OfferRideStruct extends FFFirebaseStruct {
         'numberPassenger': _numberPassenger,
         'valorPay': _valorPay,
         'timeLimit': _timeLimit,
+        'localMaps': _localMaps,
+        'destinyMaps': _destinyMaps,
       }.withoutNulls;
 
   @override
@@ -93,6 +113,14 @@ class OfferRideStruct extends FFFirebaseStruct {
         'timeLimit': serializeParam(
           _timeLimit,
           ParamType.DateTime,
+        ),
+        'localMaps': serializeParam(
+          _localMaps,
+          ParamType.LatLng,
+        ),
+        'destinyMaps': serializeParam(
+          _destinyMaps,
+          ParamType.LatLng,
         ),
       }.withoutNulls;
 
@@ -123,6 +151,16 @@ class OfferRideStruct extends FFFirebaseStruct {
           ParamType.DateTime,
           false,
         ),
+        localMaps: deserializeParam(
+          data['localMaps'],
+          ParamType.LatLng,
+          false,
+        ),
+        destinyMaps: deserializeParam(
+          data['destinyMaps'],
+          ParamType.LatLng,
+          false,
+        ),
       );
 
   @override
@@ -135,12 +173,21 @@ class OfferRideStruct extends FFFirebaseStruct {
         exitLocal == other.exitLocal &&
         numberPassenger == other.numberPassenger &&
         valorPay == other.valorPay &&
-        timeLimit == other.timeLimit;
+        timeLimit == other.timeLimit &&
+        localMaps == other.localMaps &&
+        destinyMaps == other.destinyMaps;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([startLocal, exitLocal, numberPassenger, valorPay, timeLimit]);
+  int get hashCode => const ListEquality().hash([
+        startLocal,
+        exitLocal,
+        numberPassenger,
+        valorPay,
+        timeLimit,
+        localMaps,
+        destinyMaps
+      ]);
 }
 
 OfferRideStruct createOfferRideStruct({
@@ -149,6 +196,8 @@ OfferRideStruct createOfferRideStruct({
   String? numberPassenger,
   String? valorPay,
   DateTime? timeLimit,
+  LatLng? localMaps,
+  LatLng? destinyMaps,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -160,6 +209,8 @@ OfferRideStruct createOfferRideStruct({
       numberPassenger: numberPassenger,
       valorPay: valorPay,
       timeLimit: timeLimit,
+      localMaps: localMaps,
+      destinyMaps: destinyMaps,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

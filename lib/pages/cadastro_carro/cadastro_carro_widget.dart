@@ -643,8 +643,15 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         _model.apiResultrjr = await UnicarGroup
-                                            .cadastroDeUsuarioCall
-                                            .call();
+                                            .cadastrarCarroCall
+                                            .call(
+                                          model:
+                                              _model.modeloCarroController.text,
+                                          color: _model.corController.text,
+                                          plate: _model.placaController.text,
+                                          driverLicense: _model
+                                              .cNHdocondutorController.text,
+                                        );
                                         if ((_model.apiResultrjr?.succeeded ??
                                             true)) {
                                           context.pushNamed('Perfil');

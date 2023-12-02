@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/passeger_widget.dart';
@@ -62,205 +63,234 @@ class _InformacoesCaronaMotoristaWidgetState
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Align(
-                alignment: AlignmentDirectional(-1.00, 0.00),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    'Informações',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Fredoka One',
-                          color: Color(0xFFF1C40F),
-                          fontSize: 32.0,
-                          fontWeight: FontWeight.w500,
-                        ),
+          child: FutureBuilder<ApiCallResponse>(
+            future: UnicarGroup.cadastroDaCaronaCall.call(),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(-1.00, 0.00),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
-                  child: Text(
-                    'Caronas para próxima saída',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontWeight: FontWeight.w800,
-                        ),
-                  ),
-                ),
-              ),
-              Row(
+                );
+              }
+              final columnCadastroDaCaronaResponse = snapshot.data!;
+              return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
                     alignment: AlignmentDirectional(-1.00, 0.00),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        'Vagas preenchidas: ',
-                        textAlign: TextAlign.start,
+                        'Informações',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFF818181),
-                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Fredoka One',
+                              color: Color(0xFFF1C40F),
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.w500,
                             ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                    child: Text(
-                      '',
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
                   Align(
                     alignment: AlignmentDirectional(-1.00, 0.00),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 2.0, 2.0, 2.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                       child: Text(
-                        'Viagem programada para saída até',
+                        'Caronas para próxima saída',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
-                              color: Color(0xFF818181),
                               fontWeight: FontWeight.w800,
                             ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
-                    child: Text(
-                      '',
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                    ),
-                  ),
-                ],
-              ),
-              StreamBuilder<List<PassegerRecord>>(
-                stream: queryPassegerRecord(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional(-1.00, 0.00),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 0.0, 0.0),
+                          child: Text(
+                            'Vagas preenchidas: ',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Color(0xFF818181),
+                                  fontWeight: FontWeight.w800,
+                                ),
                           ),
                         ),
                       ),
-                    );
-                  }
-                  List<PassegerRecord> listViewPassegerRecordList =
-                      snapshot.data!;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewPassegerRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewPassegerRecord =
-                          listViewPassegerRecordList[listViewIndex];
-                      return Padding(
+                      Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 4.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: PassegerWidget(
-                            key: Key(
-                                'Keyhm0_${listViewIndex}_of_${listViewPassegerRecordList.length}'),
-                            pass: PassegerStruct(),
+                        child: Text(
+                          '',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional(-1.00, 0.00),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 2.0, 2.0, 2.0),
+                          child: Text(
+                            'Viagem programada para saída até',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Color(0xFF818181),
+                                  fontWeight: FontWeight.w800,
+                                ),
                           ),
                         ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                        child: Text(
+                          '',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                  StreamBuilder<List<PassegerRecord>>(
+                    stream: queryPassegerRecord(),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<PassegerRecord> listViewPassegerRecordList =
+                          snapshot.data!;
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewPassegerRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewPassegerRecord =
+                              listViewPassegerRecordList[listViewIndex];
+                          return Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 4.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: PassegerWidget(
+                                key: Key(
+                                    'Keyhm0_${listViewIndex}_of_${listViewPassegerRecordList.length}'),
+                                pass: PassegerStruct(),
+                              ),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-              ),
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional(0.00, 1.00),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.safePop();
-                    },
-                    text: 'Cancelar',
-                    options: FFButtonOptions(
-                      width: 350.0,
-                      height: 44.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.black,
-                                fontWeight: FontWeight.w800,
-                              ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: AlignmentDirectional(0.00, 1.00),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.safePop();
+                        },
+                        text: 'Cancelar',
+                        options: FFButtonOptions(
+                          width: 350.0,
+                          height: 44.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional(0.00, -1.00),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('maps');
-                    },
-                    text: 'Iniciar',
-                    options: FFButtonOptions(
-                      width: 350.0,
-                      height: 44.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFFF1C40F),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.black,
-                                fontWeight: FontWeight.w800,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                  Expanded(
+                    child: Align(
+                      alignment: AlignmentDirectional(0.00, -1.00),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed('maps');
+                        },
+                        text: 'Iniciar',
+                        options: FFButtonOptions(
+                          width: 350.0,
+                          height: 44.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Color(0xFFF1C40F),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
-                ),
-              ),
-            ],
+                ],
+              );
+            },
           ),
         ),
       ),
