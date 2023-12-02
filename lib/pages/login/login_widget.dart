@@ -302,11 +302,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         if (_shouldSetState) setState(() {});
                                         return;
                                       } else {
-                                        setState(() {
-                                          _model.emailAddressController
-                                              ?.clear();
-                                          _model.passwordController?.clear();
-                                        });
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
