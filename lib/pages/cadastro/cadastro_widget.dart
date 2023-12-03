@@ -718,7 +718,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                 context: context,
                                                 builder: (alertDialogContext) {
                                                   return AlertDialog(
-                                                    title: Text('Valido'),
+                                                    title: Text('Email Valido'),
                                                     actions: [
                                                       TextButton(
                                                         onPressed: () =>
@@ -750,6 +750,9 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                                   );
                                                 },
                                               );
+                                              if (_shouldSetState)
+                                                setState(() {});
+                                              return;
                                             }
 
                                             _model.apiResulti00 =
