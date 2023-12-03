@@ -31,7 +31,7 @@ class CadastroCarroModel extends FlutterFlowModel<CadastroCarroWidget> {
   FocusNode? cNHdocondutorFocusNode;
   TextEditingController? cNHdocondutorController;
   String? Function(BuildContext, String?)? cNHdocondutorControllerValidator;
-  // Stores action output result for [Backend Call - API (Cadastrar carro)] action in Button widget.
+  // Stores action output result for [Backend Call - API (Cadastro de usuario)] action in Button widget.
   ApiCallResponse? apiResultrjr;
 
   /// Initialization and disposal methods.

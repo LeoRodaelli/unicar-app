@@ -12,10 +12,10 @@ export 'data_model.dart';
 class DataWidget extends StatefulWidget {
   const DataWidget({
     Key? key,
-    required this.data,
+    this.da,
   }) : super(key: key);
 
-  final DateTime? data;
+  final DateTime? da;
 
   @override
   _DataWidgetState createState() => _DataWidgetState();

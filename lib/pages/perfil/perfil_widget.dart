@@ -134,29 +134,6 @@ class _PerfilWidgetState extends State<PerfilWidget>
     super.initState();
     _model = createModel(context, () => PerfilModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResult81t =
-          await UnicarGroup.buscarCadastroDeUsuarioCall.call();
-      if (!(_model.apiResult81t?.succeeded ?? true)) {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('pegar login'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-        return;
-      }
-    });
-
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
