@@ -138,20 +138,18 @@ class BuscarCadastroDeUsuarioCall {
 
 class CadastroDaCaronaCall {
   Future<ApiCallResponse> call({
-    double? originLatitude,
-    double? originLongitude,
-    double? destinyLatitude,
-    double? destinyLongitude,
-    String? startTime = '',
+    String? origin = '',
+    String? destiny = '',
+    int? startTime,
     int? availableSeats,
     double? price,
   }) async {
     final ffApiRequestBody = '''
 {
-  "originLatitude": ${originLatitude},
-  "originLongitude": ${originLongitude},
-  "destinyLatitude": ${destinyLatitude},
-  "destinyLongitude": ${destinyLongitude},
+  "originLatitude": <originLatitude>,
+  "originLongitude": <originLongitude>,
+  "destinyLatitude": <destinyLatitude>,
+  "destinyLongitude": <destinyLongitude>,
   "startTime": "${startTime}",
   "availableSeats": ${availableSeats},
   "price": ${price}

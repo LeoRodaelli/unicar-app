@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
@@ -242,114 +243,75 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
-                                    child: StreamBuilder<List<OfferRideRecord>>(
-                                      stream: queryOfferRideRecord(
-                                        singleRecord: true,
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
+                                    child: Container(
+                                      width: 370.0,
+                                      child: TextFormField(
+                                        controller:
+                                            _model.passageiroMaxController,
+                                        focusNode:
+                                            _model.passageiroMaxFocusNode,
+                                        autofocus: true,
+                                        autofillHints: [AutofillHints.email],
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium,
+                                          hintText: 'Ex: 2',
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFD6D6D6),
+                                              width: 2.0,
                                             ),
-                                          );
-                                        }
-                                        List<OfferRideRecord>
-                                            passageiroMaxOfferRideRecordList =
-                                            snapshot.data!;
-                                        // Return an empty Container when the item does not exist.
-                                        if (snapshot.data!.isEmpty) {
-                                          return Container();
-                                        }
-                                        final passageiroMaxOfferRideRecord =
-                                            passageiroMaxOfferRideRecordList
-                                                    .isNotEmpty
-                                                ? passageiroMaxOfferRideRecordList
-                                                    .first
-                                                : null;
-                                        return Container(
-                                          width: 370.0,
-                                          child: TextFormField(
-                                            controller:
-                                                _model.passageiroMaxController,
-                                            focusNode:
-                                                _model.passageiroMaxFocusNode,
-                                            autofocus: true,
-                                            autofillHints: [
-                                              AutofillHints.email
-                                            ],
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium,
-                                              hintText: 'Ex: 2',
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFFD6D6D6),
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              filled: true,
-                                              fillColor: Color(0xFFFEFEFE),
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Colors.black,
-                                                ),
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            validator: _model
-                                                .passageiroMaxControllerValidator
-                                                .asValidator(context),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
                                           ),
-                                        );
-                                      },
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color(0xFFFEFEFE),
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Colors.black,
+                                            ),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        validator: _model
+                                            .passageiroMaxControllerValidator
+                                            .asValidator(context),
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -657,8 +619,58 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        var _shouldSetState = false;
+                                        _model.apiResultez0 = await UnicarGroup
+                                            .cadastroDaCaronaCall
+                                            .call(
+                                          origin: _model
+                                              .placePickerPartValue.latLng
+                                              ?.toString(),
+                                          destiny: _model
+                                              .placePickerDestValue.latLng
+                                              ?.toString(),
+                                          startTime: int.tryParse(
+                                              _model.textController4.text),
+                                          availableSeats: int.tryParse(_model
+                                              .passageiroMaxController.text),
+                                          price: double.tryParse(_model
+                                              .valorPorPassageiroController
+                                              .text),
+                                        );
+                                        _shouldSetState = true;
+                                        if ((_model.apiResultez0?.succeeded ??
+                                            true)) {
+                                          context
+                                              .pushNamed('CaronasDisponiveis');
+
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                    'Erro ao criar carona'),
+                                                content:
+                                                    Text('Tente novamente'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Continuar'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        }
+
+                                        if (_shouldSetState) setState(() {});
                                       },
                                       text: 'Avançar',
                                       options: FFButtonOptions(
