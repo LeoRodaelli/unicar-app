@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -32,8 +31,8 @@ class CadastroCarroModel extends FlutterFlowModel<CadastroCarroWidget> {
   FocusNode? cNHdocondutorFocusNode;
   TextEditingController? cNHdocondutorController;
   String? Function(BuildContext, String?)? cNHdocondutorControllerValidator;
-  // Stores action output result for [Backend Call - API (Cadastrar carro)] action in Button widget.
-  ApiCallResponse? registerCarApiResponse;
+  // Stores action output result for [Backend Call - API (Cadastro de usuario)] action in Button widget.
+  ApiCallResponse? apiResultrjr;
 
   /// Initialization and disposal methods.
 

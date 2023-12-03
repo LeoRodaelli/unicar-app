@@ -191,9 +191,9 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               iOSGoogleMapsApiKey:
                                                   'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               androidGoogleMapsApiKey:
-                                                  'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
+                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               webGoogleMapsApiKey:
-                                                  'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
+                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               onSelect: (place) async {
                                                 setState(() => _model
                                                         .placePickerPartValue =
@@ -233,9 +233,9 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               iOSGoogleMapsApiKey:
                                                   'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               androidGoogleMapsApiKey:
-                                                  'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
+                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               webGoogleMapsApiKey:
-                                                  'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
+                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               onSelect: (place) async {
                                                 setState(() => _model
                                                         .placePickerDestValue =
@@ -586,103 +586,60 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Data: ',
+                                                  'Data e',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium,
                                                 ),
-                                                FlutterFlowIconButton(
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  borderRadius: 20.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 40.0,
-                                                  fillColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .accent1,
-                                                  icon: Icon(
-                                                    Icons.date_range_outlined,
-                                                    color: FlutterFlowTheme.of(
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          6.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Hora: ',
+                                                    style: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryText,
-                                                    size: 24.0,
+                                                        .bodyMedium,
                                                   ),
-                                                  onPressed: () async {
-                                                    final _datePickedDate =
-                                                        await showDatePicker(
-                                                      context: context,
-                                                      initialDate:
-                                                          getCurrentTimestamp,
-                                                      firstDate:
-                                                          (getCurrentTimestamp ??
-                                                              DateTime(1900)),
-                                                      lastDate: DateTime(2050),
-                                                      builder:
-                                                          (context, child) {
-                                                        return wrapInMaterialDatePickerTheme(
-                                                          context,
-                                                          child!,
-                                                          headerBackgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          headerForegroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .info,
-                                                          headerTextStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Outfit',
-                                                                    fontSize:
-                                                                        32.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                          pickerBackgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryBackground,
-                                                          pickerForegroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primaryText,
-                                                          selectedDateTimeBackgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          selectedDateTimeForegroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .info,
-                                                          actionButtonForegroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primaryText,
-                                                          iconSize: 24.0,
-                                                        );
-                                                      },
-                                                    );
-
-                                                    TimeOfDay? _datePickedTime;
-                                                    if (_datePickedDate !=
-                                                        null) {
-                                                      _datePickedTime =
-                                                          await showTimePicker(
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          6.0, 0.0, 0.0, 0.0),
+                                                  child: FlutterFlowIconButton(
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    fillColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .accent1,
+                                                    icon: Icon(
+                                                      Icons.date_range_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      final _datePickedDate =
+                                                          await showDatePicker(
                                                         context: context,
-                                                        initialTime: TimeOfDay
-                                                            .fromDateTime(
-                                                                getCurrentTimestamp),
+                                                        initialDate:
+                                                            getCurrentTimestamp,
+                                                        firstDate:
+                                                            (getCurrentTimestamp ??
+                                                                DateTime(1900)),
+                                                        lastDate:
+                                                            DateTime(2050),
                                                         builder:
                                                             (context, child) {
-                                                          return wrapInMaterialTimePickerTheme(
+                                                          return wrapInMaterialDatePickerTheme(
                                                             context,
                                                             child!,
                                                             headerBackgroundColor:
@@ -730,35 +687,88 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                           );
                                                         },
                                                       );
-                                                    }
 
-                                                    if (_datePickedDate !=
-                                                            null &&
-                                                        _datePickedTime !=
-                                                            null) {
-                                                      safeSetState(() {
-                                                        _model.datePicked =
-                                                            DateTime(
-                                                          _datePickedDate.year,
-                                                          _datePickedDate.month,
-                                                          _datePickedDate.day,
-                                                          _datePickedTime!.hour,
-                                                          _datePickedTime
-                                                              .minute,
+                                                      TimeOfDay?
+                                                          _datePickedTime;
+                                                      if (_datePickedDate !=
+                                                          null) {
+                                                        _datePickedTime =
+                                                            await showTimePicker(
+                                                          context: context,
+                                                          initialTime: TimeOfDay
+                                                              .fromDateTime(
+                                                                  getCurrentTimestamp),
+                                                          builder:
+                                                              (context, child) {
+                                                            return wrapInMaterialTimePickerTheme(
+                                                              context,
+                                                              child!,
+                                                              headerBackgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              headerForegroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                              headerTextStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Outfit',
+                                                                        fontSize:
+                                                                            32.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                      ),
+                                                              pickerBackgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                              pickerForegroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                              selectedDateTimeBackgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              selectedDateTimeForegroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                              actionButtonForegroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                              iconSize: 24.0,
+                                                            );
+                                                          },
                                                         );
-                                                      });
-                                                    }
-                                                  },
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 0.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Hora: ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
+                                                      }
+
+                                                      if (_datePickedDate !=
+                                                              null &&
+                                                          _datePickedTime !=
+                                                              null) {
+                                                        safeSetState(() {
+                                                          _model.datePicked =
+                                                              DateTime(
+                                                            _datePickedDate
+                                                                .year,
+                                                            _datePickedDate
+                                                                .month,
+                                                            _datePickedDate.day,
+                                                            _datePickedTime!
+                                                                .hour,
+                                                            _datePickedTime
+                                                                .minute,
+                                                          );
+                                                        });
+                                                      }
+                                                    },
                                                   ),
                                                 ),
                                                 Expanded(
@@ -778,7 +788,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                           InputDecoration(
                                                         labelText:
                                                             dateTimeFormat(
-                                                                'M/d H:mm',
+                                                                'd/M H:mm',
                                                                 _model
                                                                     .datePicked),
                                                         labelStyle:
@@ -887,6 +897,8 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                   price: double.tryParse(_model
                                                       .valorPorPassageiroController
                                                       .text),
+                                                  authToken:
+                                                      currentAuthenticationToken,
                                                 );
                                                 _shouldSetState = true;
                                                 if ((_model.apiResultez0
@@ -929,43 +941,6 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                   setState(() {});
                                               },
                                               text: 'Avançar',
-                                              options: FFButtonOptions(
-                                                width: 370.0,
-                                                height: 44.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color: Color(0xFFF1C40F),
-                                                textStyle: GoogleFonts.getFont(
-                                                  'Roboto',
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w800,
-                                                  fontSize: 20.0,
-                                                ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                context
-                                                    .pushNamed('CadastroCarro');
-                                              },
-                                              text: 'teste carro',
                                               options: FFButtonOptions(
                                                 width: 370.0,
                                                 height: 44.0,

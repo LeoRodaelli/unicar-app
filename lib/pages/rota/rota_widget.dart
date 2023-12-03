@@ -73,9 +73,9 @@ class _RotaWidgetState extends State<RotaWidget> {
                   iOSGoogleMapsApiKey:
                       'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   androidGoogleMapsApiKey:
-                      'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
+                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   webGoogleMapsApiKey:
-                      'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
+                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   onSelect: (place) async {
                     setState(() => _model.localPartidaValue = place);
                   },
@@ -108,9 +108,9 @@ class _RotaWidgetState extends State<RotaWidget> {
                   iOSGoogleMapsApiKey:
                       'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   androidGoogleMapsApiKey:
-                      'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
+                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   webGoogleMapsApiKey:
-                      'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
+                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   onSelect: (place) async {
                     setState(() => _model.localDestinoValue = place);
                   },

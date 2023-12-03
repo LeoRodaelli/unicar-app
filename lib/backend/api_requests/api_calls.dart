@@ -147,12 +147,13 @@ class CadastroDaCaronaCall {
     int? startTime,
     int? availableSeats,
     double? price,
+    String? authToken = '',
   }) async {
     final ffApiRequestBody = '''
 {
-  "originLatitude": <originLatitude>,
+  "originLatitude": "${origin}",
   "originLongitude": <originLongitude>,
-  "destinyLatitude": <destinyLatitude>,
+  "destinyLatitude": "${destiny}",
   "destinyLongitude": <destinyLongitude>,
   "startTime": "${startTime}",
   "availableSeats": ${availableSeats},
@@ -164,6 +165,7 @@ class CadastroDaCaronaCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': '${authToken}',
       },
       params: {},
       body: ffApiRequestBody,

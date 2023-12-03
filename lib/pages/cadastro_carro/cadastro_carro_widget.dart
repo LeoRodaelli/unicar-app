@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -133,7 +132,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                     size: 30.0,
                                   ),
                                   onPressed: () async {
-                                    context.safePop();
+                                    context.pop();
                                   },
                                 ),
                               ),
@@ -643,30 +642,12 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                         10.0, 10.0, 10.0, 10.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        _model.registerCarApiResponse =
-                                            await UnicarGroup.cadastrarCarroCall
-                                                .call(
-                                          model:
-                                              _model.modeloCarroController.text,
-                                          color: _model.corController.text,
-                                          plate: _model.placaController.text,
-                                          driverLicense: _model
-                                              .cNHdocondutorController.text,
-                                        );
-                                        if ((_model.registerCarApiResponse
-                                                ?.succeeded ??
+                                        _model.apiResultrjr = await UnicarGroup
+                                            .cadastroDeUsuarioCall
+                                            .call();
+                                        if ((_model.apiResultrjr?.succeeded ??
                                             true)) {
-                                          authManager.updateAuthUserData(
-                                            authenticationToken: getJsonField(
-                                              (_model.registerCarApiResponse
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$.token''',
-                                            ).toString(),
-                                          );
-
-                                          context.pushNamedAuth(
-                                              'Perfil', context.mounted);
+                                          context.pushNamed('Perfil');
                                         } else {
                                           await showDialog(
                                             context: context,
