@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../cloud_functions/cloud_functions.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -122,17 +123,14 @@ class CadastroDeUsuarioCall {
 
 class BuscarCadastroDeUsuarioCall {
   Future<ApiCallResponse> call() async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Buscar cadastro de usuario',
-      apiUrl: '${UnicarGroup.baseUrl}/profile',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
+    final response = await makeCloudCall(
+      _kPrivateApiFunctionName,
+      {
+        'callName': 'BuscarCadastroDeUsuarioCall',
+        'variables': {},
+      },
     );
+    return ApiCallResponse.fromCloudCallResponse(response);
   }
 }
 
