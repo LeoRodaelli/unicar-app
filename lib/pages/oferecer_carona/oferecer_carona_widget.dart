@@ -968,6 +968,43 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               ),
                                             ),
                                           ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 16.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                context
+                                                    .pushNamed('CadastroCarro');
+                                              },
+                                              text: 'teste car',
+                                              options: FFButtonOptions(
+                                                width: 370.0,
+                                                height: 44.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color: Color(0xFFF1C40F),
+                                                textStyle: GoogleFonts.getFont(
+                                                  'Roboto',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 20.0,
+                                                ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),

@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -5,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -28,11 +28,6 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CadastroCarroModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      context.pushNamed('Perfil');
-    });
 
     _model.modeloCarroController ??= TextEditingController();
     _model.modeloCarroFocusNode ??= FocusNode();
@@ -642,12 +637,21 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                         10.0, 10.0, 10.0, 10.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        _model.apiResultrjr = await UnicarGroup
-                                            .cadastroDeUsuarioCall
-                                            .call();
-                                        if ((_model.apiResultrjr?.succeeded ??
+                                        _model.registerCarApiResponse =
+                                            await UnicarGroup.cadastrarCarroCall
+                                                .call(
+                                          model:
+                                              _model.modeloCarroController.text,
+                                          color: _model.corController.text,
+                                          plate: _model.placaController.text,
+                                          driverLicense: _model
+                                              .cNHdocondutorController.text,
+                                          authToken: currentAuthenticationToken,
+                                        );
+                                        if ((_model.registerCarApiResponse
+                                                ?.succeeded ??
                                             true)) {
-                                          context.pushNamed('Perfil');
+                                          context.pushNamed('OferecerCarona');
                                         } else {
                                           await showDialog(
                                             context: context,

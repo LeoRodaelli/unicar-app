@@ -27,6 +27,7 @@ class CadastrarCarroCall {
     String? color = '',
     String? plate = '',
     String? driverLicense = '',
+    String? authToken = '',
   }) async {
     final ffApiRequestBody = '''
 {
@@ -41,6 +42,7 @@ class CadastrarCarroCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': '${authToken}',
       },
       params: {},
       body: ffApiRequestBody,
