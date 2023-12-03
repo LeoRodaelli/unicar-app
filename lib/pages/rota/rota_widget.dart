@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -174,25 +173,8 @@ class _RotaWidgetState extends State<RotaWidget> {
                     color: FlutterFlowTheme.of(context).primaryText,
                     size: 24.0,
                   ),
-                  onPressed: () async {
-                    var _shouldSetState = false;
-                    _model.apiResultl4j =
-                        await UnicarGroup.cadastroDaCaronaCall.call(
-                      origin: _model.localPartidaValue.latLng?.toString(),
-                      destiny: _model.localDestinoValue.latLng?.toString(),
-                    );
-                    _shouldSetState = true;
-                    if ((_model.apiResultl4j?.succeeded ?? true)) {
-                      context.pushNamed('CaronasDisponiveis');
-
-                      if (_shouldSetState) setState(() {});
-                      return;
-                    } else {
-                      if (_shouldSetState) setState(() {});
-                      return;
-                    }
-
-                    if (_shouldSetState) setState(() {});
+                  onPressed: () {
+                    print('ir pressed ...');
                   },
                 ),
               ),

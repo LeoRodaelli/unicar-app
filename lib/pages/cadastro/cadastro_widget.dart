@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -425,6 +426,16 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                               .emailUniversitarioController,
                                           focusNode: _model
                                               .emailUniversitarioFocusNode,
+                                          onFieldSubmitted: (_) async {
+                                            _model.validar =
+                                                await actions.validar(
+                                              _model
+                                                  .emailUniversitarioController
+                                                  .text,
+                                            );
+
+                                            setState(() {});
+                                          },
                                           autofocus: true,
                                           autofillHints: [AutofillHints.email],
                                           obscureText: false,
