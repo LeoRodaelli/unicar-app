@@ -191,9 +191,9 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               iOSGoogleMapsApiKey:
                                                   'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               androidGoogleMapsApiKey:
-                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                                                  'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
                                               webGoogleMapsApiKey:
-                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                                                  'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
                                               onSelect: (place) async {
                                                 setState(() => _model
                                                         .placePickerPartValue =
@@ -233,9 +233,9 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               iOSGoogleMapsApiKey:
                                                   'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                                               androidGoogleMapsApiKey:
-                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                                                  'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
                                               webGoogleMapsApiKey:
-                                                  'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                                                  'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
                                               onSelect: (place) async {
                                                 setState(() => _model
                                                         .placePickerDestValue =

@@ -19,8 +19,8 @@ class UnicarGroup {
   static BuscarCadastroDeUsuarioCall buscarCadastroDeUsuarioCall =
       BuscarCadastroDeUsuarioCall();
   static CadastroDaCaronaCall cadastroDaCaronaCall = CadastroDaCaronaCall();
-  static BuscarDadosDeCaronaCall buscarDadosDeCaronaCall =
-      BuscarDadosDeCaronaCall();
+  static EditarUsuarioCall editarUsuarioCall = EditarUsuarioCall();
+  static BuscarCarroCall buscarCarroCall = BuscarCarroCall();
 }
 
 class CadastrarCarroCall {
@@ -180,44 +180,31 @@ class CadastroDaCaronaCall {
   }
 }
 
-class BuscarDadosDeCaronaCall {
+class EditarUsuarioCall {
   Future<ApiCallResponse> call({
-    String? authToken = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Buscar dados de carona',
-      apiUrl: '${UnicarGroup.baseUrl}/ride',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': '${authToken}',
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-/// End unicar Group Code
-
-class LoginTestCall {
-  static Future<ApiCallResponse> call({
+    String? imagePath = '',
+    String? name = '',
     String? email = '',
-    String? password = '',
+    String? phone = '',
+    String? university = '',
+    String? age = '',
+    String? authToken = '',
   }) async {
     final ffApiRequestBody = '''
 {
+  "imagePath": "${imagePath}",
+  "name": "${name}",
   "email": "${email}",
-  "password": "${password}"
+  "phone": "${phone}",
+  "university": "${university}",
+  "age": "${age}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'login test',
-      apiUrl: 'http://127.0.0.1:4567/login',
-      callType: ApiCallType.POST,
+      callName: 'Editar usuario',
+      apiUrl: '${UnicarGroup.baseUrl}/profile',
+      callType: ApiCallType.PUT,
       headers: {
+        'Authorization': 'Bearer ${authToken}',
         'Content-Type': 'application/json',
       },
       params: {},
@@ -230,6 +217,28 @@ class LoginTestCall {
     );
   }
 }
+
+class BuscarCarroCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Buscar carro',
+      apiUrl: '${UnicarGroup.baseUrl}/car',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${authToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+/// End unicar Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;
