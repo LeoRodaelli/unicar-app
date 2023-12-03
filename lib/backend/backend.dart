@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
-import 'schema/perfil_record.dart';
 import 'schema/carro_record.dart';
 import 'schema/maps_record.dart';
 import 'schema/users_record.dart';
@@ -18,7 +17,6 @@ export 'schema/index.dart';
 export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
-export 'schema/perfil_record.dart';
 export 'schema/carro_record.dart';
 export 'schema/maps_record.dart';
 export 'schema/users_record.dart';
@@ -26,43 +24,6 @@ export 'schema/rides_record.dart';
 export 'schema/passeger_record.dart';
 export 'schema/ride_record.dart';
 export 'schema/offer_ride_record.dart';
-
-/// Functions to query PerfilRecords (as a Stream and as a Future).
-Future<int> queryPerfilRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      PerfilRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<PerfilRecord>> queryPerfilRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      PerfilRecord.collection,
-      PerfilRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<PerfilRecord>> queryPerfilRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      PerfilRecord.collection,
-      PerfilRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
 
 /// Functions to query CarroRecords (as a Stream and as a Future).
 Future<int> queryCarroRecordCount({

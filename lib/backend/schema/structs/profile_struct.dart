@@ -8,33 +8,27 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class PerfilStruct extends FFFirebaseStruct {
-  PerfilStruct({
+class ProfileStruct extends FFFirebaseStruct {
+  ProfileStruct({
     String? emailUniversitarioPerfil,
     String? phonePerfil,
     String? agePerfil,
-    String? carPerfil,
-    String? plateCarPerfil,
-    String? colorPerfil,
     String? raPerfil,
     String? namePerfil,
     String? universidadePerfil,
     String? imagePerfil,
     String? drivinglicence,
-    String? passwordPerfil,
+    CarStruct? car,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _emailUniversitarioPerfil = emailUniversitarioPerfil,
         _phonePerfil = phonePerfil,
         _agePerfil = agePerfil,
-        _carPerfil = carPerfil,
-        _plateCarPerfil = plateCarPerfil,
-        _colorPerfil = colorPerfil,
         _raPerfil = raPerfil,
         _namePerfil = namePerfil,
         _universidadePerfil = universidadePerfil,
         _imagePerfil = imagePerfil,
         _drivinglicence = drivinglicence,
-        _passwordPerfil = passwordPerfil,
+        _car = car,
         super(firestoreUtilData);
 
   // "emailUniversitarioPerfil" field.
@@ -54,24 +48,6 @@ class PerfilStruct extends FFFirebaseStruct {
   String get agePerfil => _agePerfil ?? '';
   set agePerfil(String? val) => _agePerfil = val;
   bool hasAgePerfil() => _agePerfil != null;
-
-  // "carPerfil" field.
-  String? _carPerfil;
-  String get carPerfil => _carPerfil ?? '';
-  set carPerfil(String? val) => _carPerfil = val;
-  bool hasCarPerfil() => _carPerfil != null;
-
-  // "plateCarPerfil" field.
-  String? _plateCarPerfil;
-  String get plateCarPerfil => _plateCarPerfil ?? '';
-  set plateCarPerfil(String? val) => _plateCarPerfil = val;
-  bool hasPlateCarPerfil() => _plateCarPerfil != null;
-
-  // "colorPerfil" field.
-  String? _colorPerfil;
-  String get colorPerfil => _colorPerfil ?? '';
-  set colorPerfil(String? val) => _colorPerfil = val;
-  bool hasColorPerfil() => _colorPerfil != null;
 
   // "raPerfil" field.
   String? _raPerfil;
@@ -103,43 +79,39 @@ class PerfilStruct extends FFFirebaseStruct {
   set drivinglicence(String? val) => _drivinglicence = val;
   bool hasDrivinglicence() => _drivinglicence != null;
 
-  // "passwordPerfil" field.
-  String? _passwordPerfil;
-  String get passwordPerfil => _passwordPerfil ?? '';
-  set passwordPerfil(String? val) => _passwordPerfil = val;
-  bool hasPasswordPerfil() => _passwordPerfil != null;
+  // "car" field.
+  CarStruct? _car;
+  CarStruct get car => _car ?? CarStruct();
+  set car(CarStruct? val) => _car = val;
+  void updateCar(Function(CarStruct) updateFn) =>
+      updateFn(_car ??= CarStruct());
+  bool hasCar() => _car != null;
 
-  static PerfilStruct fromMap(Map<String, dynamic> data) => PerfilStruct(
+  static ProfileStruct fromMap(Map<String, dynamic> data) => ProfileStruct(
         emailUniversitarioPerfil: data['emailUniversitarioPerfil'] as String?,
         phonePerfil: data['phonePerfil'] as String?,
         agePerfil: data['agePerfil'] as String?,
-        carPerfil: data['carPerfil'] as String?,
-        plateCarPerfil: data['plateCarPerfil'] as String?,
-        colorPerfil: data['colorPerfil'] as String?,
         raPerfil: data['raPerfil'] as String?,
         namePerfil: data['namePerfil'] as String?,
         universidadePerfil: data['universidadePerfil'] as String?,
         imagePerfil: data['imagePerfil'] as String?,
         drivinglicence: data['drivinglicence'] as String?,
-        passwordPerfil: data['passwordPerfil'] as String?,
+        car: CarStruct.maybeFromMap(data['car']),
       );
 
-  static PerfilStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? PerfilStruct.fromMap(data) : null;
+  static ProfileStruct? maybeFromMap(dynamic data) =>
+      data is Map<String, dynamic> ? ProfileStruct.fromMap(data) : null;
 
   Map<String, dynamic> toMap() => {
         'emailUniversitarioPerfil': _emailUniversitarioPerfil,
         'phonePerfil': _phonePerfil,
         'agePerfil': _agePerfil,
-        'carPerfil': _carPerfil,
-        'plateCarPerfil': _plateCarPerfil,
-        'colorPerfil': _colorPerfil,
         'raPerfil': _raPerfil,
         'namePerfil': _namePerfil,
         'universidadePerfil': _universidadePerfil,
         'imagePerfil': _imagePerfil,
         'drivinglicence': _drivinglicence,
-        'passwordPerfil': _passwordPerfil,
+        'car': _car?.toMap(),
       }.withoutNulls;
 
   @override
@@ -154,18 +126,6 @@ class PerfilStruct extends FFFirebaseStruct {
         ),
         'agePerfil': serializeParam(
           _agePerfil,
-          ParamType.String,
-        ),
-        'carPerfil': serializeParam(
-          _carPerfil,
-          ParamType.String,
-        ),
-        'plateCarPerfil': serializeParam(
-          _plateCarPerfil,
-          ParamType.String,
-        ),
-        'colorPerfil': serializeParam(
-          _colorPerfil,
           ParamType.String,
         ),
         'raPerfil': serializeParam(
@@ -188,14 +148,14 @@ class PerfilStruct extends FFFirebaseStruct {
           _drivinglicence,
           ParamType.String,
         ),
-        'passwordPerfil': serializeParam(
-          _passwordPerfil,
-          ParamType.String,
+        'car': serializeParam(
+          _car,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
-  static PerfilStruct fromSerializableMap(Map<String, dynamic> data) =>
-      PerfilStruct(
+  static ProfileStruct fromSerializableMap(Map<String, dynamic> data) =>
+      ProfileStruct(
         emailUniversitarioPerfil: deserializeParam(
           data['emailUniversitarioPerfil'],
           ParamType.String,
@@ -208,21 +168,6 @@ class PerfilStruct extends FFFirebaseStruct {
         ),
         agePerfil: deserializeParam(
           data['agePerfil'],
-          ParamType.String,
-          false,
-        ),
-        carPerfil: deserializeParam(
-          data['carPerfil'],
-          ParamType.String,
-          false,
-        ),
-        plateCarPerfil: deserializeParam(
-          data['plateCarPerfil'],
-          ParamType.String,
-          false,
-        ),
-        colorPerfil: deserializeParam(
-          data['colorPerfil'],
           ParamType.String,
           false,
         ),
@@ -251,31 +196,29 @@ class PerfilStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        passwordPerfil: deserializeParam(
-          data['passwordPerfil'],
-          ParamType.String,
+        car: deserializeStructParam(
+          data['car'],
+          ParamType.DataStruct,
           false,
+          structBuilder: CarStruct.fromSerializableMap,
         ),
       );
 
   @override
-  String toString() => 'PerfilStruct(${toMap()})';
+  String toString() => 'ProfileStruct(${toMap()})';
 
   @override
   bool operator ==(Object other) {
-    return other is PerfilStruct &&
+    return other is ProfileStruct &&
         emailUniversitarioPerfil == other.emailUniversitarioPerfil &&
         phonePerfil == other.phonePerfil &&
         agePerfil == other.agePerfil &&
-        carPerfil == other.carPerfil &&
-        plateCarPerfil == other.plateCarPerfil &&
-        colorPerfil == other.colorPerfil &&
         raPerfil == other.raPerfil &&
         namePerfil == other.namePerfil &&
         universidadePerfil == other.universidadePerfil &&
         imagePerfil == other.imagePerfil &&
         drivinglicence == other.drivinglicence &&
-        passwordPerfil == other.passwordPerfil;
+        car == other.car;
   }
 
   @override
@@ -283,49 +226,40 @@ class PerfilStruct extends FFFirebaseStruct {
         emailUniversitarioPerfil,
         phonePerfil,
         agePerfil,
-        carPerfil,
-        plateCarPerfil,
-        colorPerfil,
         raPerfil,
         namePerfil,
         universidadePerfil,
         imagePerfil,
         drivinglicence,
-        passwordPerfil
+        car
       ]);
 }
 
-PerfilStruct createPerfilStruct({
+ProfileStruct createProfileStruct({
   String? emailUniversitarioPerfil,
   String? phonePerfil,
   String? agePerfil,
-  String? carPerfil,
-  String? plateCarPerfil,
-  String? colorPerfil,
   String? raPerfil,
   String? namePerfil,
   String? universidadePerfil,
   String? imagePerfil,
   String? drivinglicence,
-  String? passwordPerfil,
+  CarStruct? car,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
-    PerfilStruct(
+    ProfileStruct(
       emailUniversitarioPerfil: emailUniversitarioPerfil,
       phonePerfil: phonePerfil,
       agePerfil: agePerfil,
-      carPerfil: carPerfil,
-      plateCarPerfil: plateCarPerfil,
-      colorPerfil: colorPerfil,
       raPerfil: raPerfil,
       namePerfil: namePerfil,
       universidadePerfil: universidadePerfil,
       imagePerfil: imagePerfil,
       drivinglicence: drivinglicence,
-      passwordPerfil: passwordPerfil,
+      car: car ?? (clearUnsetFields ? CarStruct() : null),
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
@@ -334,60 +268,68 @@ PerfilStruct createPerfilStruct({
       ),
     );
 
-PerfilStruct? updatePerfilStruct(
-  PerfilStruct? perfil, {
+ProfileStruct? updateProfileStruct(
+  ProfileStruct? profile, {
   bool clearUnsetFields = true,
   bool create = false,
 }) =>
-    perfil
+    profile
       ?..firestoreUtilData = FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
       );
 
-void addPerfilStructData(
+void addProfileStructData(
   Map<String, dynamic> firestoreData,
-  PerfilStruct? perfil,
+  ProfileStruct? profile,
   String fieldName, [
   bool forFieldValue = false,
 ]) {
   firestoreData.remove(fieldName);
-  if (perfil == null) {
+  if (profile == null) {
     return;
   }
-  if (perfil.firestoreUtilData.delete) {
+  if (profile.firestoreUtilData.delete) {
     firestoreData[fieldName] = FieldValue.delete();
     return;
   }
   final clearFields =
-      !forFieldValue && perfil.firestoreUtilData.clearUnsetFields;
+      !forFieldValue && profile.firestoreUtilData.clearUnsetFields;
   if (clearFields) {
     firestoreData[fieldName] = <String, dynamic>{};
   }
-  final perfilData = getPerfilFirestoreData(perfil, forFieldValue);
-  final nestedData = perfilData.map((k, v) => MapEntry('$fieldName.$k', v));
+  final profileData = getProfileFirestoreData(profile, forFieldValue);
+  final nestedData = profileData.map((k, v) => MapEntry('$fieldName.$k', v));
 
-  final mergeFields = perfil.firestoreUtilData.create || clearFields;
+  final mergeFields = profile.firestoreUtilData.create || clearFields;
   firestoreData
       .addAll(mergeFields ? mergeNestedFields(nestedData) : nestedData);
 }
 
-Map<String, dynamic> getPerfilFirestoreData(
-  PerfilStruct? perfil, [
+Map<String, dynamic> getProfileFirestoreData(
+  ProfileStruct? profile, [
   bool forFieldValue = false,
 ]) {
-  if (perfil == null) {
+  if (profile == null) {
     return {};
   }
-  final firestoreData = mapToFirestore(perfil.toMap());
+  final firestoreData = mapToFirestore(profile.toMap());
+
+  // Handle nested data for "car" field.
+  addCarStructData(
+    firestoreData,
+    profile.hasCar() ? profile.car : null,
+    'car',
+    forFieldValue,
+  );
 
   // Add any Firestore field values
-  perfil.firestoreUtilData.fieldValues.forEach((k, v) => firestoreData[k] = v);
+  profile.firestoreUtilData.fieldValues.forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;
 }
 
-List<Map<String, dynamic>> getPerfilListFirestoreData(
-  List<PerfilStruct>? perfils,
+List<Map<String, dynamic>> getProfileListFirestoreData(
+  List<ProfileStruct>? profiles,
 ) =>
-    perfils?.map((e) => getPerfilFirestoreData(e, true)).toList() ?? [];
+    profiles?.map((e) => getProfileFirestoreData(e, true)).toList() ?? [];

@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -165,7 +166,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: UnicarGroup.buscarCadastroDeUsuarioCall.call(),
+      future: UnicarGroup.buscarCadastroDeUsuarioCall.call(
+        authToken: currentAuthenticationToken,
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -212,13 +215,20 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(60.0),
                             child: Image.network(
-                              PerfilStruct.fromMap(
+                              ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
                                   .imagePerfil,
                               width: 100.0,
                               height: 100.0,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(
+                                'assets/images/error_image.png',
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -231,7 +241,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
                             child: Text(
-                              PerfilStruct.fromMap(
+                              ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
                                   .namePerfil,
@@ -244,7 +254,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
-                              PerfilStruct.fromMap(
+                              ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
                                   .emailUniversitarioPerfil,
@@ -291,7 +301,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        PerfilStruct.fromMap(
+                        ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
                             .raPerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -322,7 +332,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        PerfilStruct.fromMap(
+                        ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
                             .phonePerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -353,7 +363,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        PerfilStruct.fromMap(
+                        ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
                             .universidadePerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -384,7 +394,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        PerfilStruct.fromMap(
+                        ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
                             .agePerfil,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -402,81 +412,86 @@ class _PerfilWidgetState extends State<PerfilWidget>
                     color: FlutterFlowTheme.of(context).alternate,
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation2']!),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 0.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/car_3097180.png',
-                                width: 86.0,
-                                height: 80.0,
-                                fit: BoxFit.fill,
+                  if (perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
+                          perfilBuscarCadastroDeUsuarioResponse.jsonBody != ''
+                      ? ProfileStruct.fromMap(
+                          perfilBuscarCadastroDeUsuarioResponse.jsonBody)
+                      : null?.hasCar() ?? true)
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/car_3097180.png',
+                                  width: 86.0,
+                                  height: 80.0,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 0.0, 0.0, 5.0),
-                                child: Text(
-                                  PerfilStruct.fromMap(
-                                          perfilBuscarCadastroDeUsuarioResponse
-                                              .jsonBody)
-                                      .carPerfil,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                      ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 5.0),
+                                  child: Text(
+                                    CarStruct.fromMap(
+                                            perfilBuscarCadastroDeUsuarioResponse
+                                                .jsonBody)
+                                        .model,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        PerfilStruct.fromMap(
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          CarStruct.fromMap(
+                                                  perfilBuscarCadastroDeUsuarioResponse
+                                                      .jsonBody)
+                                              .color,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                              ),
+                                        ),
+                                      ),
+                                      Text(
+                                        CarStruct.fromMap(
                                                 perfilBuscarCadastroDeUsuarioResponse
                                                     .jsonBody)
-                                            .colorPerfil,
+                                            .plate,
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                            ),
+                                            .bodyMedium,
                                       ),
-                                    ),
-                                    Text(
-                                      PerfilStruct.fromMap(
-                                              perfilBuscarCadastroDeUsuarioResponse
-                                                  .jsonBody)
-                                          .plateCarPerfil,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 10.0),
