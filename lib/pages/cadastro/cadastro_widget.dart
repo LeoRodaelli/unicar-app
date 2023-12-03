@@ -426,16 +426,6 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                               .emailUniversitarioController,
                                           focusNode: _model
                                               .emailUniversitarioFocusNode,
-                                          onFieldSubmitted: (_) async {
-                                            _model.valorEmail =
-                                                await actions.validar(
-                                              _model
-                                                  .emailUniversitarioController
-                                                  .text,
-                                            );
-
-                                            setState(() {});
-                                          },
                                           autofocus: true,
                                           autofillHints: [AutofillHints.email],
                                           obscureText: false,
@@ -713,11 +703,55 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           var _shouldSetState = false;
-                                          if ((_model.passwordController.text ==
-                                                  _model
-                                                      .passwordConfirmController
-                                                      .text) &&
-                                              _model.valorEmail!) {
+                                          if (_model.passwordController.text ==
+                                              _model.passwordConfirmController
+                                                  .text) {
+                                            _model.valorEmail =
+                                                await actions.validar(
+                                              _model
+                                                  .emailUniversitarioController
+                                                  .text,
+                                            );
+                                            _shouldSetState = true;
+                                            if (_model.valorEmail!) {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Valido'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        'Dominio Invalido'),
+                                                    content: Text(
+                                                        'Apenas Dominios Universitarios'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+
                                             _model.apiResulti00 =
                                                 await UnicarGroup
                                                     .cadastroDeUsuarioCall
