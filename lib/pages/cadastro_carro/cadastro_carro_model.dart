@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'cadastro_carro_widget.dart' show CadastroCarroWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +31,8 @@ class CadastroCarroModel extends FlutterFlowModel<CadastroCarroWidget> {
   FocusNode? cNHdocondutorFocusNode;
   TextEditingController? cNHdocondutorController;
   String? Function(BuildContext, String?)? cNHdocondutorControllerValidator;
-  // Stores action output result for [Backend Call - API (Cadastrar carro)] action in Button widget.
-  ApiCallResponse? registerCarApiResponse;
+  // Stores action output result for [Backend Call - API (Cadastro de usuario)] action in Button widget.
+  ApiCallResponse? apiResultrjr;
 
   /// Initialization and disposal methods.
 
