@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -20,6 +21,8 @@ class RotaModel extends FlutterFlowModel<RotaWidget> {
   var localPartidaValue = FFPlace();
   // State field(s) for localDestino widget.
   var localDestinoValue = FFPlace();
+  // Stores action output result for [Backend Call - API (Cadastro da carona)] action in ir widget.
+  ApiCallResponse? apiResultl4j;
 
   /// Initialization and disposal methods.
 

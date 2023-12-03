@@ -42,7 +42,7 @@ class CadastrarCarroCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': '${authToken}',
+        'Authorization': 'Bearer ${authToken}',
       },
       params: {},
       body: ffApiRequestBody,

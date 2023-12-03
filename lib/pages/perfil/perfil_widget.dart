@@ -137,14 +137,11 @@ class _PerfilWidgetState extends State<PerfilWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResult35g = await UnicarGroup.buscarCadastroDeUsuarioCall.call(
-        authToken: currentAuthenticationToken,
+      authManager.updateAuthUserData(
+        authenticationToken: currentAuthenticationToken,
+        refreshToken: currentAuthenticationToken,
+        authUid: currentUserUid,
       );
-      if ((_model.apiResult35g?.succeeded ?? true)) {
-        return;
-      }
-
-      return;
     });
 
     setupAnimations(
