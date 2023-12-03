@@ -412,11 +412,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                     color: FlutterFlowTheme.of(context).alternate,
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation2']!),
-                  if (perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
-                          perfilBuscarCadastroDeUsuarioResponse.jsonBody != ''
-                      ? ProfileStruct.fromMap(
-                          perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                      : null?.hasCar() ?? true)
+                  if (getJsonField(
+                    perfilBuscarCadastroDeUsuarioResponse.jsonBody,
+                    r'''$.car''',
+                  ))
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
