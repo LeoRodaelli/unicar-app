@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -31,7 +32,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      context.pushNamed('Perfil');
+      context.pushNamed('HomePage');
     });
 
     _model.modeloCarroController ??= TextEditingController();
@@ -114,7 +115,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 8.0),
+                              0.0, 0.0, 0.0, 1.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -642,12 +643,26 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                         10.0, 10.0, 10.0, 10.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        _model.apiResultrjr = await UnicarGroup
-                                            .cadastroDeUsuarioCall
-                                            .call();
-                                        if ((_model.apiResultrjr?.succeeded ??
+                                        var _shouldSetState = false;
+                                        _model.registerCarApiResponse =
+                                            await UnicarGroup.cadastrarCarroCall
+                                                .call(
+                                          model:
+                                              _model.modeloCarroController.text,
+                                          color: _model.corController.text,
+                                          plate: _model.placaController.text,
+                                          driverLicense: _model
+                                              .cNHdocondutorController.text,
+                                          authToken: currentAuthenticationToken,
+                                        );
+                                        _shouldSetState = true;
+                                        if ((_model.registerCarApiResponse
+                                                ?.succeeded ??
                                             true)) {
-                                          context.pushNamed('Perfil');
+                                          context.pushNamed('OferecerCarona');
+
+                                          if (_shouldSetState) setState(() {});
+                                          return;
                                         } else {
                                           await showDialog(
                                             context: context,
@@ -666,9 +681,11 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                               );
                                             },
                                           );
+                                          if (_shouldSetState) setState(() {});
+                                          return;
                                         }
 
-                                        setState(() {});
+                                        if (_shouldSetState) setState(() {});
                                       },
                                       text: 'Salvar',
                                       options: FFButtonOptions(
