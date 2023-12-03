@@ -32,7 +32,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      context.pushNamed('HomePage');
+      context.pushNamed('Cadastro');
     });
 
     _model.modeloCarroController ??= TextEditingController();
