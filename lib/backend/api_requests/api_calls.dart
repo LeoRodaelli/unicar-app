@@ -151,10 +151,8 @@ class CadastroDaCaronaCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "originLatitude": "${origin}",
-  "originLongitude": <originLongitude>,
-  "destinyLatitude": "${destiny}",
-  "destinyLongitude": <destinyLongitude>,
+  "origin": "${origin}",
+  "destiny": "${destiny}",
   "startTime": "${startTime}",
   "availableSeats": ${availableSeats},
   "price": ${price}
