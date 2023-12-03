@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,11 +28,6 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CadastroCarroModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      context.pushNamed('CadastroCarro');
-    });
 
     _model.modeloCarroController ??= TextEditingController();
     _model.modeloCarroFocusNode ??= FocusNode();
@@ -99,48 +93,42 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(50.0),
+              preferredSize: Size.fromHeight(100.0),
               child: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
                 automaticallyImplyLeading: false,
                 actions: [],
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 1.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 30.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 50.0,
-                                  icon: Icon(
-                                    Icons.arrow_back_rounded,
-                                    color: Color(0xFFF1C40F),
-                                    size: 30.0,
-                                  ),
-                                  onPressed: () async {
-                                    context.pop();
-                                  },
-                                ),
+                  title: Align(
+                    alignment: AlignmentDirectional(-1.00, 0.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 14.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30.0,
+                              borderWidth: 1.0,
+                              buttonSize: 50.0,
+                              icon: Icon(
+                                Icons.arrow_back_rounded,
+                                color: Color(0xFFF1C40F),
+                                size: 40.0,
                               ),
-                            ],
+                              onPressed: () async {
+                                context.pop();
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   centerTitle: true,
