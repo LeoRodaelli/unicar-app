@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -14,10 +13,14 @@ export 'passeger_model.dart';
 class PassegerWidget extends StatefulWidget {
   const PassegerWidget({
     Key? key,
-    required this.pass,
+    required this.name,
+    required this.phone,
+    required this.departurePlace,
   }) : super(key: key);
 
-  final PassegerStruct? pass;
+  final String? name;
+  final String? phone;
+  final LatLng? departurePlace;
 
   @override
   _PassegerWidgetState createState() => _PassegerWidgetState();
@@ -171,7 +174,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Text(
-                          widget.pass!.name,
+                          widget.name!,
                           textAlign: TextAlign.start,
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
@@ -200,7 +203,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
-                          widget.pass!.phone,
+                          widget.phone!,
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -215,7 +218,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
-                          widget.pass!.stoped,
+                          widget.departurePlace!.toString(),
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(

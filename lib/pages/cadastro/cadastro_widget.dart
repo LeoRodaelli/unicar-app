@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -706,55 +705,6 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           if (_model.passwordController.text ==
                                               _model.passwordConfirmController
                                                   .text) {
-                                            _model.valorEmail =
-                                                await actions.validar(
-                                              _model
-                                                  .emailUniversitarioController
-                                                  .text,
-                                            );
-                                            _shouldSetState = true;
-                                            if (_model.valorEmail!) {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text('Email Valido'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            } else {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        'Dominio Invalido'),
-                                                    content: Text(
-                                                        'Apenas Dominios Universitarios'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                              if (_shouldSetState)
-                                                setState(() {});
-                                              return;
-                                            }
-
                                             _model.apiResulti00 =
                                                 await UnicarGroup
                                                     .cadastroDeUsuarioCall
