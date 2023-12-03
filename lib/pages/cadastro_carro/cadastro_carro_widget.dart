@@ -133,7 +133,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                     size: 30.0,
                                   ),
                                   onPressed: () async {
-                                    context.pop();
+                                    context.safePop();
                                   },
                                 ),
                               ),
