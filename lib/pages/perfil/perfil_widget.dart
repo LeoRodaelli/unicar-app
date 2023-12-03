@@ -135,6 +135,18 @@ class _PerfilWidgetState extends State<PerfilWidget>
     super.initState();
     _model = createModel(context, () => PerfilModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.apiResult35g = await UnicarGroup.buscarCadastroDeUsuarioCall.call(
+        authToken: currentAuthenticationToken,
+      );
+      if ((_model.apiResult35g?.succeeded ?? true)) {
+        return;
+      }
+
+      return;
+    });
+
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
