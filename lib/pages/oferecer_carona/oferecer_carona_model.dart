@@ -11,6 +11,7 @@ import 'oferecer_carona_widget.dart' show OferecerCaronaWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +40,7 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
   TextEditingController? limitDeTempAddRodaController;
   String? Function(BuildContext, String?)?
       limitDeTempAddRodaControllerValidator;
+  DateTime? datePicked;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController4;

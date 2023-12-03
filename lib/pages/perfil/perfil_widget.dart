@@ -402,81 +402,86 @@ class _PerfilWidgetState extends State<PerfilWidget>
                     color: FlutterFlowTheme.of(context).alternate,
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation2']!),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 0.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/car_3097180.png',
-                                width: 86.0,
-                                height: 80.0,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 0.0, 0.0, 5.0),
-                                child: Text(
-                                  PerfilStruct.fromMap(
-                                          perfilBuscarCadastroDeUsuarioResponse
-                                              .jsonBody)
-                                      .carPerfil,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                      ),
+                  if (perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
+                          perfilBuscarCadastroDeUsuarioResponse.jsonBody != ''
+                      ? PerfilStruct.fromMap(
+                          perfilBuscarCadastroDeUsuarioResponse.jsonBody)
+                      : null?.hasCarPerfil() ?? true)
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/car_3097180.png',
+                                  width: 86.0,
+                                  height: 80.0,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
-                                      child: Text(
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 5.0),
+                                  child: Text(
+                                    PerfilStruct.fromMap(
+                                            perfilBuscarCadastroDeUsuarioResponse
+                                                .jsonBody)
+                                        .carPerfil,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          PerfilStruct.fromMap(
+                                                  perfilBuscarCadastroDeUsuarioResponse
+                                                      .jsonBody)
+                                              .colorPerfil,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                              ),
+                                        ),
+                                      ),
+                                      Text(
                                         PerfilStruct.fromMap(
                                                 perfilBuscarCadastroDeUsuarioResponse
                                                     .jsonBody)
-                                            .colorPerfil,
+                                            .plateCarPerfil,
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                            ),
+                                            .bodyMedium,
                                       ),
-                                    ),
-                                    Text(
-                                      PerfilStruct.fromMap(
-                                              perfilBuscarCadastroDeUsuarioResponse
-                                                  .jsonBody)
-                                          .plateCarPerfil,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 10.0),
