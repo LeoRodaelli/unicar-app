@@ -33,7 +33,7 @@ class CadastroModel extends FlutterFlowModel<CadastroWidget> {
   String? Function(BuildContext, String?)?
       emailUniversitarioControllerValidator;
   // Stores action output result for [Custom Action - validar] action in emailUniversitario widget.
-  bool? validar;
+  bool? valorEmail;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;

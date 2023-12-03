@@ -427,7 +427,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           focusNode: _model
                                               .emailUniversitarioFocusNode,
                                           onFieldSubmitted: (_) async {
-                                            _model.validar =
+                                            _model.valorEmail =
                                                 await actions.validar(
                                               _model
                                                   .emailUniversitarioController
@@ -713,9 +713,11 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           var _shouldSetState = false;
-                                          if (_model.passwordController.text ==
-                                              _model.passwordConfirmController
-                                                  .text) {
+                                          if ((_model.passwordController.text ==
+                                                  _model
+                                                      .passwordConfirmController
+                                                      .text) &&
+                                              _model.valorEmail!) {
                                             _model.apiResulti00 =
                                                 await UnicarGroup
                                                     .cadastroDeUsuarioCall
