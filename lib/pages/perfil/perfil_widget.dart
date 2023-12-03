@@ -209,25 +209,43 @@ class _PerfilWidgetState extends State<PerfilWidget>
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0),
                         ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              1.0, 1.0, 1.0, 1.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(60.0),
-                            child: Image.network(
-                              ProfileStruct.fromMap(
+                        child: Visibility(
+                          visible: ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
-                                  .imagePerfil,
-                              width: 100.0,
-                              height: 100.0,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(
-                                'assets/images/error_image.png',
+                                  .hasImagePath() &&
+                              ((perfilBuscarCadastroDeUsuarioResponse
+                                                      .jsonBody !=
+                                                  null &&
+                                              perfilBuscarCadastroDeUsuarioResponse
+                                                      .jsonBody !=
+                                                  ''
+                                          ? ProfileStruct.fromMap(
+                                              perfilBuscarCadastroDeUsuarioResponse
+                                                  .jsonBody)
+                                          : null)
+                                      ?.imagePerfil !=
+                                  ''),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                1.0, 1.0, 1.0, 1.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60.0),
+                              child: Image.network(
+                                ProfileStruct.fromMap(
+                                        perfilBuscarCadastroDeUsuarioResponse
+                                            .jsonBody)
+                                    .imagePerfil,
                                 width: 100.0,
                                 height: 100.0,
                                 fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(
+                                  'assets/images/error_image.png',
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),

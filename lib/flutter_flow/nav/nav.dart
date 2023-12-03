@@ -344,7 +344,7 @@ class FFRoute {
                   color: Colors.transparent,
                   child: Image.asset(
                     'assets/images/car_3097180.png',
-                    fit: BoxFit.cover,
+                    fit: BoxFit.scaleDown,
                   ),
                 )
               : page;

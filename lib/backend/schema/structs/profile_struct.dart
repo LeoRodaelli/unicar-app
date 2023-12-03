@@ -19,6 +19,7 @@ class ProfileStruct extends FFFirebaseStruct {
     String? imagePerfil,
     String? drivinglicence,
     CarStruct? car,
+    String? imagePath,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _emailUniversitarioPerfil = emailUniversitarioPerfil,
         _phonePerfil = phonePerfil,
@@ -29,6 +30,7 @@ class ProfileStruct extends FFFirebaseStruct {
         _imagePerfil = imagePerfil,
         _drivinglicence = drivinglicence,
         _car = car,
+        _imagePath = imagePath,
         super(firestoreUtilData);
 
   // "emailUniversitarioPerfil" field.
@@ -87,6 +89,12 @@ class ProfileStruct extends FFFirebaseStruct {
       updateFn(_car ??= CarStruct());
   bool hasCar() => _car != null;
 
+  // "imagePath" field.
+  String? _imagePath;
+  String get imagePath => _imagePath ?? '';
+  set imagePath(String? val) => _imagePath = val;
+  bool hasImagePath() => _imagePath != null;
+
   static ProfileStruct fromMap(Map<String, dynamic> data) => ProfileStruct(
         emailUniversitarioPerfil: data['emailUniversitarioPerfil'] as String?,
         phonePerfil: data['phonePerfil'] as String?,
@@ -97,6 +105,7 @@ class ProfileStruct extends FFFirebaseStruct {
         imagePerfil: data['imagePerfil'] as String?,
         drivinglicence: data['drivinglicence'] as String?,
         car: CarStruct.maybeFromMap(data['car']),
+        imagePath: data['imagePath'] as String?,
       );
 
   static ProfileStruct? maybeFromMap(dynamic data) =>
@@ -112,6 +121,7 @@ class ProfileStruct extends FFFirebaseStruct {
         'imagePerfil': _imagePerfil,
         'drivinglicence': _drivinglicence,
         'car': _car?.toMap(),
+        'imagePath': _imagePath,
       }.withoutNulls;
 
   @override
@@ -151,6 +161,10 @@ class ProfileStruct extends FFFirebaseStruct {
         'car': serializeParam(
           _car,
           ParamType.DataStruct,
+        ),
+        'imagePath': serializeParam(
+          _imagePath,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -202,6 +216,11 @@ class ProfileStruct extends FFFirebaseStruct {
           false,
           structBuilder: CarStruct.fromSerializableMap,
         ),
+        imagePath: deserializeParam(
+          data['imagePath'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -218,7 +237,8 @@ class ProfileStruct extends FFFirebaseStruct {
         universidadePerfil == other.universidadePerfil &&
         imagePerfil == other.imagePerfil &&
         drivinglicence == other.drivinglicence &&
-        car == other.car;
+        car == other.car &&
+        imagePath == other.imagePath;
   }
 
   @override
@@ -231,7 +251,8 @@ class ProfileStruct extends FFFirebaseStruct {
         universidadePerfil,
         imagePerfil,
         drivinglicence,
-        car
+        car,
+        imagePath
       ]);
 }
 
@@ -245,6 +266,7 @@ ProfileStruct createProfileStruct({
   String? imagePerfil,
   String? drivinglicence,
   CarStruct? car,
+  String? imagePath,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -260,6 +282,7 @@ ProfileStruct createProfileStruct({
       imagePerfil: imagePerfil,
       drivinglicence: drivinglicence,
       car: car ?? (clearUnsetFields ? CarStruct() : null),
+      imagePath: imagePath,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
