@@ -150,8 +150,8 @@ class _RotaWidgetState extends State<RotaWidget> {
                     color: FlutterFlowTheme.of(context).primaryText,
                     size: 24.0,
                   ),
-                  onPressed: () {
-                    print('ir pressed ...');
+                  onPressed: () async {
+                    context.pushNamed('CadastroCarro');
                   },
                 ),
               ),
