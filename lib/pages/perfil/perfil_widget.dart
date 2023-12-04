@@ -264,20 +264,17 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           animationsMap['cardOnPageLoadAnimation']!),
                       Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 12.0, 0.0, 0.0),
-                            child: Text(
-                              ProfileStruct.fromMap(
-                                      perfilBuscarCadastroDeUsuarioResponse
-                                          .jsonBody)
-                                  .namePerfil,
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context).headlineSmall,
-                            ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation1']!),
-                          ),
+                          Text(
+                            ProfileStruct.fromMap(
+                                    perfilBuscarCadastroDeUsuarioResponse
+                                        .jsonBody)
+                                .namePerfil,
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context).headlineSmall,
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation1']!),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
@@ -441,9 +438,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation2']!),
                   if (getJsonField(
-                    perfilBuscarCadastroDeUsuarioResponse.jsonBody,
-                    r'''$.car''',
-                  ))
+                        perfilBuscarCadastroDeUsuarioResponse.jsonBody,
+                        r'''$.car''',
+                      ) !=
+                      null)
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
