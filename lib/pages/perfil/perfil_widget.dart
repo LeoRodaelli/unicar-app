@@ -135,16 +135,6 @@ class _PerfilWidgetState extends State<PerfilWidget>
     super.initState();
     _model = createModel(context, () => PerfilModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultjj4 = await UnicarGroup.loginCall.call();
-      if ((_model.apiResultjj4?.succeeded ?? true)) {
-        return;
-      }
-
-      return;
-    });
-
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -172,8 +162,6 @@ class _PerfilWidgetState extends State<PerfilWidget>
         ),
       );
     }
-
-    context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
       future: UnicarGroup.buscarCadastroDeUsuarioCall.call(
@@ -220,41 +208,49 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           borderRadius: BorderRadius.circular(50.0),
                         ),
                         child: Visibility(
-                          visible: ProfileStruct.fromMap(
-                                      perfilBuscarCadastroDeUsuarioResponse
-                                          .jsonBody)
-                                  .hasImagePath() &&
-                              ((perfilBuscarCadastroDeUsuarioResponse
-                                                      .jsonBody !=
-                                                  null &&
-                                              perfilBuscarCadastroDeUsuarioResponse
-                                                      .jsonBody !=
-                                                  ''
-                                          ? ProfileStruct.fromMap(
-                                              perfilBuscarCadastroDeUsuarioResponse
-                                                  .jsonBody)
+                          visible: ((perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
+                                                  perfilBuscarCadastroDeUsuarioResponse.jsonBody !=
+                                                      ''
+                                              ? ProfileStruct.fromMap(
+                                                  perfilBuscarCadastroDeUsuarioResponse
+                                                      .jsonBody)
+                                              : null)
+                                          ?.imagePath !=
+                                      null &&
+                                  (perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
+                                                  perfilBuscarCadastroDeUsuarioResponse.jsonBody !=
+                                                      ''
+                                              ? ProfileStruct.fromMap(
+                                                  perfilBuscarCadastroDeUsuarioResponse
+                                                      .jsonBody)
+                                              : null)
+                                          ?.imagePath !=
+                                      '') &&
+                              ((perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
+                                              perfilBuscarCadastroDeUsuarioResponse.jsonBody != ''
+                                          ? ProfileStruct.fromMap(perfilBuscarCadastroDeUsuarioResponse.jsonBody)
                                           : null)
-                                      ?.imagePerfil !=
+                                      ?.imagePath !=
                                   ''),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                1.0, 1.0, 1.0, 1.0),
+                                8.0, 8.0, 8.0, 8.0),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(60.0),
+                              borderRadius: BorderRadius.circular(24.0),
                               child: Image.network(
                                 ProfileStruct.fromMap(
                                         perfilBuscarCadastroDeUsuarioResponse
                                             .jsonBody)
-                                    .imagePerfil,
+                                    .imagePath,
                                 width: 100.0,
                                 height: 100.0,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.scaleDown,
                                 errorBuilder: (context, error, stackTrace) =>
                                     Image.asset(
                                   'assets/images/error_image.png',
                                   width: 100.0,
                                   height: 100.0,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.scaleDown,
                                 ),
                               ),
                             ),
@@ -264,42 +260,20 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           animationsMap['cardOnPageLoadAnimation']!),
                       Column(
                         mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: UnicarGroup.cadastroDeUsuarioCall.call(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final textCadastroDeUsuarioResponse =
-                                    snapshot.data!;
-                                return Text(
-                                  ProfileStruct.fromMap(
-                                          perfilBuscarCadastroDeUsuarioResponse
-                                              .jsonBody)
-                                      .namePerfil,
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall,
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!);
-                              },
-                            ),
+                            child: Text(
+                              ProfileStruct.fromMap(
+                                      perfilBuscarCadastroDeUsuarioResponse
+                                          .jsonBody)
+                                  .name,
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context).headlineSmall,
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation1']!),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -308,14 +282,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
                               ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
-                                  .emailUniversitarioPerfil,
+                                  .email,
                               textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF192229),
-                                  ),
+                              style: FlutterFlowTheme.of(context).labelMedium,
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation2']!),
                           ),
@@ -354,7 +323,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .raPerfil,
+                            .ra,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -385,7 +354,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .phonePerfil,
+                            .phone,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -416,7 +385,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .universidadePerfil,
+                            .university,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -447,7 +416,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .agePerfil,
+                            .age
+                            .toString(),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -463,10 +433,16 @@ class _PerfilWidgetState extends State<PerfilWidget>
                     color: FlutterFlowTheme.of(context).alternate,
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation2']!),
-                  if (getJsonField(
-                    perfilBuscarCadastroDeUsuarioResponse.jsonBody,
-                    r'''$.car''',
-                  ))
+                  if ((perfilBuscarCadastroDeUsuarioResponse.jsonBody != null &&
+                                  perfilBuscarCadastroDeUsuarioResponse
+                                          .jsonBody !=
+                                      ''
+                              ? ProfileStruct.fromMap(
+                                  perfilBuscarCadastroDeUsuarioResponse
+                                      .jsonBody)
+                              : null)
+                          ?.car !=
+                      null)
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -486,29 +462,31 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                 ),
                               ),
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5.0, 0.0, 0.0, 5.0),
-                                  child: Text(
-                                    CarStruct.fromMap(
-                                            perfilBuscarCadastroDeUsuarioResponse
-                                                .jsonBody)
-                                        .model,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                        ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5.0, 0.0, 0.0, 5.0),
+                                    child: Text(
+                                      CarStruct.fromMap(
+                                              perfilBuscarCadastroDeUsuarioResponse
+                                                  .jsonBody)
+                                          .model,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                          ),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -535,8 +513,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -544,7 +522,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                     ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 10.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 8.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         context.pushNamed('PerfilEdicao');
@@ -575,7 +553,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         context.pushNamed('CadastroCarro');
