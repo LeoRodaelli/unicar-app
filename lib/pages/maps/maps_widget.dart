@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -78,31 +79,51 @@ class _MapsWidgetState extends State<MapsWidget> {
           top: true,
           child: Stack(
             children: [
-              FlutterFlowGoogleMap(
-                controller: _model.googleMapsController,
-                onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
-                initialLocation: _model.googleMapsCenter ??=
-                    LatLng(13.106061, -59.613158),
-                markers: (widget.partida?.take(2).toList() ?? [])
-                    .map(
-                      (marker) => FlutterFlowMarker(
-                        marker.serialize(),
-                        marker,
+              FutureBuilder<ApiCallResponse>(
+                future: UnicarGroup.cadastrarCarroCall.call(),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
-                    )
-                    .toList(),
-                markerColor: GoogleMarkerColor.blue,
-                mapType: MapType.normal,
-                style: GoogleMapStyle.standard,
-                initialZoom: 14.0,
-                allowInteraction: true,
-                allowZoom: true,
-                showZoomControls: false,
-                showLocation: true,
-                showCompass: true,
-                showMapToolbar: true,
-                showTraffic: false,
-                centerMapOnMarkerTap: false,
+                    );
+                  }
+                  final googleMapCadastrarCarroResponse = snapshot.data!;
+                  return FlutterFlowGoogleMap(
+                    controller: _model.googleMapsController,
+                    onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
+                    initialLocation: _model.googleMapsCenter ??=
+                        LatLng(13.106061, -59.613158),
+                    markers: (widget.partida?.take(2).toList() ?? [])
+                        .map(
+                          (marker) => FlutterFlowMarker(
+                            marker.serialize(),
+                            marker,
+                          ),
+                        )
+                        .toList(),
+                    markerColor: GoogleMarkerColor.blue,
+                    mapType: MapType.normal,
+                    style: GoogleMapStyle.standard,
+                    initialZoom: 14.0,
+                    allowInteraction: true,
+                    allowZoom: true,
+                    showZoomControls: false,
+                    showLocation: true,
+                    showCompass: true,
+                    showMapToolbar: true,
+                    showTraffic: false,
+                    centerMapOnMarkerTap: false,
+                  );
+                },
               ),
             ],
           ),

@@ -404,10 +404,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
                       child: Text(
-                        ProfileStruct.fromMap(
-                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .age
-                            .toString(),
+                        getJsonField(
+                          perfilBuscarCadastroDeUsuarioResponse.jsonBody,
+                          r'''$.profile.age''',
+                        ).toString(),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
