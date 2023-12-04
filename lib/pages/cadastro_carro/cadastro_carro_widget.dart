@@ -93,7 +93,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(44.0),
+              preferredSize: Size.fromHeight(50.0),
               child: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
                 automaticallyImplyLeading: false,
@@ -103,7 +103,7 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                     alignment: AlignmentDirectional(-1.00, 0.00),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 0.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 30.0,
