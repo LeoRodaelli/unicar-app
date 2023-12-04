@@ -19,8 +19,8 @@ class UnicarGroup {
   static BuscarCadastroDeUsuarioCall buscarCadastroDeUsuarioCall =
       BuscarCadastroDeUsuarioCall();
   static CadastroDaCaronaCall cadastroDaCaronaCall = CadastroDaCaronaCall();
-  static EditarUsuarioCall editarUsuarioCall = EditarUsuarioCall();
-  static BuscarCarroCall buscarCarroCall = BuscarCarroCall();
+  static BuscarDadosDeCaronaCall buscarDadosDeCaronaCall =
+      BuscarDadosDeCaronaCall();
 }
 
 class CadastrarCarroCall {
@@ -180,54 +180,17 @@ class CadastroDaCaronaCall {
   }
 }
 
-class EditarUsuarioCall {
-  Future<ApiCallResponse> call({
-    String? imagePath = '',
-    String? name = '',
-    String? email = '',
-    String? phone = '',
-    String? university = '',
-    String? age = '',
-    String? authToken = '',
-  }) async {
-    final ffApiRequestBody = '''
-{
-  "imagePath": "${imagePath}",
-  "name": "${name}",
-  "email": "${email}",
-  "phone": "${phone}",
-  "university": "${university}",
-  "age": "${age}"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Editar usuario',
-      apiUrl: '${UnicarGroup.baseUrl}/profile',
-      callType: ApiCallType.PUT,
-      headers: {
-        'Authorization': 'Bearer ${authToken}',
-        'Content-Type': 'application/json',
-      },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class BuscarCarroCall {
+class BuscarDadosDeCaronaCall {
   Future<ApiCallResponse> call({
     String? authToken = '',
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'Buscar carro',
-      apiUrl: '${UnicarGroup.baseUrl}/car',
+      callName: 'Buscar dados de carona',
+      apiUrl: '${UnicarGroup.baseUrl}/ride',
       callType: ApiCallType.GET,
       headers: {
-        'Authorization': 'Bearer ${authToken}',
+        'Content-type': 'application/json',
+        'Authorization': '${authToken}',
       },
       params: {},
       returnBody: true,
