@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 
@@ -132,7 +133,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'CaronasDisponiveis',
           path: '/caronasDisponiveis',
-          builder: (context, params) => CaronasDisponiveisWidget(),
+          builder: (context, params) => AbaPassageiro(),
         ),
         FFRoute(
           name: 'InformacoesCaronaPassageiro',
@@ -151,11 +152,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CadastroCarro',
           path: '/CadastroCarro',
           builder: (context, params) => CadastroCarroWidget(),
-        ),
-        FFRoute(
-          name: 'InformacoesCaronaMotorista',
-          path: '/informacoesCaronaMotorista',
-          builder: (context, params) => InformacoesCaronaMotoristaWidget(),
         ),
         FFRoute(
           name: 'ride',

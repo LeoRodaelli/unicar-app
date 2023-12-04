@@ -151,6 +151,10 @@ class _RotaWidgetState extends State<RotaWidget> {
                     size: 24.0,
                   ),
                   onPressed: () {
+
+                    //GU -TODO: ver listagem de caronas
+
+
                     print('ir pressed ...');
                   },
                 ),

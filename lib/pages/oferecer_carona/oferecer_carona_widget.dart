@@ -1,3 +1,12 @@
+import 'dart:ffi';
+
+import 'package:get_it/get_it.dart';
+import 'package:unicar_maps/index.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_grupo_criado_sucesso.dart';
+import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
+import 'package:unicar_maps/server_connection/entities/usuario.dart';
+import 'package:unicar_maps/server_connection/group_service.dart';
+
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -28,9 +37,29 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  late final GroupService _groupService;
+
   @override
   void initState() {
     super.initState();
+    _groupService = GetIt.I.get<GroupService>(instanceName: 'motorista');
+
+    _groupService.listenToEvents(
+      (comunicado) {
+        if (comunicado is ComunicadoGrupoCriadoComSucesso) {
+          // GU: navega manualmente para rota de informaçoes carona motorista 
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InformacoesCaronaMotoristaWidget(
+                grupoCarona: comunicado.grupo,
+              ),
+            ),
+          );
+        }
+      },
+    );
+
     _model = createModel(context, () => OferecerCaronaModel());
 
     _model.passageiroMaxController ??= TextEditingController();
@@ -828,7 +857,8 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
-                                                                      8.0),
+                                                            8.0,
+                                                          ),
                                                         ),
                                                         focusedErrorBorder:
                                                             UnderlineInputBorder(
@@ -864,70 +894,62 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                     0.0, 0.0, 0.0, 16.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                var _shouldSetState = false;
-                                                _model.apiResultez0 =
-                                                    await UnicarGroup
-                                                        .cadastroDaCaronaCall
-                                                        .call(
-                                                  origin: _model
-                                                      .placePickerPartValue
-                                                      .latLng
-                                                      ?.toString(),
-                                                  destiny: _model
-                                                      .placePickerDestValue
-                                                      .latLng
-                                                      ?.toString(),
-                                                  startTime: _model.datePicked
-                                                      ?.secondsSinceEpoch,
-                                                  availableSeats: int.tryParse(
-                                                      _model
-                                                          .passageiroMaxController
-                                                          .text),
-                                                  price: double.tryParse(_model
-                                                      .valorPorPassageiroController
-                                                      .text),
-                                                  authToken:
-                                                      currentAuthenticationToken,
-                                                );
-                                                _shouldSetState = true;
-                                                if ((_model.apiResultez0
-                                                        ?.succeeded ??
-                                                    true)) {
-                                                  context.pushNamed(
-                                                      'InformacoesCaronaMotorista');
-
-                                                  if (_shouldSetState)
-                                                    setState(() {});
-                                                  return;
-                                                } else {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text(
-                                                            'Erro ao criar carona'),
-                                                        content: Text(
-                                                            'Tente novamente'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text(
-                                                                'Continuar'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
+                                                try {
+                                                  // GU: cria a carona
+                                                  _groupService.createRideGroup(
+                                                    GrupoCarona(
+                                                      vagasTotais: int.tryParse(
+                                                        _model
+                                                            .passageiroMaxController
+                                                            .text,
+                                                      )!,
+                                                      idCarona: DateTime.now()
+                                                          .millisecondsSinceEpoch
+                                                          .toString(),
+                                                      localPartida: _model
+                                                          .placePickerPartValue
+                                                          .name,
+                                                      horarioSaida: _model
+                                                          .datePicked!
+                                                          .toString(),
+                                                      preco: double.tryParse(_model
+                                                          .valorPorPassageiroController
+                                                          .text)!,
+                                                      motorista: const Usuario(
+                                                        id: 'id',
+                                                        nome: 'nome',
+                                                        contato: 'contato',
+                                                      ),
+                                                    ),
                                                   );
-                                                  if (_shouldSetState)
-                                                    setState(() {});
-                                                  return;
-                                                }
+                                                } catch (_) {
+                                                  AlertDialog alert =
+                                                      AlertDialog(
+                                                    title: const Text("Erro"),
+                                                    content: const Text(
+                                                      "Não foi possível criar a carona",
+                                                    ),
+                                                    actions: [
+                                                      TextButton(
+                                                        child: Text("Close"),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
 
-                                                if (_shouldSetState)
-                                                  setState(() {});
+                                                  if (context.mounted) {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return alert;
+                                                      },
+                                                    );
+                                                  }
+                                                }
                                               },
                                               text: 'Avançar',
                                               options: FFButtonOptions(

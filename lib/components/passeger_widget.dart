@@ -1,23 +1,21 @@
-import '/backend/schema/structs/index.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
+import 'package:unicar_maps/server_connection/entities/usuario.dart';
+
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'passeger_model.dart';
+
 export 'passeger_model.dart';
 
 class PassegerWidget extends StatefulWidget {
   const PassegerWidget({
-    Key? key,
+    super.key,
     required this.pass,
-  }) : super(key: key);
+  });
 
-  final PassegerStruct? pass;
+  final Usuario pass;
 
   @override
   _PassegerWidgetState createState() => _PassegerWidgetState();
@@ -25,8 +23,6 @@ class PassegerWidget extends StatefulWidget {
 
 class _PassegerWidgetState extends State<PassegerWidget>
     with TickerProviderStateMixin {
-  late PassegerModel _model;
-
   final animationsMap = {
     'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -111,15 +107,8 @@ class _PassegerWidgetState extends State<PassegerWidget>
   };
 
   @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
-
-  @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PassegerModel());
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -129,13 +118,6 @@ class _PassegerWidgetState extends State<PassegerWidget>
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _model.maybeDispose();
-
-    super.dispose();
   }
 
   @override
@@ -171,7 +153,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Text(
-                          widget.pass!.name,
+                          widget.pass.nome,
                           textAlign: TextAlign.start,
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
@@ -200,7 +182,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
-                          widget.pass!.phone,
+                          widget.pass.contato,
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -210,21 +192,6 @@ class _PassegerWidgetState extends State<PassegerWidget>
                                   ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation3']!),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                        child: Text(
-                          widget.pass!.stoped,
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Roboto',
-                                    color: Color(0xFF192229),
-                                    fontSize: 14.0,
-                                  ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation4']!),
                       ),
                     ],
                   ),
