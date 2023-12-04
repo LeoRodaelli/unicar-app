@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 class PerfilEdicaoModel extends FlutterFlowModel<PerfilEdicaoWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -41,6 +42,7 @@ class PerfilEdicaoModel extends FlutterFlowModel<PerfilEdicaoWidget> {
   void initState(BuildContext context) {}
 
   void dispose() {
+    unfocusNode.dispose();
     yourNameFocusNode?.dispose();
     yourNameController?.dispose();
 
