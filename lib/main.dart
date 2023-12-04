@@ -128,8 +128,8 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'OferecerCarona': OferecerCaronaWidget(),
-      'Perfil': PerfilWidget(),
       'Rota': RotaWidget(),
+      'Perfil': PerfilWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -157,19 +157,19 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.perm_identity,
-              size: 24.0,
-            ),
-            label: 'Perfil',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.carSide,
               size: 24.0,
             ),
             label: 'pegar carona',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.perm_identity,
+              size: 24.0,
+            ),
+            label: 'Perfil',
             tooltip: '',
           )
         ],
