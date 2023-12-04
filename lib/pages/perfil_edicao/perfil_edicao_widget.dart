@@ -354,8 +354,8 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                      contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          12.0, 12.0, 12.0, 12.0),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     validator:
@@ -420,8 +420,8 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                      contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          12.0, 12.0, 12.0, 12.0),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     validator: _model.universidadeControllerValidator
@@ -486,19 +486,55 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                      contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          12.0, 12.0, 12.0, 12.0),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     validator:
                         _model.idadeControllerValidator.asValidator(context),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      await UnicarGroup.editarUsuarioCall.call(
+                        name: _model.yourNameController.text,
+                        phone: _model.numeroController.text,
+                        university: _model.universidadeController.text,
+                        age: _model.idadeController.text,
+                        authToken: currentAuthenticationToken,
+                      );
+
+                      context.pushNamed('Perfil');
+                    },
+                    text: 'Cancelar',
+                    options: FFButtonOptions(
+                      width: 300.0,
+                      height: 50.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      textStyle: GoogleFonts.getFont(
+                        'Roboto',
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800,
+                        fontStyle: FontStyle.normal,
+                      ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                ),
                 Align(
                   alignment: AlignmentDirectional(0.00, 0.05),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         await UnicarGroup.editarUsuarioCall.call(
@@ -513,7 +549,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                       },
                       text: 'Salvar',
                       options: FFButtonOptions(
-                        width: 270.0,
+                        width: 300.0,
                         height: 50.0,
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
