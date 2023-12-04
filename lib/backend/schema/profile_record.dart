@@ -41,12 +41,18 @@ class ProfileRecord extends FirestoreRecord {
   RideModelStruct get ride => _ride ?? RideModelStruct();
   bool hasRide() => _ride != null;
 
+  // "car" field.
+  CarStruct? _car;
+  CarStruct get car => _car ?? CarStruct();
+  bool hasCar() => _car != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _ra = snapshotData['ra'] as String?;
     _phone = snapshotData['phone'] as String?;
     _email = snapshotData['email'] as String?;
     _ride = RideModelStruct.maybeFromMap(snapshotData['ride']);
+    _car = CarStruct.maybeFromMap(snapshotData['car']);
   }
 
   static CollectionReference get collection =>
@@ -89,6 +95,7 @@ Map<String, dynamic> createProfileRecordData({
   String? phone,
   String? email,
   RideModelStruct? ride,
+  CarStruct? car,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,11 +104,15 @@ Map<String, dynamic> createProfileRecordData({
       'phone': phone,
       'email': email,
       'ride': RideModelStruct().toMap(),
+      'car': CarStruct().toMap(),
     }.withoutNulls,
   );
 
   // Handle nested data for "ride" field.
   addRideModelStructData(firestoreData, ride, 'ride');
+
+  // Handle nested data for "car" field.
+  addCarStructData(firestoreData, car, 'car');
 
   return firestoreData;
 }
@@ -115,12 +126,13 @@ class ProfileRecordDocumentEquality implements Equality<ProfileRecord> {
         e1?.ra == e2?.ra &&
         e1?.phone == e2?.phone &&
         e1?.email == e2?.email &&
-        e1?.ride == e2?.ride;
+        e1?.ride == e2?.ride &&
+        e1?.car == e2?.car;
   }
 
   @override
-  int hash(ProfileRecord? e) =>
-      const ListEquality().hash([e?.name, e?.ra, e?.phone, e?.email, e?.ride]);
+  int hash(ProfileRecord? e) => const ListEquality()
+      .hash([e?.name, e?.ra, e?.phone, e?.email, e?.ride, e?.car]);
 
   @override
   bool isValidKey(Object? o) => o is ProfileRecord;

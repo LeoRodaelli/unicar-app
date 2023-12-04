@@ -268,38 +268,15 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: UnicarGroup.cadastroDeUsuarioCall.call(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final textCadastroDeUsuarioResponse =
-                                    snapshot.data!;
-                                return Text(
-                                  ProfileStruct.fromMap(
-                                          perfilBuscarCadastroDeUsuarioResponse
-                                              .jsonBody)
-                                      .namePerfil,
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall,
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!);
-                              },
-                            ),
+                            child: Text(
+                              ProfileStruct.fromMap(
+                                      perfilBuscarCadastroDeUsuarioResponse
+                                          .jsonBody)
+                                  .namePerfil,
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context).headlineSmall,
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation1']!),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -496,45 +473,18 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
-                                      child: FutureBuilder<ApiCallResponse>(
-                                        future:
-                                            UnicarGroup.buscarCarroCall.call(
-                                          authToken: currentAuthenticationToken,
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          final textBuscarCarroResponse =
-                                              snapshot.data!;
-                                          return Text(
-                                            getJsonField(
-                                              textBuscarCarroResponse.jsonBody,
-                                              r'''$''',
-                                            ).toString(),
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Roboto',
-                                                ),
-                                          );
-                                        },
+                                      child: Text(
+                                        getJsonField(
+                                          perfilBuscarCadastroDeUsuarioResponse
+                                              .jsonBody,
+                                          r'''$.car.model''',
+                                        ).toString(),
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Roboto',
+                                            ),
                                       ),
                                     ),
                                   ),
@@ -548,10 +498,11 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                           alignment:
                                               AlignmentDirectional(-1.00, 0.00),
                                           child: Text(
-                                            CarStruct.fromMap(
-                                                    perfilBuscarCadastroDeUsuarioResponse
-                                                        .jsonBody)
-                                                .color,
+                                            getJsonField(
+                                              perfilBuscarCadastroDeUsuarioResponse
+                                                  .jsonBody,
+                                              r'''$.car.plate''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -560,10 +511,11 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                           ),
                                         ),
                                         Text(
-                                          CarStruct.fromMap(
-                                                  perfilBuscarCadastroDeUsuarioResponse
-                                                      .jsonBody)
-                                              .plate,
+                                          getJsonField(
+                                            perfilBuscarCadastroDeUsuarioResponse
+                                                .jsonBody,
+                                            r'''$.car.color''',
+                                          ).toString(),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
