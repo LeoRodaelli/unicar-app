@@ -297,7 +297,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 12.0, 12.0, 12.0),
+                              24.0, 24.0, 24.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator: _model.yourNameControllerValidator
@@ -363,7 +363,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 12.0, 12.0, 12.0),
+                              24.0, 24.0, 24.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator: _model.numeroControllerValidator
@@ -429,7 +429,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 12.0, 12.0, 12.0),
+                              24.0, 24.0, 24.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator: _model.universidadeControllerValidator
@@ -495,7 +495,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 12.0, 12.0, 12.0),
+                              24.0, 24.0, 24.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator: _model.idadeControllerValidator

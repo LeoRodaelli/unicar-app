@@ -290,7 +290,12 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .labelMedium,
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 14.0,
+                                                          ),
                                                   hintText: 'Ex: 2',
                                                   enabledBorder:
                                                       OutlineInputBorder(
@@ -892,8 +897,8 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                       .placePickerDestValue
                                                       .latLng
                                                       ?.toString(),
-                                                  startTime: int.tryParse(_model
-                                                      .dataHoraController.text),
+                                                  startTime: _model.datePicked
+                                                      ?.secondsSinceEpoch,
                                                   availableSeats: int.tryParse(
                                                       _model
                                                           .passageiroMaxController
