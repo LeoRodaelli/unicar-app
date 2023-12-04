@@ -62,6 +62,8 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return FutureBuilder<ApiCallResponse>(
       future: UnicarGroup.cadastrarCarroCall.call(),
       builder: (context, snapshot) {

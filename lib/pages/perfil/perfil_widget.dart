@@ -137,11 +137,12 @@ class _PerfilWidgetState extends State<PerfilWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      authManager.updateAuthUserData(
-        authenticationToken: currentAuthenticationToken,
-        refreshToken: currentAuthenticationToken,
-        authUid: currentUserUid,
-      );
+      _model.apiResultjj4 = await UnicarGroup.loginCall.call();
+      if ((_model.apiResultjj4?.succeeded ?? true)) {
+        return;
+      }
+
+      return;
     });
 
     setupAnimations(
@@ -171,6 +172,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
       future: UnicarGroup.buscarCadastroDeUsuarioCall.call(
@@ -265,15 +268,38 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
-                            child: Text(
-                              ProfileStruct.fromMap(
-                                      perfilBuscarCadastroDeUsuarioResponse
-                                          .jsonBody)
-                                  .namePerfil,
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context).headlineSmall,
-                            ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation1']!),
+                            child: FutureBuilder<ApiCallResponse>(
+                              future: UnicarGroup.cadastroDeUsuarioCall.call(),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                final textCadastroDeUsuarioResponse =
+                                    snapshot.data!;
+                                return Text(
+                                  ProfileStruct.fromMap(
+                                          perfilBuscarCadastroDeUsuarioResponse
+                                              .jsonBody)
+                                      .namePerfil,
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation1']!);
+                              },
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(

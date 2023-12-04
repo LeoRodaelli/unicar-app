@@ -7,6 +7,7 @@ import 'schema/carro_record.dart';
 import 'schema/maps_record.dart';
 import 'schema/users_record.dart';
 import 'schema/rides_record.dart';
+import 'schema/passeger_record.dart';
 import 'schema/ride_record.dart';
 import 'schema/offer_ride_record.dart';
 
@@ -20,6 +21,7 @@ export 'schema/carro_record.dart';
 export 'schema/maps_record.dart';
 export 'schema/users_record.dart';
 export 'schema/rides_record.dart';
+export 'schema/passeger_record.dart';
 export 'schema/ride_record.dart';
 export 'schema/offer_ride_record.dart';
 
@@ -166,6 +168,43 @@ Future<List<RidesRecord>> queryRidesRecordOnce({
     queryCollectionOnce(
       RidesRecord.collection,
       RidesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query PassegerRecords (as a Stream and as a Future).
+Future<int> queryPassegerRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      PassegerRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<PassegerRecord>> queryPassegerRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      PassegerRecord.collection,
+      PassegerRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<PassegerRecord>> queryPassegerRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      PassegerRecord.collection,
+      PassegerRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
