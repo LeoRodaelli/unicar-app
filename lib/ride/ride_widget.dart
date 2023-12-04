@@ -53,7 +53,6 @@ class _RideWidgetState extends State<RideWidget> {
       );
     }
 
-    context.watch<FFAppState>();
     if (currentUserLocationValue == null) {
       return Container(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -84,8 +83,8 @@ class _RideWidgetState extends State<RideWidget> {
           automaticallyImplyLeading: false,
           title: FlutterFlowPlacePicker(
             iOSGoogleMapsApiKey: 'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
-            androidGoogleMapsApiKey: 'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
-            webGoogleMapsApiKey: 'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
+            androidGoogleMapsApiKey: 'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+            webGoogleMapsApiKey: 'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
             onSelect: (place) async {
               setState(() => _model.placePickerValue = place);
             },

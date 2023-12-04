@@ -106,6 +106,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'OferecerCarona',
           path: '/oferecerCarona',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'OferecerCarona')
               : OferecerCaronaWidget(),
@@ -151,11 +152,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CadastroCarro',
           path: '/CadastroCarro',
           builder: (context, params) => CadastroCarroWidget(),
-        ),
-        FFRoute(
-          name: 'InformacoesCaronaMotorista',
-          path: '/informacoesCaronaMotorista',
-          builder: (context, params) => InformacoesCaronaMotoristaWidget(),
         ),
         FFRoute(
           name: 'ride',

@@ -47,8 +47,6 @@ class _DataWidgetState extends State<DataWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: 379.0,
       height: 447.0,
