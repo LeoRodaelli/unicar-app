@@ -139,13 +139,17 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Nome',
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: Color(0xFF353B48),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Text(
+                                    'Nome',
+                                    style: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Color(0xFF353B48),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -213,13 +217,17 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Registro Academico (RA)',
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: Color(0xFF353B48),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Text(
+                                    'Registro Academico (RA)',
+                                    style: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Color(0xFF353B48),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -290,13 +298,17 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Numero de Contato',
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: Color(0xFF353B48),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Text(
+                                    'Numero de Contato',
+                                    style: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Color(0xFF353B48),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -367,13 +379,17 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Email Universitario',
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: Color(0xFF353B48),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Text(
+                                    'Email Universitario',
+                                    style: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Color(0xFF353B48),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -445,13 +461,17 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Senha',
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: Color(0xFF353B48),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Text(
+                                    'Senha',
+                                    style: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Color(0xFF353B48),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -535,13 +555,17 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Confirmação de Senha',
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: Color(0xFF353B48),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Text(
+                                    'Confirmação de Senha',
+                                    style: GoogleFonts.getFont(
+                                      'Roboto',
+                                      color: Color(0xFF353B48),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                                 Padding(

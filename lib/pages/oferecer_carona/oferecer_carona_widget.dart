@@ -256,13 +256,18 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'Número máximo de passageiros',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'Número máximo de passageiros',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -355,13 +360,18 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'Valor por passageiro',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'Valor por passageiro',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -454,13 +464,18 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'Limite de tempo extra devido a caronas (em minutos)',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'Limite de tempo extra devido a caronas (em minutos)',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -877,8 +892,8 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                       .placePickerDestValue
                                                       .latLng
                                                       ?.toString(),
-                                                  startTime: _model.datePicked
-                                                      ?.secondsSinceEpoch,
+                                                  startTime: int.tryParse(_model
+                                                      .dataHoraController.text),
                                                   availableSeats: int.tryParse(
                                                       _model
                                                           .passageiroMaxController
