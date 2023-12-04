@@ -33,9 +33,6 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
     _model.yourNameController ??= TextEditingController();
     _model.yourNameFocusNode ??= FocusNode();
 
-    _model.emailController ??= TextEditingController();
-    _model.emailFocusNode ??= FocusNode();
-
     _model.numeroController ??= TextEditingController();
     _model.numeroFocusNode ??= FocusNode();
 
@@ -92,73 +89,34 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(100.0),
-            child: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-              automaticallyImplyLeading: false,
-              actions: [],
-              flexibleSpace: FlexibleSpaceBar(
-                title: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 12.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Color(0x00F1C40F),
-                                borderRadius: 30.0,
-                                borderWidth: 1.0,
-                                buttonSize: 50.0,
-                                fillColor: Color(0x00F1C40F),
-                                icon: Icon(
-                                  Icons.arrow_back_rounded,
-                                  color: Color(0xFFF1C40F),
-                                  size: 30.0,
-                                ),
-                                onPressed: () async {
-                                  context.pop();
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Editar dados pessoais',
-                          style: GoogleFonts.getFont(
-                            'Fredoka One',
-                            color: Color(0xFFF1C40F),
-                            fontSize: 22.0,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            automaticallyImplyLeading: false,
+            leading: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 0.0, 0.0),
+              child: FlutterFlowIconButton(
+                borderColor: Color(0x00F1C40F),
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 50.0,
+                fillColor: Color(0x00F1C40F),
+                icon: Icon(
+                  Icons.arrow_back_rounded,
+                  color: Color(0xFFF1C40F),
+                  size: 30.0,
                 ),
-                centerTitle: true,
-                expandedTitleScale: 1.0,
+                onPressed: () async {
+                  context.pop();
+                },
               ),
-              elevation: 0.0,
             ),
+            actions: [],
+            elevation: 0.0,
           ),
           body: SafeArea(
             top: true,
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
@@ -246,18 +204,23 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                                   ),
                                 ],
                               ),
-                              Container(
-                                width: 90.0,
-                                height: 90.0,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: CachedNetworkImage(
-                                  fadeInDuration: Duration(milliseconds: 500),
-                                  fadeOutDuration: Duration(milliseconds: 500),
-                                  imageUrl: '',
-                                  fit: BoxFit.fitWidth,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 1.0, 5.0, 5.0),
+                                child: Container(
+                                  width: 90.0,
+                                  height: 90.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: CachedNetworkImage(
+                                    fadeInDuration: Duration(milliseconds: 500),
+                                    fadeOutDuration:
+                                        Duration(milliseconds: 500),
+                                    imageUrl: '',
+                                    fit: BoxFit.fitWidth,
+                                  ),
                                 ),
                               ),
                             ],
@@ -331,72 +294,6 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     validator:
                         _model.yourNameControllerValidator.asValidator(context),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.00, 0.00),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Email universitário',
-                      style: GoogleFonts.getFont(
-                        'Roboto',
-                        fontWeight: FontWeight.w800,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
-                  child: TextFormField(
-                    controller: _model.emailController,
-                    focusNode: _model.emailFocusNode,
-                    textCapitalization: TextCapitalization.words,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Seu Email Universitario',
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      filled: true,
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 0.0, 24.0),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                    validator:
-                        _model.emailControllerValidator.asValidator(context),
                   ),
                 ),
                 Align(
