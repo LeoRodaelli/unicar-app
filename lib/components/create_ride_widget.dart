@@ -452,11 +452,6 @@ class _CreateRideWidgetState extends State<CreateRideWidget> {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        'Data e hora',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             6.0, 0.0, 0.0, 0.0),
@@ -604,6 +599,21 @@ class _CreateRideWidgetState extends State<CreateRideWidget> {
                                             }
                                           },
                                         ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 4.0, 0.0),
+                                        child: Text(
+                                          'Data e hora:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                      ),
+                                      Text(
+                                        dateTimeFormat(
+                                            'd/M H:mm', _model.datePicked),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
                                       ),
                                     ],
                                   ),
