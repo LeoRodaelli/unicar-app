@@ -3,12 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
-import 'schema/carro_record.dart';
-import 'schema/maps_record.dart';
 import 'schema/users_record.dart';
-import 'schema/rides_record.dart';
-import 'schema/ride_record.dart';
-import 'schema/offer_ride_record.dart';
+import 'schema/profile_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,86 +12,8 @@ export 'schema/index.dart';
 export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
-export 'schema/carro_record.dart';
-export 'schema/maps_record.dart';
 export 'schema/users_record.dart';
-export 'schema/rides_record.dart';
-export 'schema/ride_record.dart';
-export 'schema/offer_ride_record.dart';
-
-/// Functions to query CarroRecords (as a Stream and as a Future).
-Future<int> queryCarroRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      CarroRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<CarroRecord>> queryCarroRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CarroRecord.collection,
-      CarroRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<CarroRecord>> queryCarroRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CarroRecord.collection,
-      CarroRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query MapsRecords (as a Stream and as a Future).
-Future<int> queryMapsRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      MapsRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<MapsRecord>> queryMapsRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      MapsRecord.collection,
-      MapsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<MapsRecord>> queryMapsRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      MapsRecord.collection,
-      MapsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
+export 'schema/profile_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -134,112 +52,38 @@ Future<List<UsersRecord>> queryUsersRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query RidesRecords (as a Stream and as a Future).
-Future<int> queryRidesRecordCount({
+/// Functions to query ProfileRecords (as a Stream and as a Future).
+Future<int> queryProfileRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      RidesRecord.collection,
+      ProfileRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<RidesRecord>> queryRidesRecord({
+Stream<List<ProfileRecord>> queryProfileRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      RidesRecord.collection,
-      RidesRecord.fromSnapshot,
+      ProfileRecord.collection,
+      ProfileRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<RidesRecord>> queryRidesRecordOnce({
+Future<List<ProfileRecord>> queryProfileRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      RidesRecord.collection,
-      RidesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query RideRecords (as a Stream and as a Future).
-Future<int> queryRideRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      RideRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<RideRecord>> queryRideRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      RideRecord.collection,
-      RideRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<RideRecord>> queryRideRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      RideRecord.collection,
-      RideRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query OfferRideRecords (as a Stream and as a Future).
-Future<int> queryOfferRideRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      OfferRideRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<OfferRideRecord>> queryOfferRideRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      OfferRideRecord.collection,
-      OfferRideRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<OfferRideRecord>> queryOfferRideRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      OfferRideRecord.collection,
-      OfferRideRecord.fromSnapshot,
+      ProfileRecord.collection,
+      ProfileRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

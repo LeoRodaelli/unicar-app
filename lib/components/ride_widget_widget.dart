@@ -46,6 +46,8 @@ class _RideWidgetWidgetState extends State<RideWidgetWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       color: FlutterFlowTheme.of(context).secondaryBackground,

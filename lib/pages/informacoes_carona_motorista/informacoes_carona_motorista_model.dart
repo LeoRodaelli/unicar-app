@@ -1,29 +1,27 @@
 import '/backend/schema/structs/index.dart';
-import '/components/available_seats_widget.dart';
 import '/components/passeger_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'ride_summary_widget.dart' show RideSummaryWidget;
+import 'informacoes_carona_motorista_widget.dart'
+    show InformacoesCaronaMotoristaWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class RideSummaryModel extends FlutterFlowModel<RideSummaryWidget> {
-  ///  State fields for stateful widgets in this component.
+class InformacoesCaronaMotoristaModel
+    extends FlutterFlowModel<InformacoesCaronaMotoristaWidget> {
+  ///  State fields for stateful widgets in this page.
 
-  // Model for AvailableSeats component.
-  late AvailableSeatsModel availableSeatsModel;
+  final unfocusNode = FocusNode();
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {
-    availableSeatsModel = createModel(context, () => AvailableSeatsModel());
-  }
+  void initState(BuildContext context) {}
 
   void dispose() {
-    availableSeatsModel.dispose();
+    unfocusNode.dispose();
   }
 
   /// Action blocks are added here.

@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/ride_widget_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';

@@ -51,6 +51,8 @@ class _RotaWidgetState extends State<RotaWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -65,38 +67,15 @@ class _RotaWidgetState extends State<RotaWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              FFButtonWidget(
-                onPressed: () async {
-                  context.pushNamed('CadastroCarro');
-                },
-                text: 'Button',
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.white,
-                      ),
-                  elevation: 3.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
                 child: FlutterFlowPlacePicker(
                   iOSGoogleMapsApiKey:
                       'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   androidGoogleMapsApiKey:
-                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                      'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
                   webGoogleMapsApiKey:
-                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                      'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
                   onSelect: (place) async {
                     setState(() => _model.localPartidaValue = place);
                   },
@@ -129,9 +108,9 @@ class _RotaWidgetState extends State<RotaWidget> {
                   iOSGoogleMapsApiKey:
                       'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
                   androidGoogleMapsApiKey:
-                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                      'AIzaSyBRHMqI0DJRcmZEfo54GTgbz-HV0FzUAr0',
                   webGoogleMapsApiKey:
-                      'AIzaSyDMb4IT1cX848DhouGFrNYZ8hOXg1ClEqo',
+                      'AIzaSyBgavfYadOchWGfM9bE3cXDkXLIO73dooI',
                   onSelect: (place) async {
                     setState(() => _model.localDestinoValue = place);
                   },

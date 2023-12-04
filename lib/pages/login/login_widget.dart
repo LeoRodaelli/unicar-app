@@ -54,6 +54,8 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -304,7 +306,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              title: Text('Error'),
+                                              title: Text('Erro'),
                                               content: Text(
                                                   'Email ou senha invalidos'),
                                               actions: [

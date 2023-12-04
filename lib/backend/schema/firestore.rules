@@ -1,20 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /carro/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /maps/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
     match /users/{document} {
       allow create: if true;
       allow read: if true;
@@ -22,25 +8,11 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /rides/{document} {
+    match /profile/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /ride/{document} {
-      allow create: if request.auth != null;
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-      allow delete: if request.auth.uid == resource.data.user_uid;
-    }
-
-    match /offerRide/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
+      allow write: if true;
+      allow delete: if true;
     }
   }
 }

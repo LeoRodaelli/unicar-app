@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/ride_widget_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -50,6 +49,8 @@ class _CaronasDisponiveisWidgetState extends State<CaronasDisponiveisWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -75,37 +76,17 @@ class _CaronasDisponiveisWidgetState extends State<CaronasDisponiveisWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: StreamBuilder<List<RidesRecord>>(
-            stream: queryRidesRecord(),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
-                  ),
-                );
-              }
-              List<RidesRecord> listViewRidesRecordList = snapshot.data!;
-              return ListView.builder(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                itemCount: listViewRidesRecordList.length,
-                itemBuilder: (context, listViewIndex) {
-                  final listViewRidesRecord =
-                      listViewRidesRecordList[listViewIndex];
-                  return RideWidgetWidget(
-                    key: Key(
-                        'Key1eg_${listViewIndex}_of_${listViewRidesRecordList.length}'),
-                    ride: RideModelStruct(),
-                  );
-                },
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.vertical,
+            itemCount: listViewRidesRecordList.length,
+            itemBuilder: (context, listViewIndex) {
+              final listViewRidesRecord =
+                  listViewRidesRecordList[listViewIndex];
+              return RideWidgetWidget(
+                key: Key(
+                    'Key1eg_${listViewIndex}_of_${listViewRidesRecordList.length}'),
+                ride: RideModelStruct(),
               );
             },
           ),
