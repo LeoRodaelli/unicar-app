@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,14 +14,10 @@ export 'passeger_model.dart';
 class PassegerWidget extends StatefulWidget {
   const PassegerWidget({
     Key? key,
-    required this.name,
-    required this.phone,
-    required this.departurePlace,
+    required this.pass,
   }) : super(key: key);
 
-  final String? name;
-  final String? phone;
-  final LatLng? departurePlace;
+  final PassegerStruct? pass;
 
   @override
   _PassegerWidgetState createState() => _PassegerWidgetState();
@@ -143,6 +140,8 @@ class _PassegerWidgetState extends State<PassegerWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: 347.0,
       height: 132.0,
@@ -172,7 +171,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Text(
-                          widget.name!,
+                          widget.pass!.name,
                           textAlign: TextAlign.start,
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
@@ -201,7 +200,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
-                          widget.phone!,
+                          widget.pass!.phone,
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -216,7 +215,7 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
-                          widget.departurePlace!.toString(),
+                          widget.pass!.stoped,
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(
