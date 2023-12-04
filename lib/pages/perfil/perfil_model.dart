@@ -17,8 +17,6 @@ class PerfilModel extends FlutterFlowModel<PerfilWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (login)] action in Perfil widget.
-  ApiCallResponse? apiResultjj4;
 
   /// Initialization and disposal methods.
 

@@ -135,16 +135,6 @@ class _PerfilWidgetState extends State<PerfilWidget>
     super.initState();
     _model = createModel(context, () => PerfilModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultjj4 = await UnicarGroup.loginCall.call();
-      if ((_model.apiResultjj4?.succeeded ?? true)) {
-        return;
-      }
-
-      return;
-    });
-
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -234,7 +224,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                               perfilBuscarCadastroDeUsuarioResponse
                                                   .jsonBody)
                                           : null)
-                                      ?.imagePerfil !=
+                                      ?.imagePath !=
                                   ''),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -245,7 +235,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                 ProfileStruct.fromMap(
                                         perfilBuscarCadastroDeUsuarioResponse
                                             .jsonBody)
-                                    .imagePerfil,
+                                    .imagePath,
                                 width: 100.0,
                                 height: 100.0,
                                 fit: BoxFit.cover,
@@ -270,7 +260,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             ProfileStruct.fromMap(
                                     perfilBuscarCadastroDeUsuarioResponse
                                         .jsonBody)
-                                .namePerfil,
+                                .name,
                             textAlign: TextAlign.start,
                             style: FlutterFlowTheme.of(context).headlineSmall,
                           ).animateOnPageLoad(
@@ -282,14 +272,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
                               ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
-                                  .emailUniversitarioPerfil,
+                                  .email,
                               textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF192229),
-                                  ),
+                              style: FlutterFlowTheme.of(context).labelMedium,
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation2']!),
                           ),
@@ -328,7 +313,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .raPerfil,
+                            .ra,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -359,7 +344,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .phonePerfil,
+                            .phone,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -390,7 +375,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .universidadePerfil,
+                            .university,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -421,7 +406,8 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Text(
                         ProfileStruct.fromMap(
                                 perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .agePerfil,
+                            .age
+                            .toString(),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: Color(0xFF818181),
@@ -508,6 +494,16 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                 ),
                                           ),
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 4.0, 0.0),
+                                          child: Text(
+                                            '|',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
                                         Text(
                                           getJsonField(
                                             perfilBuscarCadastroDeUsuarioResponse
@@ -515,7 +511,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                             r'''$.car.color''',
                                           ).toString(),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                              ),
                                         ),
                                       ],
                                     ),

@@ -10,76 +10,26 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ProfileStruct extends FFFirebaseStruct {
   ProfileStruct({
-    String? emailUniversitarioPerfil,
-    String? phonePerfil,
-    String? agePerfil,
-    String? raPerfil,
-    String? namePerfil,
-    String? universidadePerfil,
-    String? imagePerfil,
-    String? drivinglicence,
     CarStruct? car,
+    String? name,
+    String? email,
+    String? ra,
+    String? phone,
+    String? university,
+    int? age,
+    String? driverLicense,
     String? imagePath,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _emailUniversitarioPerfil = emailUniversitarioPerfil,
-        _phonePerfil = phonePerfil,
-        _agePerfil = agePerfil,
-        _raPerfil = raPerfil,
-        _namePerfil = namePerfil,
-        _universidadePerfil = universidadePerfil,
-        _imagePerfil = imagePerfil,
-        _drivinglicence = drivinglicence,
-        _car = car,
+  })  : _car = car,
+        _name = name,
+        _email = email,
+        _ra = ra,
+        _phone = phone,
+        _university = university,
+        _age = age,
+        _driverLicense = driverLicense,
         _imagePath = imagePath,
         super(firestoreUtilData);
-
-  // "emailUniversitarioPerfil" field.
-  String? _emailUniversitarioPerfil;
-  String get emailUniversitarioPerfil => _emailUniversitarioPerfil ?? '';
-  set emailUniversitarioPerfil(String? val) => _emailUniversitarioPerfil = val;
-  bool hasEmailUniversitarioPerfil() => _emailUniversitarioPerfil != null;
-
-  // "phonePerfil" field.
-  String? _phonePerfil;
-  String get phonePerfil => _phonePerfil ?? '';
-  set phonePerfil(String? val) => _phonePerfil = val;
-  bool hasPhonePerfil() => _phonePerfil != null;
-
-  // "agePerfil" field.
-  String? _agePerfil;
-  String get agePerfil => _agePerfil ?? '';
-  set agePerfil(String? val) => _agePerfil = val;
-  bool hasAgePerfil() => _agePerfil != null;
-
-  // "raPerfil" field.
-  String? _raPerfil;
-  String get raPerfil => _raPerfil ?? '';
-  set raPerfil(String? val) => _raPerfil = val;
-  bool hasRaPerfil() => _raPerfil != null;
-
-  // "namePerfil" field.
-  String? _namePerfil;
-  String get namePerfil => _namePerfil ?? '';
-  set namePerfil(String? val) => _namePerfil = val;
-  bool hasNamePerfil() => _namePerfil != null;
-
-  // "universidadePerfil" field.
-  String? _universidadePerfil;
-  String get universidadePerfil => _universidadePerfil ?? '';
-  set universidadePerfil(String? val) => _universidadePerfil = val;
-  bool hasUniversidadePerfil() => _universidadePerfil != null;
-
-  // "imagePerfil" field.
-  String? _imagePerfil;
-  String get imagePerfil => _imagePerfil ?? '';
-  set imagePerfil(String? val) => _imagePerfil = val;
-  bool hasImagePerfil() => _imagePerfil != null;
-
-  // "drivinglicence" field.
-  String? _drivinglicence;
-  String get drivinglicence => _drivinglicence ?? '';
-  set drivinglicence(String? val) => _drivinglicence = val;
-  bool hasDrivinglicence() => _drivinglicence != null;
 
   // "car" field.
   CarStruct? _car;
@@ -89,6 +39,49 @@ class ProfileStruct extends FFFirebaseStruct {
       updateFn(_car ??= CarStruct());
   bool hasCar() => _car != null;
 
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  set name(String? val) => _name = val;
+  bool hasName() => _name != null;
+
+  // "email" field.
+  String? _email;
+  String get email => _email ?? '';
+  set email(String? val) => _email = val;
+  bool hasEmail() => _email != null;
+
+  // "ra" field.
+  String? _ra;
+  String get ra => _ra ?? '';
+  set ra(String? val) => _ra = val;
+  bool hasRa() => _ra != null;
+
+  // "phone" field.
+  String? _phone;
+  String get phone => _phone ?? '';
+  set phone(String? val) => _phone = val;
+  bool hasPhone() => _phone != null;
+
+  // "university" field.
+  String? _university;
+  String get university => _university ?? '';
+  set university(String? val) => _university = val;
+  bool hasUniversity() => _university != null;
+
+  // "age" field.
+  int? _age;
+  int get age => _age ?? 0;
+  set age(int? val) => _age = val;
+  void incrementAge(int amount) => _age = age + amount;
+  bool hasAge() => _age != null;
+
+  // "driverLicense" field.
+  String? _driverLicense;
+  String get driverLicense => _driverLicense ?? '';
+  set driverLicense(String? val) => _driverLicense = val;
+  bool hasDriverLicense() => _driverLicense != null;
+
   // "imagePath" field.
   String? _imagePath;
   String get imagePath => _imagePath ?? '';
@@ -96,15 +89,14 @@ class ProfileStruct extends FFFirebaseStruct {
   bool hasImagePath() => _imagePath != null;
 
   static ProfileStruct fromMap(Map<String, dynamic> data) => ProfileStruct(
-        emailUniversitarioPerfil: data['emailUniversitarioPerfil'] as String?,
-        phonePerfil: data['phonePerfil'] as String?,
-        agePerfil: data['agePerfil'] as String?,
-        raPerfil: data['raPerfil'] as String?,
-        namePerfil: data['namePerfil'] as String?,
-        universidadePerfil: data['universidadePerfil'] as String?,
-        imagePerfil: data['imagePerfil'] as String?,
-        drivinglicence: data['drivinglicence'] as String?,
         car: CarStruct.maybeFromMap(data['car']),
+        name: data['name'] as String?,
+        email: data['email'] as String?,
+        ra: data['ra'] as String?,
+        phone: data['phone'] as String?,
+        university: data['university'] as String?,
+        age: castToType<int>(data['age']),
+        driverLicense: data['driverLicense'] as String?,
         imagePath: data['imagePath'] as String?,
       );
 
@@ -112,55 +104,50 @@ class ProfileStruct extends FFFirebaseStruct {
       data is Map<String, dynamic> ? ProfileStruct.fromMap(data) : null;
 
   Map<String, dynamic> toMap() => {
-        'emailUniversitarioPerfil': _emailUniversitarioPerfil,
-        'phonePerfil': _phonePerfil,
-        'agePerfil': _agePerfil,
-        'raPerfil': _raPerfil,
-        'namePerfil': _namePerfil,
-        'universidadePerfil': _universidadePerfil,
-        'imagePerfil': _imagePerfil,
-        'drivinglicence': _drivinglicence,
         'car': _car?.toMap(),
+        'name': _name,
+        'email': _email,
+        'ra': _ra,
+        'phone': _phone,
+        'university': _university,
+        'age': _age,
+        'driverLicense': _driverLicense,
         'imagePath': _imagePath,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'emailUniversitarioPerfil': serializeParam(
-          _emailUniversitarioPerfil,
-          ParamType.String,
-        ),
-        'phonePerfil': serializeParam(
-          _phonePerfil,
-          ParamType.String,
-        ),
-        'agePerfil': serializeParam(
-          _agePerfil,
-          ParamType.String,
-        ),
-        'raPerfil': serializeParam(
-          _raPerfil,
-          ParamType.String,
-        ),
-        'namePerfil': serializeParam(
-          _namePerfil,
-          ParamType.String,
-        ),
-        'universidadePerfil': serializeParam(
-          _universidadePerfil,
-          ParamType.String,
-        ),
-        'imagePerfil': serializeParam(
-          _imagePerfil,
-          ParamType.String,
-        ),
-        'drivinglicence': serializeParam(
-          _drivinglicence,
-          ParamType.String,
-        ),
         'car': serializeParam(
           _car,
           ParamType.DataStruct,
+        ),
+        'name': serializeParam(
+          _name,
+          ParamType.String,
+        ),
+        'email': serializeParam(
+          _email,
+          ParamType.String,
+        ),
+        'ra': serializeParam(
+          _ra,
+          ParamType.String,
+        ),
+        'phone': serializeParam(
+          _phone,
+          ParamType.String,
+        ),
+        'university': serializeParam(
+          _university,
+          ParamType.String,
+        ),
+        'age': serializeParam(
+          _age,
+          ParamType.int,
+        ),
+        'driverLicense': serializeParam(
+          _driverLicense,
+          ParamType.String,
         ),
         'imagePath': serializeParam(
           _imagePath,
@@ -170,51 +157,46 @@ class ProfileStruct extends FFFirebaseStruct {
 
   static ProfileStruct fromSerializableMap(Map<String, dynamic> data) =>
       ProfileStruct(
-        emailUniversitarioPerfil: deserializeParam(
-          data['emailUniversitarioPerfil'],
-          ParamType.String,
-          false,
-        ),
-        phonePerfil: deserializeParam(
-          data['phonePerfil'],
-          ParamType.String,
-          false,
-        ),
-        agePerfil: deserializeParam(
-          data['agePerfil'],
-          ParamType.String,
-          false,
-        ),
-        raPerfil: deserializeParam(
-          data['raPerfil'],
-          ParamType.String,
-          false,
-        ),
-        namePerfil: deserializeParam(
-          data['namePerfil'],
-          ParamType.String,
-          false,
-        ),
-        universidadePerfil: deserializeParam(
-          data['universidadePerfil'],
-          ParamType.String,
-          false,
-        ),
-        imagePerfil: deserializeParam(
-          data['imagePerfil'],
-          ParamType.String,
-          false,
-        ),
-        drivinglicence: deserializeParam(
-          data['drivinglicence'],
-          ParamType.String,
-          false,
-        ),
         car: deserializeStructParam(
           data['car'],
           ParamType.DataStruct,
           false,
           structBuilder: CarStruct.fromSerializableMap,
+        ),
+        name: deserializeParam(
+          data['name'],
+          ParamType.String,
+          false,
+        ),
+        email: deserializeParam(
+          data['email'],
+          ParamType.String,
+          false,
+        ),
+        ra: deserializeParam(
+          data['ra'],
+          ParamType.String,
+          false,
+        ),
+        phone: deserializeParam(
+          data['phone'],
+          ParamType.String,
+          false,
+        ),
+        university: deserializeParam(
+          data['university'],
+          ParamType.String,
+          false,
+        ),
+        age: deserializeParam(
+          data['age'],
+          ParamType.int,
+          false,
+        ),
+        driverLicense: deserializeParam(
+          data['driverLicense'],
+          ParamType.String,
+          false,
         ),
         imagePath: deserializeParam(
           data['imagePath'],
@@ -229,43 +211,31 @@ class ProfileStruct extends FFFirebaseStruct {
   @override
   bool operator ==(Object other) {
     return other is ProfileStruct &&
-        emailUniversitarioPerfil == other.emailUniversitarioPerfil &&
-        phonePerfil == other.phonePerfil &&
-        agePerfil == other.agePerfil &&
-        raPerfil == other.raPerfil &&
-        namePerfil == other.namePerfil &&
-        universidadePerfil == other.universidadePerfil &&
-        imagePerfil == other.imagePerfil &&
-        drivinglicence == other.drivinglicence &&
         car == other.car &&
+        name == other.name &&
+        email == other.email &&
+        ra == other.ra &&
+        phone == other.phone &&
+        university == other.university &&
+        age == other.age &&
+        driverLicense == other.driverLicense &&
         imagePath == other.imagePath;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([
-        emailUniversitarioPerfil,
-        phonePerfil,
-        agePerfil,
-        raPerfil,
-        namePerfil,
-        universidadePerfil,
-        imagePerfil,
-        drivinglicence,
-        car,
-        imagePath
-      ]);
+  int get hashCode => const ListEquality().hash(
+      [car, name, email, ra, phone, university, age, driverLicense, imagePath]);
 }
 
 ProfileStruct createProfileStruct({
-  String? emailUniversitarioPerfil,
-  String? phonePerfil,
-  String? agePerfil,
-  String? raPerfil,
-  String? namePerfil,
-  String? universidadePerfil,
-  String? imagePerfil,
-  String? drivinglicence,
   CarStruct? car,
+  String? name,
+  String? email,
+  String? ra,
+  String? phone,
+  String? university,
+  int? age,
+  String? driverLicense,
   String? imagePath,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
@@ -273,15 +243,14 @@ ProfileStruct createProfileStruct({
   bool delete = false,
 }) =>
     ProfileStruct(
-      emailUniversitarioPerfil: emailUniversitarioPerfil,
-      phonePerfil: phonePerfil,
-      agePerfil: agePerfil,
-      raPerfil: raPerfil,
-      namePerfil: namePerfil,
-      universidadePerfil: universidadePerfil,
-      imagePerfil: imagePerfil,
-      drivinglicence: drivinglicence,
       car: car ?? (clearUnsetFields ? CarStruct() : null),
+      name: name,
+      email: email,
+      ra: ra,
+      phone: phone,
+      university: university,
+      age: age,
+      driverLicense: driverLicense,
       imagePath: imagePath,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
