@@ -149,15 +149,12 @@ class _InformacoesCaronaMotoristaWidgetState
                   ),
                 ],
               ),
-              ListView.builder(
+              ListView(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                itemCount: listViewPassegerRecordList.length,
-                itemBuilder: (context, listViewIndex) {
-                  final listViewPassegerRecord =
-                      listViewPassegerRecordList[listViewIndex];
-                  return Padding(
+                children: [
+                  Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -166,14 +163,16 @@ class _InformacoesCaronaMotoristaWidgetState
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: PassegerWidget(
-                        key: Key(
-                            'Keyhm0_${listViewIndex}_of_${listViewPassegerRecordList.length}'),
-                        pass: PassegerStruct(),
+                      child: wrapWithModel(
+                        model: _model.passegerModel,
+                        updateCallback: () => setState(() {}),
+                        child: PassegerWidget(
+                          pass: PassegerStruct(),
+                        ),
                       ),
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
               Expanded(
                 child: Align(

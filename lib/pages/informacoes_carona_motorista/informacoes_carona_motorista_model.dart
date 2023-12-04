@@ -15,13 +15,18 @@ class InformacoesCaronaMotoristaModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for Passeger component.
+  late PassegerModel passegerModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passegerModel = createModel(context, () => PassegerModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
+    passegerModel.dispose();
   }
 
   /// Action blocks are added here.

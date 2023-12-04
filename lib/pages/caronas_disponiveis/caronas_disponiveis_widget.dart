@@ -76,19 +76,18 @@ class _CaronasDisponiveisWidgetState extends State<CaronasDisponiveisWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: ListView.builder(
+          child: ListView(
             padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
-            itemCount: listViewRidesRecordList.length,
-            itemBuilder: (context, listViewIndex) {
-              final listViewRidesRecord =
-                  listViewRidesRecordList[listViewIndex];
-              return RideWidgetWidget(
-                key: Key(
-                    'Key1eg_${listViewIndex}_of_${listViewRidesRecordList.length}'),
-                ride: RideModelStruct(),
-              );
-            },
+            children: [
+              wrapWithModel(
+                model: _model.rideWidgetModel,
+                updateCallback: () => setState(() {}),
+                child: RideWidgetWidget(
+                  ride: RideModelStruct(),
+                ),
+              ),
+            ],
           ),
         ),
       ),
