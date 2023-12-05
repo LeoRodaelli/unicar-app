@@ -80,7 +80,7 @@ class _MapsWidgetState extends State<MapsWidget> {
           child: Stack(
             children: [
               FutureBuilder<ApiCallResponse>(
-                future: UnicarGroup.cadastrarCarroCall.call(),
+                future: UnicarGroup.cadastroDaCaronaCall.call(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -96,13 +96,13 @@ class _MapsWidgetState extends State<MapsWidget> {
                       ),
                     );
                   }
-                  final googleMapCadastrarCarroResponse = snapshot.data!;
+                  final googleMapCadastroDaCaronaResponse = snapshot.data!;
                   return FlutterFlowGoogleMap(
                     controller: _model.googleMapsController,
                     onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
                     initialLocation: _model.googleMapsCenter ??=
-                        LatLng(13.106061, -59.613158),
-                    markers: (widget.partida?.take(2).toList() ?? [])
+                        widget.destino!,
+                    markers: (widget.partida ?? [])
                         .map(
                           (marker) => FlutterFlowMarker(
                             marker.serialize(),
