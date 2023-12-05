@@ -122,6 +122,8 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
@@ -264,6 +266,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                         decoration: InputDecoration(
                           labelText: 'Seu nome',
                           labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                          hintText: 'Seu Nome',
                           hintStyle: FlutterFlowTheme.of(context).labelMedium,
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(

@@ -898,7 +898,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                       .latLng
                                                       ?.toString(),
                                                   startTime: _model.datePicked
-                                                      ?.secondsSinceEpoch,
+                                                      ?.millisecondsSinceEpoch,
                                                   availableSeats: int.tryParse(
                                                       _model
                                                           .passageiroMaxController
