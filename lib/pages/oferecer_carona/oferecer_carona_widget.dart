@@ -6,6 +6,7 @@ import 'package:unicar_maps/server_connection/entities/comunicado_grupo_criado_s
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import 'package:unicar_maps/server_connection/entities/usuario.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
+import 'package:unicar_maps/server_connection/user_service.dart';
 
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
@@ -47,7 +48,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
     _groupService.listenToEvents(
       (comunicado) {
         if (comunicado is ComunicadoGrupoCriadoComSucesso) {
-          // GU: navega manualmente para rota de informaçoes carona motorista 
+          // GU: navega manualmente para rota de informaçoes carona motorista
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -893,64 +894,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 16.0),
                                             child: FFButtonWidget(
-                                              onPressed: () async {
-                                                try {
-                                                  // GU: cria a carona
-                                                  _groupService.createRideGroup(
-                                                    GrupoCarona(
-                                                      vagasTotais: int.tryParse(
-                                                        _model
-                                                            .passageiroMaxController
-                                                            .text,
-                                                      )!,
-                                                      idCarona: DateTime.now()
-                                                          .millisecondsSinceEpoch
-                                                          .toString(),
-                                                      localPartida: _model
-                                                          .placePickerPartValue
-                                                          .name,
-                                                      horarioSaida: _model
-                                                          .datePicked!
-                                                          .toString(),
-                                                      preco: double.tryParse(_model
-                                                          .valorPorPassageiroController
-                                                          .text)!,
-                                                      motorista: const Usuario(
-                                                        id: 'id',
-                                                        nome: 'nome',
-                                                        contato: 'contato',
-                                                      ),
-                                                    ),
-                                                  );
-                                                } catch (_) {
-                                                  AlertDialog alert =
-                                                      AlertDialog(
-                                                    title: const Text("Erro"),
-                                                    content: const Text(
-                                                      "Não foi possível criar a carona",
-                                                    ),
-                                                    actions: [
-                                                      TextButton(
-                                                        child: Text("Close"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-
-                                                  if (context.mounted) {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return alert;
-                                                      },
-                                                    );
-                                                  }
-                                                }
-                                              },
+                                              onPressed: _createRideGroup,
                                               text: 'Avançar',
                                               options: FFButtonOptions(
                                                 width: 370.0,
@@ -1082,5 +1026,50 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
         );
       },
     );
+  }
+
+  Future<void> _createRideGroup() async {
+    try {
+      final user = await UserService().buscarDadosUsuario();
+      // GU: cria a carona
+      _groupService.createRideGroup(
+        GrupoCarona(
+          vagasTotais: int.tryParse(
+            _model.passageiroMaxController.text,
+          )!,
+          idCarona:
+              (DateTime.now().millisecondsSinceEpoch.hashCode + user.hashCode)
+                  .toString(),
+          localPartida: _model.placePickerPartValue.name,
+          horarioSaida: _model.datePicked!.toString(),
+          preco: double.tryParse(_model.valorPorPassageiroController.text)!,
+          motorista: user,
+        ),
+      );
+    } catch (_) {
+      AlertDialog alert = AlertDialog(
+        title: const Text("Erro"),
+        content: const Text(
+          "Não foi possível criar a carona",
+        ),
+        actions: [
+          TextButton(
+            child: Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+      }
+    }
   }
 }

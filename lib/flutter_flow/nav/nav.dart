@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:unicar_maps/pages/aba_motorista/aba_motorista.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
@@ -131,14 +132,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               params.isEmpty ? NavBarPage(initialPage: 'Rota') : RotaWidget(),
         ),
         FFRoute(
-          name: 'CaronasDisponiveis',
-          path: '/caronasDisponiveis',
-          builder: (context, params) => AbaPassageiro(),
+          name: 'AbaPassageiro',
+          path: '/abaPassageiro',
+          builder: (context, params) => const AbaPassageiro(),
         ),
         FFRoute(
-          name: 'InformacoesCaronaPassageiro',
-          path: '/informacoesCaronaPassageiro',
-          builder: (context, params) => InformacoesCaronaPassageiroWidget(),
+          name: 'AbaMotorista',
+          path: '/abaMotorista',
+          builder: (context, params) => const AbaMotorista(),
         ),
         FFRoute(
           name: 'maps',

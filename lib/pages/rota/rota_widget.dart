@@ -1,16 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/place.dart';
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'rota_model.dart';
+
 export 'rota_model.dart';
 
 class RotaWidget extends StatefulWidget {
@@ -151,9 +150,9 @@ class _RotaWidgetState extends State<RotaWidget> {
                     size: 24.0,
                   ),
                   onPressed: () {
-
                     //GU -TODO: ver listagem de caronas
 
+                    Navigator.pushNamed(context, 'CaronasDisponiveis');
 
                     print('ir pressed ...');
                   },

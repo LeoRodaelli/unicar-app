@@ -19,15 +19,12 @@ class GrupoCarona {
 
   Map<String, dynamic> toJSON() {
     return {
-      "type": "PedidoEntrarNoGrupoDeCarona",
-      "data": {
-        "idCarona": idCarona,
-        "motorista": motorista.toJSON(),
-        "localPartida": localPartida,
-        "horarioSaida": horarioSaida,
-        "preco": preco,
-        "vagasTotais": vagasTotais,
-      },
+      "idCarona": idCarona,
+      "motorista": motorista.toJSON(),
+      "localPartida": localPartida,
+      "horarioSaida": horarioSaida,
+      "preco": preco,
+      "vagasTotais": vagasTotais,
     };
   }
 

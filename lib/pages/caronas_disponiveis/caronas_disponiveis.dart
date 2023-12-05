@@ -4,8 +4,12 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:unicar_maps/components/ride_widget_widget.dart';
+import 'package:unicar_maps/pages/informacoes_carona_passageiro/informacoes_carona_passageiro_widget.dart';
+import 'package:unicar_maps/ride/ride_widget.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_todos_grupos.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
+import 'package:unicar_maps/server_connection/user_service.dart';
 
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -13,11 +17,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'caronas_disponiveis_model.dart';
 
 class CaronasDisponiveis extends StatefulWidget {
-  final List<GrupoCarona> gruposCarona;
-
   const CaronasDisponiveis({
     Key? key,
-    required this.gruposCarona,
   }) : super(key: key);
 
   @override
@@ -29,10 +30,26 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  List<GrupoCarona> gruposCarona = [];
+
+  late final GroupService _groupService;
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => CaronasDisponiveisModel());
+
+    _groupService = GetIt.I.get<GroupService>(instanceName: 'passageiro');
+
+    UserService().buscarDadosUsuario().then((user) {
+      _groupService.listenToEvents((comunicado) {
+        if (comunicado is ComunicadoTodosGuposDisponiveis) {
+          setState(() {
+            gruposCarona = comunicado.gruposCarona;
+          });
+        }
+      });
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -83,19 +100,34 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
         body: SafeArea(
           top: true,
           child: ListView.builder(
-              itemCount: widget.gruposCarona.length,
+              itemCount: gruposCarona.length,
               itemBuilder: (context, index) {
-                final grupo = widget.gruposCarona[index];
+                final grupo = gruposCarona[index];
 
                 return CardCarona(
                   grupoCarona: grupo,
-                  onTap: () {
+                  onTap: () async {
+                    final user = await UserService().buscarDadosUsuario();
+
                     GetIt.I
                         .get<GroupService>(instanceName: 'passageiro')
                         .joinRideGroup(
-                            usuario: usuario, idGrupo: idGrupo, parada: parada);
-                    Navigator.of(context)
-                        .pushNamed('/carona', arguments: grupo);
+                          usuario: user,
+                          idGrupo: grupo.idCarona,
+                          parada: grupo.localPartida,
+                        );
+
+                    if (context.mounted) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return InformacoesCaronaPassageiroWidget(
+                              grupoCarona: grupo,
+                            );
+                          },
+                        ),
+                      );
+                    }
                   },
                 );
               }),

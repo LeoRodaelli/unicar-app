@@ -16,38 +16,34 @@ import '/backend/schema/structs/index.dart';
 import '/components/ride_widget_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'caronas_disponiveis_model.dart';
 
-export 'caronas_disponiveis_model.dart';
-
-class AbaPassageiro extends StatefulWidget {
-  const AbaPassageiro({super.key});
+class AbaMotorista extends StatefulWidget {
+  const AbaMotorista({super.key});
 
   @override
-  State<AbaPassageiro> createState() => _AbaPassageiroState();
+  State<AbaMotorista> createState() => _AbaMotoristaState();
 }
 
-class _AbaPassageiroState extends State<AbaPassageiro> {
+class _AbaMotoristaState extends State<AbaMotorista> {
   late final GroupService _groupService;
 
   dynamic comunicado;
 
   @override
   void initState() {
-    _groupService = GetIt.I.get<GroupService>(instanceName: 'passageiro');
+    _groupService = GetIt.I.get<GroupService>(instanceName: 'motorista');
 
     _groupService.init().then(
       (_) {
         UserService().buscarDadosUsuario().then((user) {
           _groupService.recoverSession(
             idUsuario: user.id,
-            categoria: 'passageiro',
+            categoria: 'motorista',
           );
 
           _groupService.listenToEvents((comunicado) {
             if (comunicado is ComunicadoMeuGrupoCarona ||
-                comunicado is ComunicadoNenhumGrupoVinculado ||
-                comunicado is ComunicadoCaronaCancelada) {
+                comunicado is ComunicadoNenhumGrupoVinculado) {
               this.comunicado = comunicado;
 
               setState(() {});
@@ -63,13 +59,11 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
   @override
   Widget build(BuildContext context) {
     if (comunicado is ComunicadoMeuGrupoCarona) {
-      return InformacoesCaronaPassageiroWidget(
+      return InformacoesCaronaMotoristaWidget(
         grupoCarona: comunicado.grupoCarona,
       );
-
-      //GU - TODO: adicionar no servidor: ok
     } else if (comunicado is ComunicadoNenhumGrupoVinculado) {
-      return const RotaWidget();
+      return const OferecerCaronaWidget();
     }
 
     return const CircularProgressIndicator();

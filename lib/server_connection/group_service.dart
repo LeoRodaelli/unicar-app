@@ -8,6 +8,7 @@ import 'package:unicar_maps/server_connection/entities/comunicado_grupo_criado_s
 import 'package:unicar_maps/server_connection/entities/comunicado_grupo_inexistente.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_grupo_ja_existe.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_meu_grupo_carona.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_nenhum_grupo_vinculad.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_saida.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_todos_grupos.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
@@ -116,6 +117,8 @@ class GroupService {
         return ComunicadoMeuGrupoCarona.fromJson(json["data"]);
       case "ComunicadoTodosGruposDisponiveis":
         return ComunicadoTodosGuposDisponiveis.fromJson(json["data"]);
+      case "ComunicadoNenhumGrupoVinculado":
+        return ComunicadoNenhumGrupoVinculado.fromJson(json["data"]);
     }
   }
 

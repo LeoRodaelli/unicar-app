@@ -1,30 +1,43 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
+import 'package:unicar_maps/auth/custom_auth/auth_util.dart';
 import 'package:unicar_maps/server_connection/entities/usuario.dart';
 
 class UserService {
-  final HttpClient _httpClient = HttpClient();
+  final Dio _httpClient = Dio();
 
-  Future<Usuario> buscarDadosUsuario(String token) async {
-    final uri = Uri.parse('http://127.0.0.1:4567/profile');
-    
-    final request = await _httpClient.getUrl(uri);
-    request.headers.add('Authorization', 'Bearer $token');
-    
-    final response = await request.close();
-    final responseBody = await response.transform(utf8.decoder).join();
-    
-    if (response.statusCode == HttpStatus.ok) {
-      final jsonMap = json.decode(responseBody);
+  static Usuario? _usuarioCache;
+
+  Future<Usuario> buscarDadosUsuario({bool ignoreCache = false}) async {
+    if (_usuarioCache != null && !ignoreCache) {
+      return _usuarioCache!;
+    }
+
+    try {
+      final request = await _httpClient.get(
+        'http://127.0.0.1:4567/profile',
+        options: Options(
+          headers: {
+            'Authorization': currentAuthenticationToken,
+          },
+        ),
+      );
+
+      print(request.data);
+
+      final jsonMap = jsonDecode(request.data);
       final jsonUsuario = {
         'id': jsonMap['email'],
-        'nome': jsonMap['anem'],
+        'nome': jsonMap['name'],
         'contato': jsonMap['phone'],
       };
-      return Usuario.fromJson(jsonUsuario);
-    } else {
-      throw Exception('Failed to fetch user data');
+      _usuarioCache = Usuario.fromJson(jsonUsuario);
+      return _usuarioCache!;
+    } catch (e) {
+      print(e);
+      rethrow;
     }
   }
 }

@@ -1,9 +1,12 @@
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:unicar_maps/pages/aba_motorista/aba_motorista.dart';
+import 'package:unicar_maps/server_connection/group_service.dart';
 
 import 'auth/custom_auth/auth_util.dart';
 import 'auth/custom_auth/custom_auth_user_provider.dart';
@@ -27,6 +30,16 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  GetIt.I.registerSingleton<GroupService>(
+    GroupService('localhost', 3000),
+    instanceName: 'passageiro',
+  );
+
+  GetIt.I.registerSingleton<GroupService>(
+    GroupService('localhost', 3000),
+    instanceName: 'motorista',
+  );
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -127,8 +140,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'OferecerCarona': OferecerCaronaWidget(),
-      'Rota': RotaWidget(),
+      'OferecerCarona': AbaMotorista(),
+      'Rota': AbaPassageiro(),
       'Perfil': PerfilWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);

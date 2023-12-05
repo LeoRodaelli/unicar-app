@@ -7,16 +7,14 @@ class Usuario {
 
   Map<String, dynamic> toJSON() {
     return {
-      "type": "PedidoEntrarNoGrupoDeCarona",
-      "data": {
-        "id": id,
-        "nome": nome,
-        "contato": contato,
-      },
+      "id": id,
+      "nome": nome,
+      "contato": contato,
     };
   }
 
   factory Usuario.fromJson(Map<String, dynamic> json) {
-    return Usuario(id: json["id"], nome: json["nome"], contato: json["contato"]);
+    return Usuario(
+        id: json["id"], nome: json["nome"], contato: json["contato"]);
   }
 }
