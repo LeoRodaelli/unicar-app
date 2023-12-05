@@ -35,8 +35,6 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
   void initState() {
     super.initState();
 
-    print('olá');
-
     _groupService = GetIt.I.get<GroupService>();
 
     UserService().buscarDadosUsuario().then((user) {
@@ -47,25 +45,11 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
             jsonDecode(_groupService.streamNotifier.value),
           );
 
-          //RETORNAR PESSOAS SEU ANIMAL DE TETA
-
           if (comunicado is ComunicadoTodosGuposDisponiveis) {
             updateCaronas(comunicado.gruposCarona);
           }
         },
       );
-
-      // _groupService.listenToEvents((comunicado) {
-      //   print('recebi carona');
-
-      //   print('object' + comunicado.toString());
-
-      //   if (comunicado is ComunicadoTodosGuposDisponiveis) {
-      //     setState(() {
-      //       gruposCarona = comunicado.gruposCarona;
-      //     });
-      //   }
-      // });
 
       _groupService.getAllRides(idUsuario: user.id);
     });
@@ -75,18 +59,12 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
     for (var carona in caronas) {
       print('carona: ${carona.toJSON()}');
     }
-    
-
-if (mounted)
-    setState(() {
-      gruposCarona = caronas;
-    });
+    if (mounted)
+      setState(() {
+        gruposCarona = caronas;
+      });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

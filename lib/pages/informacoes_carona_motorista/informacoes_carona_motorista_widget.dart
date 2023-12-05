@@ -52,7 +52,6 @@ class _InformacoesCaronaMotoristaWidgetState
 
         print('ouvi comunciado: $comunicado');
         if (comunicado is ComunicadoGrupoCarona) {
-          
           updatePassageiros(comunicado.usuarios);
         } else if (comunicado is ComunicadoCaronaCancelada) {
           Navigator.pop(context);

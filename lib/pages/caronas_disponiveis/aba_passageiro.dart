@@ -1,11 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:unicar_maps/index.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_meu_grupo_carona.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_nenhum_grupo_vinculad.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_saida.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
 import 'package:unicar_maps/server_connection/user_service.dart';
 
@@ -29,17 +28,15 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
 
     _groupService.init().then(
       (_) {
-        print('iniciou com sucesso');
         UserService().buscarDadosUsuario().then((user) {
           _groupService.listenToEvents((comunicado) {
-            print('comunicado:' + comunicado.toString());
             if (comunicado is ComunicadoMeuGrupoCarona ||
                 comunicado is ComunicadoNenhumGrupoVinculado ||
-                comunicado is ComunicadoCaronaCancelada) {
+                comunicado is ComunicadoCaronaCancelada ||
+                comunicado is ComunicadoSaida) {
               this.comunicado = comunicado;
-              if (mounted) {
-                setState(() {});
-              }
+
+              reload();
             }
           });
 
@@ -54,15 +51,19 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
     super.initState();
   }
 
+  void reload() {
+    if (mounted) setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     if (comunicado is ComunicadoMeuGrupoCarona) {
       return InformacoesCaronaPassageiroWidget(
         grupoCarona: comunicado.grupoCarona,
       );
-
-      //GU - TODO: adicionar no servidor: ok
-    } else if (comunicado is ComunicadoNenhumGrupoVinculado) {
+    } else if (comunicado is ComunicadoNenhumGrupoVinculado ||
+        comunicado is ComunicadoCaronaCancelada ||
+        comunicado is ComunicadoSaida) {
       return const RotaWidget();
     }
 
@@ -71,7 +72,6 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
 
   @override
   void dispose() {
-    //_groupService.close();
     super.dispose();
   }
 }

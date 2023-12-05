@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_saida.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
 
@@ -149,7 +151,18 @@ class _InformacoesCaronaPassageiroWidgetState
       this,
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    _groupService.streamNotifier.addListener(
+      () {
+        final comunicado = _groupService.getComunicadoCorrespondente(
+          jsonDecode(_groupService.streamNotifier.value),
+        );
+
+        if (comunicado is ComunicadoSaida ||
+            comunicado is ComunicadoCaronaCancelada) {
+          Navigator.pop(context);
+        }
+      },
+    );
   }
 
   @override
@@ -466,7 +479,6 @@ class _InformacoesCaronaPassageiroWidgetState
                   Expanded(
                     child: FFButtonWidget(
                       onPressed: () {
-                        // sair da carona
                         _groupService.leaveRideGroup();
                       },
                       text: 'Cancelar',

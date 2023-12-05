@@ -42,7 +42,15 @@ class GroupService {
       notifier = ValueNotifier("{}");
 
       socket!.listen((event) {
-        final stringJson = String.fromCharCodes(event);
+        String stringJson = String.fromCharCodes(event);
+
+        //verificar se por algum motivo há dois jsons seguidos na string,
+        // se houver obter só o primeiro
+        final index = stringJson.indexOf('}{');
+        if (index != -1) {
+          stringJson = stringJson.substring(0, index + 1);
+        }
+
         notifier.value = stringJson;
         print('recebido no socket: ' + String.fromCharCodes(event));
         notifier.notifyListeners();
