@@ -625,6 +625,7 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                               university: _model.universidadeController.text,
                               age: _model.idadeController.text,
                               authToken: currentAuthenticationToken,
+                              ra: _model.raController.text,
                             );
 
                             context.pushNamed('Perfil');

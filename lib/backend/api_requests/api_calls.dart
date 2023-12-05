@@ -184,7 +184,7 @@ class EditarUsuarioCall {
   Future<ApiCallResponse> call({
     String? imagePath = '',
     String? name = '',
-    String? email = '',
+    String? ra = '',
     String? phone = '',
     String? university = '',
     String? age = '',
@@ -194,7 +194,7 @@ class EditarUsuarioCall {
 {
   "imagePath": "${imagePath}",
   "name": "${name}",
-  "email": "${email}",
+  "ra": "${ra}",
   "phone": "${phone}",
   "university": "${university}",
   "age": "${age}"
