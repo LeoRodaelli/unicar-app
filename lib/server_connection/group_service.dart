@@ -22,7 +22,7 @@ import 'package:unicar_maps/server_connection/entities/usuario.dart';
 class GroupService {
   final String host;
   final int port;
-  Socket? socket;
+  static Socket? socket;
   Stream? stream;
 
   GroupService(this.host, this.port);
@@ -107,6 +107,7 @@ class GroupService {
   }
 
   void getAllRides({required String idUsuario}) {
+    print('get rides');
     _sendData(
       jsonEncode(
         PedidoTodosGruposDisponiveis(idUsuario: idUsuario).toJSON(),
@@ -140,7 +141,7 @@ class GroupService {
         return ComunicadoGrupoCriadoComSucesso.fromJson(json["data"]);
       case "ComunicadoMeuGrupoCarona":
         return ComunicadoMeuGrupoCarona.fromJson(json["data"]);
-      case "ComunicadoTodosGruposDisponiveis":
+      case "ComunicadoTodosGuposDisponiveis":
         return ComunicadoTodosGuposDisponiveis.fromJson(json["data"]);
       case "ComunicadoNenhumGrupoVinculado":
         return ComunicadoNenhumGrupoVinculado.fromJson(json["data"]);

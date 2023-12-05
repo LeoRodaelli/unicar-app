@@ -8,7 +8,7 @@ class ComunicadoTodosGuposDisponiveis {
   });
 
   factory ComunicadoTodosGuposDisponiveis.fromJson(Map<String, dynamic> json) {
-    final gruposCaronaJson = json['grupos'] as List<Map<String, dynamic>>;
+    final gruposCaronaJson = json['grupos'] as List;
 
     final gruposCarona = gruposCaronaJson
         .map(

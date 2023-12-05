@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:unicar_maps/index.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_meu_grupo_carona.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_nenhum_grupo_vinculad.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
@@ -27,10 +28,14 @@ class _AbaMotoristaState extends State<AbaMotorista> {
         UserService().buscarDadosUsuario().then((user) {
           _groupService.listenToEvents((comunicado) {
             if (comunicado is ComunicadoMeuGrupoCarona ||
-                comunicado is ComunicadoNenhumGrupoVinculado) {
+                comunicado is ComunicadoNenhumGrupoVinculado ||
+                comunicado is ComunicadoCaronaCancelada) {
               this.comunicado = comunicado;
 
-              setState(() {});
+// check if widget is disposed
+              if (mounted) {
+                setState(() {});
+              }
             }
           });
           _groupService.recoverSession(
@@ -50,7 +55,8 @@ class _AbaMotoristaState extends State<AbaMotorista> {
       return InformacoesCaronaMotoristaWidget(
         grupoCarona: comunicado.grupoCarona,
       );
-    } else if (comunicado is ComunicadoNenhumGrupoVinculado) {
+    } else if (comunicado is ComunicadoNenhumGrupoVinculado ||
+        comunicado is ComunicadoCaronaCancelada) {
       return const OferecerCaronaWidget();
     }
 

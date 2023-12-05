@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_grupo_carona.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import 'package:unicar_maps/server_connection/entities/usuario.dart';
@@ -48,6 +49,8 @@ class _InformacoesCaronaMotoristaWidgetState
           setState(() {
             passageiros = comunicado.usuarios;
           });
+        } else if (comunicado is ComunicadoCaronaCancelada) {
+          Navigator.pop(context);
         }
       },
     );

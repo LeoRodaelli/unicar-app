@@ -37,8 +37,9 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
                 comunicado is ComunicadoNenhumGrupoVinculado ||
                 comunicado is ComunicadoCaronaCancelada) {
               this.comunicado = comunicado;
-
-              setState(() {});
+              if (mounted) {
+                setState(() {});
+              }
             }
           });
 

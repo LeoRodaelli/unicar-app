@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:unicar_maps/pages/caronas_disponiveis/caronas_disponiveis.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
@@ -152,9 +153,12 @@ class _RotaWidgetState extends State<RotaWidget> {
                   onPressed: () {
                     //GU -TODO: ver listagem de caronas
 
-                    Navigator.pushNamed(context, 'CaronasDisponiveis');
-
-                    print('ir pressed ...');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CaronasDisponiveis(),
+                      ),
+                    );
                   },
                 ),
               ),

@@ -23,8 +23,6 @@ class CaronasDisponiveis extends StatefulWidget {
 }
 
 class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
-  late CaronasDisponiveisModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<GrupoCarona> gruposCarona = [];
@@ -34,27 +32,29 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CaronasDisponiveisModel());
+
+    print('olá');
 
     _groupService = GetIt.I.get<GroupService>();
 
     UserService().buscarDadosUsuario().then((user) {
+      print('idUsuario: ' + user.id.toString());
       _groupService.listenToEvents((comunicado) {
+        print('CaronasDisponiveis: ' + comunicado.toString());
+
         if (comunicado is ComunicadoTodosGuposDisponiveis) {
           setState(() {
             gruposCarona = comunicado.gruposCarona;
           });
         }
       });
-    });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+      _groupService.getAllRides(idUsuario: user.id);
+    });
   }
 
   @override
   void dispose() {
-    _model.dispose();
-
     super.dispose();
   }
 
@@ -69,66 +69,57 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
       );
     }
 
-    context.watch<FFAppState>();
-
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
-          title: Text(
-            'Caronas Disponiveis',
-            style: GoogleFonts.getFont(
-              'Fredoka One',
-              color: Color(0xFFF1C40F),
-              fontWeight: FontWeight.w500,
-              fontSize: 32.0,
-            ),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Caronas Disponiveis',
+          style: GoogleFonts.getFont(
+            'Fredoka One',
+            color: Color(0xFFF1C40F),
+            fontWeight: FontWeight.w500,
+            fontSize: 32.0,
           ),
-          actions: [],
-          centerTitle: false,
-          elevation: 0.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: ListView.builder(
-              itemCount: gruposCarona.length,
-              itemBuilder: (context, index) {
-                final grupo = gruposCarona[index];
+        actions: [],
+        centerTitle: false,
+        elevation: 0.0,
+      ),
+      body: SafeArea(
+        top: true,
+        child: ListView.builder(
+            itemCount: gruposCarona.length,
+            itemBuilder: (context, index) {
+              final grupo = gruposCarona[index];
 
-                return CardCarona(
-                  grupoCarona: grupo,
-                  onTap: () async {
-                    final user = await UserService().buscarDadosUsuario();
+              return CardCarona(
+                grupoCarona: grupo,
+                onTap: () async {
+                  final user = await UserService().buscarDadosUsuario();
 
-                    GetIt.I
-                        .get<GroupService>()
-                        .joinRideGroup(
-                          usuario: user,
-                          idGrupo: grupo.idCarona,
-                          parada: grupo.localPartida,
-                        );
-
-                    if (context.mounted) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return InformacoesCaronaPassageiroWidget(
-                              grupoCarona: grupo,
-                            );
-                          },
-                        ),
+                  GetIt.I.get<GroupService>().joinRideGroup(
+                        usuario: user,
+                        idGrupo: grupo.idCarona,
+                        parada: grupo.localPartida,
                       );
-                    }
-                  },
-                );
-              }),
-        ),
+
+                  if (context.mounted) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return InformacoesCaronaPassageiroWidget(
+                            grupoCarona: grupo,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                },
+              );
+            }),
       ),
     );
   }
@@ -157,38 +148,41 @@ class CardCarona extends StatelessWidget {
           color: FlutterFlowTheme.of(context).primary,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              grupoCarona.motorista.nome,
-              style: GoogleFonts.getFont(
-                'Roboto',
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                grupoCarona.motorista.nome,
+                style: GoogleFonts.getFont(
+                  'Roboto',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            Text(
-              grupoCarona.localPartida,
-              style: GoogleFonts.getFont(
-                'Roboto',
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                fontWeight: FontWeight.normal,
-                fontSize: 14,
+              Text(
+                grupoCarona.localPartida,
+                style: GoogleFonts.getFont(
+                  'Roboto',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
               ),
-            ),
-            Text(
-              grupoCarona.preco.toString(),
-              style: GoogleFonts.getFont(
-                'Roboto',
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                fontWeight: FontWeight.normal,
-                fontSize: 14,
+              Text(
+                grupoCarona.preco.toString(),
+                style: GoogleFonts.getFont(
+                  'Roboto',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
