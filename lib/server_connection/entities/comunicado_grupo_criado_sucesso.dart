@@ -1,15 +1,15 @@
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 
 class ComunicadoGrupoCriadoComSucesso {
-  final GrupoCarona grupo;
+  final GrupoCarona grupoCarona;
 
   const ComunicadoGrupoCriadoComSucesso({
-    required this.grupo,
+    required this.grupoCarona,
   });
 
   factory ComunicadoGrupoCriadoComSucesso.fromJson(Map<String, dynamic> json) {
     return ComunicadoGrupoCriadoComSucesso(
-      grupo: GrupoCarona.fromJson(json['grupoCarona']),
+      grupoCarona: GrupoCarona.fromJson(json['grupoCarona']),
     );
   }
 }

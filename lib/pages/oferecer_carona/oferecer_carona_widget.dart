@@ -53,7 +53,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
             context,
             MaterialPageRoute(
               builder: (context) => InformacoesCaronaMotoristaWidget(
-                grupoCarona: comunicado.grupo,
+                grupoCarona: comunicado.grupoCarona,
               ),
             ),
           );

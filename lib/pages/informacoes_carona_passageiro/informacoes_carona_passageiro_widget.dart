@@ -7,6 +7,7 @@ import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancela
 import 'package:unicar_maps/server_connection/entities/comunicado_saida.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
+import 'package:unicar_maps/server_connection/user_service.dart';
 
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -466,7 +467,12 @@ class _InformacoesCaronaPassageiroWidgetState
                   Expanded(
                     child: FFButtonWidget(
                       onPressed: () {
-                        _groupService.leaveRideGroup();
+                        UserService().buscarDadosUsuario().then(
+                              (user) => _groupService.leaveRideGroup(
+                                idGrupo: widget.grupoCarona.idCarona,
+                                idUsuario: user.id,
+                              ),
+                            );
                       },
                       text: 'Cancelar',
                       options: FFButtonOptions(

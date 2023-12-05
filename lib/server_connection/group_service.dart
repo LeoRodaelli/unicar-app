@@ -152,10 +152,13 @@ class GroupService {
     );
   }
 
-  void leaveRideGroup() {
+  void leaveRideGroup({required String idUsuario, required String idGrupo}) {
     _sendData(
       jsonEncode(
-        PedidoSairDoGrupoDeCarona().toJSON(),
+        PedidoSairDoGrupoDeCarona(
+          idUsuario: idUsuario,
+          idGrupo: idGrupo,
+        ).toJSON(),
       ),
     );
   }

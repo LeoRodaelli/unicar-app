@@ -53,8 +53,6 @@ class _InformacoesCaronaMotoristaWidgetState
         print('ouvi comunciado: $comunicado');
         if (comunicado is ComunicadoGrupoCarona) {
           updatePassageiros(comunicado.usuarios);
-        } else if (comunicado is ComunicadoCaronaCancelada) {
-          Navigator.pop(context);
         }
       },
     );
@@ -203,7 +201,10 @@ class _InformacoesCaronaMotoristaWidgetState
                 alignment: AlignmentDirectional(0.00, 1.00),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    _groupService.leaveRideGroup();
+                    _groupService.leaveRideGroup(
+                      idGrupo: widget.grupoCarona.idCarona,
+                      idUsuario: widget.grupoCarona.motorista.id,
+                    );
                   },
                   text: 'Cancelar',
                   options: FFButtonOptions(
