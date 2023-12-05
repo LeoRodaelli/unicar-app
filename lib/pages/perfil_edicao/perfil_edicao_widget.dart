@@ -33,6 +33,9 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
     _model.yourNameController ??= TextEditingController();
     _model.yourNameFocusNode ??= FocusNode();
 
+    _model.raController ??= TextEditingController();
+    _model.raFocusNode ??= FocusNode();
+
     _model.numeroController ??= TextEditingController();
     _model.numeroFocusNode ??= FocusNode();
 
@@ -305,6 +308,72 @@ class _PerfilEdicaoWidgetState extends State<PerfilEdicaoWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator: _model.yourNameControllerValidator
                             .asValidator(context),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Registro Academico',
+                          style: GoogleFonts.getFont(
+                            'Roboto',
+                            fontWeight: FontWeight.w800,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
+                      child: TextFormField(
+                        controller: _model.raController,
+                        focusNode: _model.raFocusNode,
+                        textCapitalization: TextCapitalization.words,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                          hintText: 'RA',
+                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 24.0, 24.0, 24.0),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        validator:
+                            _model.raControllerValidator.asValidator(context),
                       ),
                     ),
                     Align(

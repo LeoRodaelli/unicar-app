@@ -24,6 +24,10 @@ class PerfilEdicaoModel extends FlutterFlowModel<PerfilEdicaoWidget> {
   FocusNode? yourNameFocusNode;
   TextEditingController? yourNameController;
   String? Function(BuildContext, String?)? yourNameControllerValidator;
+  // State field(s) for RA widget.
+  FocusNode? raFocusNode;
+  TextEditingController? raController;
+  String? Function(BuildContext, String?)? raControllerValidator;
   // State field(s) for numero widget.
   FocusNode? numeroFocusNode;
   TextEditingController? numeroController;
@@ -45,6 +49,9 @@ class PerfilEdicaoModel extends FlutterFlowModel<PerfilEdicaoWidget> {
     unfocusNode.dispose();
     yourNameFocusNode?.dispose();
     yourNameController?.dispose();
+
+    raFocusNode?.dispose();
+    raController?.dispose();
 
     numeroFocusNode?.dispose();
     numeroController?.dispose();
