@@ -3,15 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:unicar_maps/components/ride_widget_widget.dart';
 import 'package:unicar_maps/pages/informacoes_carona_passageiro/informacoes_carona_passageiro_widget.dart';
-import 'package:unicar_maps/ride/ride_widget.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_todos_grupos.dart';
 import 'package:unicar_maps/server_connection/entities/grupo_carona.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
 import 'package:unicar_maps/server_connection/user_service.dart';
 
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'caronas_disponiveis_model.dart';
@@ -42,7 +39,11 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
     _groupService = GetIt.I.get<GroupService>(instanceName: 'passageiro');
 
     UserService().buscarDadosUsuario().then((user) {
-      _groupService.listenToEvents((comunicado) {
+      _groupService.stream().listen((event) {
+        final comunicado = GroupService.getComunicadoCorrespondente(
+          jsonDecode(String.fromCharCodes(event)),
+        );
+
         if (comunicado is ComunicadoTodosGuposDisponiveis) {
           setState(() {
             gruposCarona = comunicado.gruposCarona;

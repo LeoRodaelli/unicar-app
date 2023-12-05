@@ -29,7 +29,7 @@ class UserService {
 
       final jsonMap = jsonDecode(request.data);
       final jsonUsuario = {
-        'id': jsonMap['email'],
+        'id': jsonMap['ra'],
         'nome': jsonMap['name'],
         'contato': jsonMap['phone'],
       };

@@ -180,13 +180,18 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Modelo Carro',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'Modelo Carro',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -280,13 +285,18 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'Cor',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'Cor',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -378,13 +388,18 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'Placa do Carro',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'Placa do Carro',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -477,13 +492,18 @@ class _CadastroCarroWidgetState extends State<CadastroCarroWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'CNH do condutor',
-                                            style: GoogleFonts.getFont(
-                                              'Roboto',
-                                              color: Color(0xFF353B48),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.0,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              'CNH do condutor',
+                                              style: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF353B48),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
                                           ),
                                           Padding(

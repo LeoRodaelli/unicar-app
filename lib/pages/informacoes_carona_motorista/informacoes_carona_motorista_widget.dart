@@ -42,8 +42,12 @@ class _InformacoesCaronaMotoristaWidgetState
   void initState() {
     _groupService = GetIt.I.get<GroupService>(instanceName: 'motorista');
 
-    _groupService.listenToEvents(
-      (comunicado) {
+    _groupService.stream().listen(
+      (event) {
+        final comunicado = GroupService.getComunicadoCorrespondente(
+          jsonDecode(String.fromCharCodes(event)),
+        );
+
         if (comunicado is ComunicadoGrupoCarona) {
           setState(() {
             passageiros = comunicado.usuarios;

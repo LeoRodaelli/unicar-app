@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_desligamento.dart';
@@ -22,7 +24,7 @@ import 'package:unicar_maps/server_connection/entities/usuario.dart';
 class GroupService {
   final String host;
   final int port;
-  late final Socket? socket;
+  Socket? socket;
 
   GroupService(this.host, this.port);
 
@@ -30,16 +32,10 @@ class GroupService {
     socket = await Socket.connect(host, port);
   }
 
-  void listenToEvents(Function(dynamic comunicado) onDataReceived) {
-    socket?.listen(
-      (event) {
-        final comunicado = getComunicadoCorrespondente(
-          jsonDecode(String.fromCharCodes(event)),
-        );
+  Stream<Uint8List> stream() {
+    final stream = socket!.asBroadcastStream();
 
-        onDataReceived(comunicado);
-      },
-    );
+    return stream;
   }
 
   void _sendData(String data) async {
@@ -97,7 +93,7 @@ class GroupService {
     );
   }
 
-  getComunicadoCorrespondente(Map<String, dynamic> json) {
+  static getComunicadoCorrespondente(Map<String, dynamic> json) {
     switch (json['type']) {
       case "ComunicadoGrupoJaExiste":
         return ComunicadoGrupoJaExiste.fromJson(json["data"]);

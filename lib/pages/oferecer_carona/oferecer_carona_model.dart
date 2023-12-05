@@ -38,10 +38,6 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
   String? Function(BuildContext, String?)?
       limitDeTempAddRodaControllerValidator;
   DateTime? datePicked;
-  // State field(s) for dataHora widget.
-  FocusNode? dataHoraFocusNode;
-  TextEditingController? dataHoraController;
-  String? Function(BuildContext, String?)? dataHoraControllerValidator;
   // Stores action output result for [Backend Call - API (Cadastro da carona)] action in Button widget.
   ApiCallResponse? apiResultez0;
 
@@ -59,9 +55,6 @@ class OferecerCaronaModel extends FlutterFlowModel<OferecerCaronaWidget> {
 
     limitDeTempAddRodaFocusNode?.dispose();
     limitDeTempAddRodaController?.dispose();
-
-    dataHoraFocusNode?.dispose();
-    dataHoraController?.dispose();
   }
 
   /// Action blocks are added here.

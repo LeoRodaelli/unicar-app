@@ -1,13 +1,8 @@
-import '/backend/schema/structs/index.dart';
-import '/components/ride_widget_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'aba_passageiro.dart' show AbaPassageiro;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+
+import '/components/ride_widget_widget.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import 'aba_passageiro.dart' show AbaPassageiro;
 
 class CaronasDisponiveisModel
     extends FlutterFlowModel<AbaPassageiro> {
