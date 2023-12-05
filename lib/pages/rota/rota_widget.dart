@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:unicar_maps/pages/caronas_disponiveis/caronas_disponiveis.dart';
+import 'package:unicar_maps/server_connection/group_service.dart';
+import 'package:unicar_maps/server_connection/user_service.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
@@ -23,12 +26,15 @@ class RotaWidget extends StatefulWidget {
 class _RotaWidgetState extends State<RotaWidget> {
   late RotaModel _model;
 
+  late final GroupService _groupService;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => RotaModel());
+    _groupService = GetIt.I.get<GroupService>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -151,13 +157,10 @@ class _RotaWidgetState extends State<RotaWidget> {
                     size: 24.0,
                   ),
                   onPressed: () {
-                    //GU -TODO: ver listagem de caronas
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>  CaronasDisponiveis(),
-                      ),
+                    UserService().buscarDadosUsuario().then(
+                      (user) {
+                        _groupService.getAllRides(idUsuario: user.id);
+                      },
                     );
                   },
                 ),

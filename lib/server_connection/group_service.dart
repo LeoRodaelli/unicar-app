@@ -44,11 +44,17 @@ class GroupService {
       socket!.listen((event) {
         String stringJson = String.fromCharCodes(event);
 
+        print('stringJson: ' + stringJson);
+
         //verificar se por algum motivo há dois jsons seguidos na string,
         // se houver obter só o primeiro
+
+        // TRATAR MELHOR MAIS DE UM JSON RETORNADO
+
+        //pega o segundo
         final index = stringJson.indexOf('}{');
         if (index != -1) {
-          stringJson = stringJson.substring(0, index + 1);
+          stringJson = stringJson.substring(index + 1);
         }
 
         notifier.value = stringJson;
@@ -96,6 +102,11 @@ class GroupService {
     } catch (e) {
       print('send data error');
       print(e);
+      await socket?.close();
+
+      socket = null;
+
+      await init();
     }
   }
 

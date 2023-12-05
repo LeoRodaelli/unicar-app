@@ -16,8 +16,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'caronas_disponiveis_model.dart';
 
 class CaronasDisponiveis extends StatefulWidget {
+  final List<GrupoCarona> gruposCarona;
   const CaronasDisponiveis({
     Key? key,
+    required this.gruposCarona,
   }) : super(key: key);
 
   @override
@@ -35,12 +37,13 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
   void initState() {
     super.initState();
 
+    gruposCarona = widget.gruposCarona;
+
     _groupService = GetIt.I.get<GroupService>();
 
     UserService().buscarDadosUsuario().then((user) {
       _groupService.streamNotifier.addListener(
         () {
-          print('recebi carona: ${_groupService.streamNotifier.value}');
           final comunicado = _groupService.getComunicadoCorrespondente(
             jsonDecode(_groupService.streamNotifier.value),
           );
@@ -50,21 +53,16 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
           }
         },
       );
-
-      _groupService.getAllRides(idUsuario: user.id);
     });
   }
 
   void updateCaronas(List<GrupoCarona> caronas) {
-    for (var carona in caronas) {
-      print('carona: ${carona.toJSON()}');
-    }
-    if (mounted)
+    if (mounted) {
       setState(() {
         gruposCarona = caronas;
       });
+    }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,18 +110,6 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
                         usuario: user,
                         idGrupo: grupo.idCarona,
                       );
-
-                  if (context.mounted) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return InformacoesCaronaPassageiroWidget(
-                            grupoCarona: grupo,
-                          );
-                        },
-                      ),
-                    );
-                  }
                 },
               );
             }),

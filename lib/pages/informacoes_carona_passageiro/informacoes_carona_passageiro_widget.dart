@@ -150,19 +150,6 @@ class _InformacoesCaronaPassageiroWidgetState
           !anim.applyInitialState),
       this,
     );
-
-    _groupService.streamNotifier.addListener(
-      () {
-        final comunicado = _groupService.getComunicadoCorrespondente(
-          jsonDecode(_groupService.streamNotifier.value),
-        );
-
-        if (comunicado is ComunicadoSaida ||
-            comunicado is ComunicadoCaronaCancelada) {
-          Navigator.pop(context);
-        }
-      },
-    );
   }
 
   @override

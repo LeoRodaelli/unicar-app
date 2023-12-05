@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:unicar_maps/index.dart';
+import 'package:unicar_maps/pages/caronas_disponiveis/caronas_disponiveis.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_meu_grupo_carona.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_nenhum_grupo_vinculad.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_saida.dart';
+import 'package:unicar_maps/server_connection/entities/comunicado_todos_grupos.dart';
 import 'package:unicar_maps/server_connection/group_service.dart';
 import 'package:unicar_maps/server_connection/user_service.dart';
 
@@ -33,6 +35,7 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
             if (comunicado is ComunicadoMeuGrupoCarona ||
                 comunicado is ComunicadoNenhumGrupoVinculado ||
                 comunicado is ComunicadoCaronaCancelada ||
+                comunicado is ComunicadoTodosGuposDisponiveis || 
                 comunicado is ComunicadoSaida) {
               this.comunicado = comunicado;
 
@@ -65,6 +68,10 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
         comunicado is ComunicadoCaronaCancelada ||
         comunicado is ComunicadoSaida) {
       return const RotaWidget();
+    } else if (comunicado is ComunicadoTodosGuposDisponiveis) {
+      return CaronasDisponiveis(
+        gruposCarona: comunicado.gruposCarona,
+      );
     }
 
     return const CircularProgressIndicator();
