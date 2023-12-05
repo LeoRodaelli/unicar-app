@@ -68,8 +68,6 @@ class _InformacoesCaronaMotoristaWidgetState
     });
   }
 
-  // ficar ouvindo carona e atualizando lista de usuarios
-
   @override
   Widget build(BuildContext context) {
     if (isiOS) {

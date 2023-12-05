@@ -45,22 +45,6 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
     super.initState();
     _groupService = GetIt.I.get<GroupService>();
 
-    _groupService.listenToEvents(
-      (comunicado) {
-        if (comunicado is ComunicadoGrupoCriadoComSucesso) {
-          // GU: navega manualmente para rota de informaçoes carona motorista
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => InformacoesCaronaMotoristaWidget(
-                grupoCarona: comunicado.grupoCarona,
-              ),
-            ),
-          );
-        }
-      },
-    );
-
     _model = createModel(context, () => OferecerCaronaModel());
 
     _model.passageiroMaxController ??= TextEditingController();
