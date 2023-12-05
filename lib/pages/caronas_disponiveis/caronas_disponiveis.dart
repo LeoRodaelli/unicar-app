@@ -42,18 +42,15 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
     UserService().buscarDadosUsuario().then((user) {
       _groupService.streamNotifier.addListener(
         () {
+          print('recebi carona: ${_groupService.streamNotifier.value}');
           final comunicado = _groupService.getComunicadoCorrespondente(
             jsonDecode(_groupService.streamNotifier.value),
           );
 
-          print('recebi carona');
-
           //RETORNAR PESSOAS SEU ANIMAL DE TETA
 
           if (comunicado is ComunicadoTodosGuposDisponiveis) {
-            setState(() {
-              gruposCarona = comunicado.gruposCarona;
-            });
+            updateCaronas(comunicado.gruposCarona);
           }
         },
       );
@@ -71,6 +68,18 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
       // });
 
       _groupService.getAllRides(idUsuario: user.id);
+    });
+  }
+
+  void updateCaronas(List<GrupoCarona> caronas) {
+    for (var carona in caronas) {
+      print('carona: ${carona.toJSON()}');
+    }
+    
+
+if (mounted)
+    setState(() {
+      gruposCarona = caronas;
     });
   }
 

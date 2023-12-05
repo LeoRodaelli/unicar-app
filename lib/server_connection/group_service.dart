@@ -31,8 +31,6 @@ class GroupService {
 
   ValueNotifier<String> get streamNotifier => notifier;
 
-
-
   Future<void> init() async {
     try {
       if (socket != null) {
@@ -44,8 +42,9 @@ class GroupService {
       notifier = ValueNotifier("{}");
 
       socket!.listen((event) {
-        notifier.value = String.fromCharCodes(event);
-        print('recebido: ' + String.fromCharCodes(event));
+        final stringJson = String.fromCharCodes(event);
+        notifier.value = stringJson;
+        print('recebido no socket: ' + String.fromCharCodes(event));
         notifier.notifyListeners();
       });
     } catch (e) {
@@ -79,13 +78,17 @@ class GroupService {
       );
     } catch (e) {
       print(e);
-      
     }
   }
 
   void _sendData(String data) async {
-    socket?.writeln(data);
-    await socket?.flush();
+    try {
+      socket?.writeln(data);
+      await socket?.flush();
+    } catch (e) {
+      print('send data error');
+      print(e);
+    }
   }
 
   void createRideGroup(GrupoCarona grupoCarona) {
