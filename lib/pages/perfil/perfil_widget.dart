@@ -197,295 +197,329 @@ class _PerfilWidgetState extends State<PerfilWidget>
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             body: SafeArea(
               top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.of(context).primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        child: Visibility(
-                          visible: ProfileStruct.fromMap(
-                                      perfilBuscarCadastroDeUsuarioResponse
-                                          .jsonBody)
-                                  .hasImagePath() &&
-                              ((perfilBuscarCadastroDeUsuarioResponse
-                                                      .jsonBody !=
-                                                  null &&
-                                              perfilBuscarCadastroDeUsuarioResponse
-                                                      .jsonBody !=
-                                                  ''
-                                          ? ProfileStruct.fromMap(
-                                              perfilBuscarCadastroDeUsuarioResponse
-                                                  .jsonBody)
-                                          : null)
-                                      ?.imagePath !=
-                                  ''),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                1.0, 1.0, 1.0, 1.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(60.0),
-                              child: Image.network(
-                                ProfileStruct.fromMap(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.of(context).primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          child: Visibility(
+                            visible: ProfileStruct.fromMap(
                                         perfilBuscarCadastroDeUsuarioResponse
                                             .jsonBody)
-                                    .imagePath,
-                                width: 100.0,
-                                height: 100.0,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    Image.asset(
-                                  'assets/images/error_image.png',
+                                    .hasImagePath() &&
+                                ((perfilBuscarCadastroDeUsuarioResponse
+                                                        .jsonBody !=
+                                                    null &&
+                                                perfilBuscarCadastroDeUsuarioResponse
+                                                        .jsonBody !=
+                                                    ''
+                                            ? ProfileStruct.fromMap(
+                                                perfilBuscarCadastroDeUsuarioResponse
+                                                    .jsonBody)
+                                            : null)
+                                        ?.imagePath !=
+                                    ''),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  1.0, 1.0, 1.0, 1.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(60.0),
+                                child: Image.network(
+                                  ProfileStruct.fromMap(
+                                          perfilBuscarCadastroDeUsuarioResponse
+                                              .jsonBody)
+                                      .imagePath,
                                   width: 100.0,
                                   height: 100.0,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 100.0,
+                                    height: 100.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['cardOnPageLoadAnimation']!),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            ProfileStruct.fromMap(
-                                    perfilBuscarCadastroDeUsuarioResponse
-                                        .jsonBody)
-                                .name,
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).headlineSmall,
-                          ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation1']!),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 4.0, 0.0, 0.0),
-                            child: Text(
+                        ).animateOnPageLoad(
+                            animationsMap['cardOnPageLoadAnimation']!),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
                               ProfileStruct.fromMap(
                                       perfilBuscarCadastroDeUsuarioResponse
                                           .jsonBody)
-                                  .email,
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context).labelMedium,
+                                  .name,
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context).headlineSmall,
                             ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation2']!),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    height: 44.0,
-                    thickness: 1.0,
-                    indent: 24.0,
-                    endIndent: 24.0,
-                    color: FlutterFlowTheme.of(context).alternate,
-                  ).animateOnPageLoad(
-                      animationsMap['dividerOnPageLoadAnimation1']!),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
-                      child: Text(
-                        'Registro Academico (RA)',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.getFont(
-                          'Roboto',
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
-                      child: Text(
-                        ProfileStruct.fromMap(
-                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .ra,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFF818181),
-                            ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
-                      child: Text(
-                        'Número de contato',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.getFont(
-                          'Roboto',
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
-                      child: Text(
-                        ProfileStruct.fromMap(
-                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .phone,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFF818181),
-                            ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
-                      child: Text(
-                        'Universidade',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.getFont(
-                          'Roboto',
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
-                      child: Text(
-                        ProfileStruct.fromMap(
-                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .university,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFF818181),
-                            ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
-                      child: Text(
-                        'Idade',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.getFont(
-                          'Roboto',
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 10.0),
-                      child: Text(
-                        ProfileStruct.fromMap(
-                                perfilBuscarCadastroDeUsuarioResponse.jsonBody)
-                            .age
-                            .toString(),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xFF818181),
-                            ),
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    height: 44.0,
-                    thickness: 1.0,
-                    indent: 24.0,
-                    endIndent: 24.0,
-                    color: FlutterFlowTheme.of(context).alternate,
-                  ).animateOnPageLoad(
-                      animationsMap['dividerOnPageLoadAnimation2']!),
-                  if (getJsonField(
-                        perfilBuscarCadastroDeUsuarioResponse.jsonBody,
-                        r'''$.car''',
-                      ) !=
-                      null)
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
+                                animationsMap['textOnPageLoadAnimation1']!),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 0.0, 0.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/car_3097180.png',
-                                  width: 86.0,
-                                  height: 80.0,
-                                  fit: BoxFit.fill,
+                                  0.0, 4.0, 0.0, 0.0),
+                              child: Text(
+                                ProfileStruct.fromMap(
+                                        perfilBuscarCadastroDeUsuarioResponse
+                                            .jsonBody)
+                                    .email,
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context).labelMedium,
+                              ).animateOnPageLoad(
+                                  animationsMap['textOnPageLoadAnimation2']!),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 44.0,
+                      thickness: 1.0,
+                      indent: 24.0,
+                      endIndent: 24.0,
+                      color: FlutterFlowTheme.of(context).alternate,
+                    ).animateOnPageLoad(
+                        animationsMap['dividerOnPageLoadAnimation1']!),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
+                        child: Text(
+                          'Registro Academico (RA)',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.getFont(
+                            'Roboto',
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 0.0, 10.0),
+                        child: Text(
+                          ProfileStruct.fromMap(
+                                  perfilBuscarCadastroDeUsuarioResponse
+                                      .jsonBody)
+                              .ra,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF818181),
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
+                        child: Text(
+                          'Número de contato',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.getFont(
+                            'Roboto',
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 0.0, 10.0),
+                        child: Text(
+                          ProfileStruct.fromMap(
+                                  perfilBuscarCadastroDeUsuarioResponse
+                                      .jsonBody)
+                              .phone,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF818181),
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
+                        child: Text(
+                          'Universidade',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.getFont(
+                            'Roboto',
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 0.0, 10.0),
+                        child: Text(
+                          ProfileStruct.fromMap(
+                                  perfilBuscarCadastroDeUsuarioResponse
+                                      .jsonBody)
+                              .university,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF818181),
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 3.0),
+                        child: Text(
+                          'Idade',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.getFont(
+                            'Roboto',
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 0.0, 10.0),
+                        child: Text(
+                          ProfileStruct.fromMap(
+                                  perfilBuscarCadastroDeUsuarioResponse
+                                      .jsonBody)
+                              .age
+                              .toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF818181),
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Divider(
+                      height: 44.0,
+                      thickness: 1.0,
+                      indent: 24.0,
+                      endIndent: 24.0,
+                      color: FlutterFlowTheme.of(context).alternate,
+                    ).animateOnPageLoad(
+                        animationsMap['dividerOnPageLoadAnimation2']!),
+                    if (getJsonField(
+                          perfilBuscarCadastroDeUsuarioResponse.jsonBody,
+                          r'''$.car''',
+                        ) !=
+                        null)
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 0.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/car_3097180.png',
+                                    width: 86.0,
+                                    height: 80.0,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Flexible(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment:
-                                        AlignmentDirectional(-1.00, 0.00),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        getJsonField(
-                                          perfilBuscarCadastroDeUsuarioResponse
-                                              .jsonBody,
-                                          r'''$.car.model''',
-                                        ).toString(),
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                            ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.00, 0.00),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          getJsonField(
+                                            perfilBuscarCadastroDeUsuarioResponse
+                                                .jsonBody,
+                                            r'''$.car.model''',
+                                          ).toString(),
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.00, 0.00),
-                                          child: Text(
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -1.00, 0.00),
+                                            child: Text(
+                                              getJsonField(
+                                                perfilBuscarCadastroDeUsuarioResponse
+                                                    .jsonBody,
+                                                r'''$.car.plate''',
+                                              ).toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              '|',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ),
+                                          Text(
                                             getJsonField(
                                               perfilBuscarCadastroDeUsuarioResponse
                                                   .jsonBody,
-                                              r'''$.car.plate''',
+                                              r'''$.car.color''',
                                             ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -493,102 +527,115 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                   fontFamily: 'Roboto',
                                                 ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4.0, 0.0, 4.0, 0.0),
-                                          child: Text(
-                                            '|',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ),
-                                        Text(
-                                          getJsonField(
-                                            perfilBuscarCadastroDeUsuarioResponse
-                                                .jsonBody,
-                                            r'''$.car.color''',
-                                          ).toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Roboto',
-                                              ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                        ],
+                      ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 36.0, 16.0, 8.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed('PerfilEdicao');
+                        },
+                        text: 'Editar dados pessoais',
+                        options: FFButtonOptions(
+                          width: 370.0,
+                          height: 44.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Color(0xFFF1C40F),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
-                      ],
-                    ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 10.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('PerfilEdicao');
-                      },
-                      text: 'Editar dados pessoais',
-                      options: FFButtonOptions(
-                        width: 370.0,
-                        height: 44.0,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFFF1C40F),
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('CadastroCarro');
-                      },
-                      text: 'Cadastrar Carro',
-                      options: FFButtonOptions(
-                        width: 370.0,
-                        height: 44.0,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFFF1C40F),
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed('CadastroCarro');
+                        },
+                        text: 'Cadastrar Carro',
+                        options: FFButtonOptions(
+                          width: 370.0,
+                          height: 44.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Color(0xFFF1C40F),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
-                        borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          GoRouter.of(context).prepareAuthEvent();
+                          await authManager.signOut();
+                          GoRouter.of(context).clearRedirectLocation();
+
+                          context.goNamedAuth('Login', context.mounted);
+                        },
+                        text: 'Sair',
+                        options: FFButtonOptions(
+                          width: 370.0,
+                          height: 44.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Color(0xFFF1C40F),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

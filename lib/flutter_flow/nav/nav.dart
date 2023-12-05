@@ -143,8 +143,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'maps',
           path: '/maps',
           builder: (context, params) => MapsWidget(
-            partida: params.getParam<LatLng>('partida', ParamType.LatLng, true),
+            partida: params.getParam('partida', ParamType.LatLng),
             destino: params.getParam('destino', ParamType.LatLng),
+            pontoParada: params.getParam('pontoParada', ParamType.LatLng),
           ),
         ),
         FFRoute(

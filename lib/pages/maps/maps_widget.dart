@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +13,14 @@ export 'maps_model.dart';
 class MapsWidget extends StatefulWidget {
   const MapsWidget({
     Key? key,
-    this.partida,
-    this.destino,
+    required this.partida,
+    required this.destino,
+    this.pontoParada,
   }) : super(key: key);
 
-  final List<LatLng>? partida;
+  final LatLng? partida;
   final LatLng? destino;
+  final LatLng? pontoParada;
 
   @override
   _MapsWidgetState createState() => _MapsWidgetState();
@@ -34,15 +35,6 @@ class _MapsWidgetState extends State<MapsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MapsModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.googleMapsController.future.then(
-        (c) => c.animateCamera(
-          CameraUpdate.newLatLng(widget.destino!.toGoogleMaps()),
-        ),
-      );
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -97,32 +89,35 @@ class _MapsWidgetState extends State<MapsWidget> {
                     );
                   }
                   final googleMapCadastroDaCaronaResponse = snapshot.data!;
-                  return FlutterFlowGoogleMap(
-                    controller: _model.googleMapsController,
-                    onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
-                    initialLocation: _model.googleMapsCenter ??=
-                        widget.destino!,
-                    markers: (widget.partida ?? [])
-                        .map(
-                          (marker) => FlutterFlowMarker(
-                            marker.serialize(),
-                            marker,
+                  return Builder(builder: (context) {
+                    final _googleMapMarker = widget.destino;
+                    return FlutterFlowGoogleMap(
+                      controller: _model.googleMapsController,
+                      onCameraIdle: (latLng) =>
+                          _model.googleMapsCenter = latLng,
+                      initialLocation: _model.googleMapsCenter ??=
+                          widget.partida!,
+                      markers: [
+                        if (_googleMapMarker != null)
+                          FlutterFlowMarker(
+                            _googleMapMarker.serialize(),
+                            _googleMapMarker,
                           ),
-                        )
-                        .toList(),
-                    markerColor: GoogleMarkerColor.blue,
-                    mapType: MapType.normal,
-                    style: GoogleMapStyle.standard,
-                    initialZoom: 14.0,
-                    allowInteraction: true,
-                    allowZoom: true,
-                    showZoomControls: false,
-                    showLocation: true,
-                    showCompass: true,
-                    showMapToolbar: true,
-                    showTraffic: false,
-                    centerMapOnMarkerTap: false,
-                  );
+                      ],
+                      markerColor: GoogleMarkerColor.blue,
+                      mapType: MapType.normal,
+                      style: GoogleMapStyle.standard,
+                      initialZoom: 14.0,
+                      allowInteraction: true,
+                      allowZoom: true,
+                      showZoomControls: false,
+                      showLocation: true,
+                      showCompass: true,
+                      showMapToolbar: true,
+                      showTraffic: false,
+                      centerMapOnMarkerTap: false,
+                    );
+                  });
                 },
               ),
             ],
