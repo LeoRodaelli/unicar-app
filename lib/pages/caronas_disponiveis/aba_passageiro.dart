@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -26,30 +25,26 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
 
   @override
   void initState() {
-    _groupService = GetIt.I.get<GroupService>(instanceName: 'passageiro');
+    _groupService = GetIt.I.get<GroupService>();
 
     _groupService.init().then(
       (_) {
+        print('iniciou com sucesso');
         UserService().buscarDadosUsuario().then((user) {
+          _groupService.listenToEvents((comunicado) {
+            print('comunicado:' + comunicado.toString());
+            if (comunicado is ComunicadoMeuGrupoCarona ||
+                comunicado is ComunicadoNenhumGrupoVinculado ||
+                comunicado is ComunicadoCaronaCancelada) {
+              this.comunicado = comunicado;
+
+              setState(() {});
+            }
+          });
+
           _groupService.recoverSession(
             idUsuario: user.id,
             categoria: 'passageiro',
-          );
-
-          _groupService.stream().listen(
-            (event) {
-              final comunicado = GroupService.getComunicadoCorrespondente(
-                jsonDecode(String.fromCharCodes(event)),
-              );
-
-              if (comunicado is ComunicadoMeuGrupoCarona ||
-                  comunicado is ComunicadoNenhumGrupoVinculado ||
-                  comunicado is ComunicadoCaronaCancelada) {
-                this.comunicado = comunicado;
-
-                setState(() {});
-              }
-            },
           );
         });
       },
@@ -71,5 +66,11 @@ class _AbaPassageiroState extends State<AbaPassageiro> {
     }
 
     return const CircularProgressIndicator();
+  }
+
+  @override
+  void dispose() {
+    //_groupService.close();
+    super.dispose();
   }
 }

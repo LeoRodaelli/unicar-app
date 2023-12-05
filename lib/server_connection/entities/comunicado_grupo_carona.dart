@@ -12,7 +12,7 @@ class ComunicadoGrupoCarona {
   });
 
   factory ComunicadoGrupoCarona.fromJson(Map<String, dynamic> json) {
-    final usersJson = json['usuarios'] as List<Map<String, dynamic>>;
+    final usersJson = json['usuarios'] as List;
 
     final users = usersJson
         .map(

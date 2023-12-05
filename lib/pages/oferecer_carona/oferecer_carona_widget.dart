@@ -43,14 +43,10 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
   @override
   void initState() {
     super.initState();
-    _groupService = GetIt.I.get<GroupService>(instanceName: 'motorista');
+    _groupService = GetIt.I.get<GroupService>();
 
-    _groupService.stream().listen(
-      (event) {
-        final comunicado = GroupService.getComunicadoCorrespondente(
-          jsonDecode(String.fromCharCodes(event)),
-        );
-
+    _groupService.listenToEvents(
+      (comunicado) {
         if (comunicado is ComunicadoGrupoCriadoComSucesso) {
           // GU: navega manualmente para rota de informaçoes carona motorista
           Navigator.push(

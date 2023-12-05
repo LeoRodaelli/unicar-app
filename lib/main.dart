@@ -33,12 +33,6 @@ void main() async {
 
   GetIt.I.registerSingleton<GroupService>(
     GroupService('localhost', 3000),
-    instanceName: 'passageiro',
-  );
-
-  GetIt.I.registerSingleton<GroupService>(
-    GroupService('localhost', 3000),
-    instanceName: 'motorista',
   );
 
   runApp(ChangeNotifierProvider(

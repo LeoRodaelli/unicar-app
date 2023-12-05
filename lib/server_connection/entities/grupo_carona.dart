@@ -29,13 +29,15 @@ class GrupoCarona {
   }
 
   factory GrupoCarona.fromJson(Map<String, dynamic> json) {
+
+    
     return GrupoCarona(
       idCarona: json["idCarona"],
-      motorista: json["motorista"],
+      motorista: Usuario.fromJson(json["motorista"]),
       localPartida: json["localPartida"],
       horarioSaida: json["horarioSaida"],
-      preco: json["preco"],
-      vagasTotais: json["vagasTotais"],
+      preco: json["preco"] is int ? double.parse(json["preco"].toString()) : json["preco"],
+      vagasTotais: json["vagasTotais"] as int,
     );
   }
 }

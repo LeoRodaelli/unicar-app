@@ -9,7 +9,7 @@ class ComunicadoMeuGrupoCarona {
 
   factory ComunicadoMeuGrupoCarona.fromJson(Map<String, dynamic> json) {
     return ComunicadoMeuGrupoCarona(
-      grupoCarona: json['grupoCarona'],
+      grupoCarona: GrupoCarona.fromJson(json['grupoCarona']),
     );
   }
 }

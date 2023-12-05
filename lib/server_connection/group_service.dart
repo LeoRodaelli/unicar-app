@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_desligamento.dart';
@@ -25,17 +23,48 @@ class GroupService {
   final String host;
   final int port;
   Socket? socket;
+  Stream? stream;
 
   GroupService(this.host, this.port);
 
   Future<void> init() async {
-    socket = await Socket.connect(host, port);
+    try {
+      if (socket != null) {
+        return;
+      }
+
+      socket = await Socket.connect(host, port, timeout: Duration(seconds: 5));
+    } catch (e) {
+      print(e);
+    }
+
+    print('iniciou a conexao!');
+
+    stream = socket!.asBroadcastStream();
+
+    // socket!.listen(
+    //   (event) {
+    //     final comunicado = getComunicadoCorrespondente(
+    //       jsonDecode(String.fromCharCodes(event)),
+    //     );
+    //     print('comunicado: ' + comunicado.toString());
+    //   },
+    // );
   }
 
-  Stream<Uint8List> stream() {
-    final stream = socket!.asBroadcastStream();
+  void listenToEvents(Function(dynamic comunicado) onDataReceived) {
+    print('listenToEvents');
 
-    return stream;
+    stream?.listen(
+      (event) {
+        final comunicado = getComunicadoCorrespondente(
+          jsonDecode(String.fromCharCodes(event)),
+        );
+
+        print('comunicado: ' + comunicado.toString());
+        onDataReceived(comunicado);
+      },
+    );
   }
 
   void _sendData(String data) async {
@@ -93,7 +122,7 @@ class GroupService {
     );
   }
 
-  static getComunicadoCorrespondente(Map<String, dynamic> json) {
+  getComunicadoCorrespondente(Map<String, dynamic> json) {
     switch (json['type']) {
       case "ComunicadoGrupoJaExiste":
         return ComunicadoGrupoJaExiste.fromJson(json["data"]);

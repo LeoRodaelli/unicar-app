@@ -36,14 +36,10 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
     super.initState();
     _model = createModel(context, () => CaronasDisponiveisModel());
 
-    _groupService = GetIt.I.get<GroupService>(instanceName: 'passageiro');
+    _groupService = GetIt.I.get<GroupService>();
 
     UserService().buscarDadosUsuario().then((user) {
-      _groupService.stream().listen((event) {
-        final comunicado = GroupService.getComunicadoCorrespondente(
-          jsonDecode(String.fromCharCodes(event)),
-        );
-
+      _groupService.listenToEvents((comunicado) {
         if (comunicado is ComunicadoTodosGuposDisponiveis) {
           setState(() {
             gruposCarona = comunicado.gruposCarona;
@@ -111,7 +107,7 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
                     final user = await UserService().buscarDadosUsuario();
 
                     GetIt.I
-                        .get<GroupService>(instanceName: 'passageiro')
+                        .get<GroupService>()
                         .joinRideGroup(
                           usuario: user,
                           idGrupo: grupo.idCarona,

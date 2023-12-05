@@ -140,7 +140,7 @@ class _InformacoesCaronaPassageiroWidgetState
   void initState() {
     super.initState();
 
-    _groupService = GetIt.I.get<GroupService>(instanceName: 'passageiro');
+    _groupService = GetIt.I.get<GroupService>();
 
     setupAnimations(
       animationsMap.values.where((anim) =>
