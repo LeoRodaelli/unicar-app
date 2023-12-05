@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
@@ -38,16 +40,35 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
     _groupService = GetIt.I.get<GroupService>();
 
     UserService().buscarDadosUsuario().then((user) {
-      print('idUsuario: ' + user.id.toString());
-      _groupService.listenToEvents((comunicado) {
-        print('CaronasDisponiveis: ' + comunicado.toString());
+      _groupService.streamNotifier.addListener(
+        () {
+          final comunicado = _groupService.getComunicadoCorrespondente(
+            jsonDecode(_groupService.streamNotifier.value),
+          );
 
-        if (comunicado is ComunicadoTodosGuposDisponiveis) {
-          setState(() {
-            gruposCarona = comunicado.gruposCarona;
-          });
-        }
-      });
+          print('recebi carona');
+
+          //RETORNAR PESSOAS SEU ANIMAL DE TETA
+
+          if (comunicado is ComunicadoTodosGuposDisponiveis) {
+            setState(() {
+              gruposCarona = comunicado.gruposCarona;
+            });
+          }
+        },
+      );
+
+      // _groupService.listenToEvents((comunicado) {
+      //   print('recebi carona');
+
+      //   print('object' + comunicado.toString());
+
+      //   if (comunicado is ComunicadoTodosGuposDisponiveis) {
+      //     setState(() {
+      //       gruposCarona = comunicado.gruposCarona;
+      //     });
+      //   }
+      // });
 
       _groupService.getAllRides(idUsuario: user.id);
     });
@@ -103,7 +124,6 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
                   GetIt.I.get<GroupService>().joinRideGroup(
                         usuario: user,
                         idGrupo: grupo.idCarona,
-                        parada: grupo.localPartida,
                       );
 
                   if (context.mounted) {
@@ -124,8 +144,6 @@ class _CaronasDisponiveisState extends State<CaronasDisponiveis> {
     );
   }
 }
-
-//card de carona
 
 class CardCarona extends StatelessWidget {
   final GrupoCarona grupoCarona;
@@ -155,7 +173,7 @@ class CardCarona extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                grupoCarona.motorista.nome,
+                'Motorista: ' + grupoCarona.motorista.nome,
                 style: GoogleFonts.getFont(
                   'Roboto',
                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -164,7 +182,7 @@ class CardCarona extends StatelessWidget {
                 ),
               ),
               Text(
-                grupoCarona.localPartida,
+                'Sai de:' + grupoCarona.localPartida,
                 style: GoogleFonts.getFont(
                   'Roboto',
                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -173,7 +191,25 @@ class CardCarona extends StatelessWidget {
                 ),
               ),
               Text(
-                grupoCarona.preco.toString(),
+                'Vai para:' + grupoCarona.localDestino,
+                style: GoogleFonts.getFont(
+                  'Roboto',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
+              ),
+              Text(
+                'Horário de partida:' + grupoCarona.horarioSaida,
+                style: GoogleFonts.getFont(
+                  'Roboto',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
+              ),
+              Text(
+                'Preço: R\$' + grupoCarona.preco.toString(),
                 style: GoogleFonts.getFont(
                   'Roboto',
                   color: FlutterFlowTheme.of(context).secondaryBackground,

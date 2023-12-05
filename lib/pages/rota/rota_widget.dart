@@ -156,7 +156,7 @@ class _RotaWidgetState extends State<RotaWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CaronasDisponiveis(),
+                        builder: (context) =>  CaronasDisponiveis(),
                       ),
                     );
                   },

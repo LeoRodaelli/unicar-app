@@ -32,6 +32,7 @@ class UserService {
         'id': jsonMap['ra'],
         'nome': jsonMap['name'],
         'contato': jsonMap['phone'],
+        'carro': jsonMap['car'],
       };
       _usuarioCache = Usuario.fromJson(jsonUsuario);
       return _usuarioCache!;

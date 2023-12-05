@@ -306,8 +306,7 @@ class _InformacoesCaronaPassageiroWidgetState
                           ),
                         ),
                         Text(
-                          //TODO - GU: adicionar destino no grupo carona
-                          widget.grupoCarona.localPartida,
+                          widget.grupoCarona.localDestino,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Roboto',
@@ -409,7 +408,7 @@ class _InformacoesCaronaPassageiroWidgetState
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 12.0, 0.0, 0.0),
                             child: Text(
-                              'Chevrolet Onix',
+                              widget.grupoCarona.motorista.carro.modelo,
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
@@ -423,7 +422,7 @@ class _InformacoesCaronaPassageiroWidgetState
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Branco - Placa XYL7W79',
+                              '${widget.grupoCarona.motorista.carro.cor} - ${widget.grupoCarona.motorista.carro.placa}',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall

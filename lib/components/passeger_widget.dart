@@ -193,6 +193,36 @@ class _PassegerWidgetState extends State<PassegerWidget>
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation3']!),
                       ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                        child: Text(
+                          'Parada:',
+                          textAlign: TextAlign.center,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF192229),
+                                    fontSize: 14.0,
+                                  ),
+                        ).animateOnPageLoad(
+                            animationsMap['textOnPageLoadAnimation4']!),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                        child: Text(
+                          widget.pass.parada ?? 'Não informado',
+                          textAlign: TextAlign.center,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF192229),
+                                    fontSize: 14.0,
+                                  ),
+                        ).animateOnPageLoad(
+                            animationsMap['textOnPageLoadAnimation3']!),
+                      )
                     ],
                   ),
                 ),

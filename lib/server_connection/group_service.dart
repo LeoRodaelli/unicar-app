@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_carona_cancelada.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_desligamento.dart';
 import 'package:unicar_maps/server_connection/entities/comunicado_grupo_carona.dart';
@@ -22,10 +23,15 @@ import 'package:unicar_maps/server_connection/entities/usuario.dart';
 class GroupService {
   final String host;
   final int port;
-  static Socket? socket;
+  Socket? socket;
   Stream? stream;
+  static late ValueNotifier<String> notifier;
 
   GroupService(this.host, this.port);
+
+  ValueNotifier<String> get streamNotifier => notifier;
+
+
 
   Future<void> init() async {
     try {
@@ -33,14 +39,20 @@ class GroupService {
         return;
       }
 
-      socket = await Socket.connect(host, port, timeout: Duration(seconds: 5));
+      socket = await Socket.connect(host, port);
+
+      notifier = ValueNotifier("{}");
+
+      socket!.listen((event) {
+        notifier.value = String.fromCharCodes(event);
+        print('recebido: ' + String.fromCharCodes(event));
+        notifier.notifyListeners();
+      });
     } catch (e) {
       print(e);
     }
 
     print('iniciou a conexao!');
-
-    stream = socket!.asBroadcastStream();
 
     // socket!.listen(
     //   (event) {
@@ -52,19 +64,23 @@ class GroupService {
     // );
   }
 
-  void listenToEvents(Function(dynamic comunicado) onDataReceived) {
-    print('listenToEvents');
+  void listenToEvents(Function(dynamic comunicado) onDataReceived) async {
+    try {
+      notifier.addListener(
+        () {
+          print('onDataReceived: ' + onDataReceived.hashCode.toString());
+          final comunicado = getComunicadoCorrespondente(
+            jsonDecode(notifier.value),
+          );
 
-    stream?.listen(
-      (event) {
-        final comunicado = getComunicadoCorrespondente(
-          jsonDecode(String.fromCharCodes(event)),
-        );
-
-        print('comunicado: ' + comunicado.toString());
-        onDataReceived(comunicado);
-      },
-    );
+          print('comunicado: ' + comunicado.toString());
+          onDataReceived(comunicado);
+        },
+      );
+    } catch (e) {
+      print(e);
+      
+    }
   }
 
   void _sendData(String data) async {
@@ -82,14 +98,13 @@ class GroupService {
     } catch (_) {}
   }
 
-  void joinRideGroup(
-      {required Usuario usuario,
-      required String idGrupo,
-      required String parada}) {
+  void joinRideGroup({
+    required Usuario usuario,
+    required String idGrupo,
+  }) {
     _sendData(
       jsonEncode(
-        PedidoEntrarNoGrupoDeCarona(
-                idGrupo: idGrupo, usuario: usuario, parada: parada)
+        PedidoEntrarNoGrupoDeCarona(idGrupo: idGrupo, usuario: usuario)
             .toJSON(),
       ),
     );

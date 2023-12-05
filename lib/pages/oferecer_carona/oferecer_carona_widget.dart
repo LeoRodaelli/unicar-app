@@ -907,7 +907,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
   Future<void> _createRideGroup() async {
     try {
       final user = await UserService().buscarDadosUsuario();
-      // GU: cria a carona
+      
       _groupService.createRideGroup(
         GrupoCarona(
           vagasTotais: int.tryParse(
@@ -920,6 +920,7 @@ class _OferecerCaronaWidgetState extends State<OferecerCaronaWidget> {
           horarioSaida: _model.datePicked!.toString(),
           preco: double.tryParse(_model.valorPorPassageiroController.text)!,
           motorista: user,
+          localDestino: _model.placePickerDestValue.name,
         ),
       );
     } catch (_) {

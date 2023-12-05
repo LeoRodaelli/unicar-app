@@ -42,19 +42,33 @@ class _InformacoesCaronaMotoristaWidgetState
   @override
   void initState() {
     _groupService = GetIt.I.get<GroupService>();
+    passageiros = widget.grupoCarona.passageiros;
 
-    _groupService.listenToEvents(
-      (comunicado) {
+    _groupService.streamNotifier.addListener(
+      () {
+        final comunicado = _groupService.getComunicadoCorrespondente(
+          jsonDecode(_groupService.streamNotifier.value),
+        );
+
+        print('ouvi comunciado: $comunicado');
         if (comunicado is ComunicadoGrupoCarona) {
-          setState(() {
-            passageiros = comunicado.usuarios;
-          });
+          
+          updatePassageiros(comunicado.usuarios);
         } else if (comunicado is ComunicadoCaronaCancelada) {
           Navigator.pop(context);
         }
       },
     );
+
     super.initState();
+  }
+
+  void updatePassageiros(List<Usuario> passageiros) {
+    print('era para atualizar');
+
+    setState(() {
+      this.passageiros = passageiros;
+    });
   }
 
   // ficar ouvindo carona e atualizando lista de usuarios
